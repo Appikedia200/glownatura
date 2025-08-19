@@ -89,52 +89,107 @@ img[data-loaded="false"] {
 }
 
 @layer base {
-  /* Better touch targets for mobile */
-  button, 
-  [role="button"], 
-  input[type="submit"], 
-  input[type="button"], 
-  a {
-    min-height: 44px;
-    min-width: 44px;
+  html {
+    scroll-behavior: smooth;
+    /* Mobile viewport optimization */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
-  /* Prevent zoom on input focus on iOS */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  textarea,
-  select {
-    font-size: 16px;
+  body {
+    @apply bg-beauty-cream text-beauty-charcoal font-sans antialiased;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Improve focus visibility */
-  *:focus {
-    outline: 2px solid #25D366;
+  /* Mobile-first responsive images */
+  img {
+    max-width: 100%;
+    height: auto;
+    /* Improve image loading performance */
+    loading: lazy; 
+    decode: async;
+    /* Enable hardware acceleration */
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Priority images should load immediately */
+  img[loading="eager"] { 
+    loading: eager;
+    decode: sync;
+    fetchpriority: high;
+  }
+
+  /* Preload featured images for instant loading */
+  img[data-priority="true"] {
+    loading: eager;
+    decode: sync;
+    fetchpriority: high;
+  }
+
+  /* Loading animation for images */
+  img[data-loaded="false"] {
+    animation: shimmer 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Image container optimizations */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    contain: layout style paint;
+    will-change: transform;
+    transition: opacity 0.2s ease-in-out;
+    content-visibility: auto;
+  }
+
+  /* Touch targets for mobile */
+  @media (max-width: 768px) {
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Optimize touch scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Focus visible improvements */
+  *:focus-visible {
+    outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
 
-  /* Remove focus outline for mouse users */
-  *:focus:not(:focus-visible) {
-    outline: none;
+  /* Better touch targets for mobile */
+  button, 
+  a, 
+  [role="button"] {
+    min-height: 44px;
+    padding: 8px 16px;
   }
 
-  /* Custom scrollbar for webkit browsers */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-beauty-light-gray;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-beauty-blush rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-400;
+  /* Smooth focus transitions */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
   }
 }
 

@@ -12,7 +12,7 @@ export const products: Product[] = [
     originalPrice: 13000,
     images: [
       {
-        url: '/images/featured/simple.png',
+        url: '/images/FeaturedItems/facefacts-hydrating-cleanser.png',
         alt: 'Skeenlogic AHA/BHA Gentle Deep Pore Cleanser',
         isPrimary: true
       }
@@ -42,7 +42,7 @@ export const products: Product[] = [
     price: 5999,
     images: [
       {
-        url: '/images/featured/laroche.png',
+        url: '/images/FeaturedItems/7-2.png',
         alt: 'Kabazel Azelaic Acid Gel 20%',
         isPrimary: true
       }
@@ -72,7 +72,7 @@ export const products: Product[] = [
     price: 4999,
     images: [
       {
-        url: '/images/featured/medix5.5.png',
+        url: '/images/FeaturedItems/niveasupergel2.png',
         alt: 'Kabinone Hydroquinone Cream USP 4%',
         isPrimary: true
       }
@@ -103,7 +103,7 @@ export const products: Product[] = [
     price: 19500,
     images: [
       {
-        url: '/images/featured/balancedvic.png',
+        url: '/images/FeaturedItems/WhatsApp-Image-2025-07-01-at-09.49.28_8f16e25e-1024x1024.png',
         alt: 'Timeless Vitamin C Plus E Ferulic Acid Serum',
         isPrimary: true
       }
