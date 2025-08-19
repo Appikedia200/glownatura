@@ -136,10 +136,19 @@ export interface ReviewUser {
 export interface Review {
   id: string
   productId: string
-  userName: string
+  userId: string
+  user: ReviewUser
   rating: number
+  title?: string
   comment: string
-  date: string
+  images?: string[]
+  helpfulCount?: number
+  isRecommended?: boolean
+  skinType?: SkinType
+  ageRange?: AgeRange
+  createdAt: Date
+  updatedAt?: Date
+  date?: string
   verified?: boolean
 }
 
@@ -152,4 +161,5 @@ export interface PromoMessage {
 export interface ProductPromotion {
   type: string
   description: string
+  discount?: number
 } 

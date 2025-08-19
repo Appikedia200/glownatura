@@ -24,8 +24,8 @@ export const products: Product[] = [
     stockQuantity: 45,
     rating: 4.8,
     reviewCount: 1247,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['hydrating', 'healing', 'anti-aging'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Snail Secretion Filtrate 96%', 'Betaine', 'Butylene Glycol']
@@ -52,8 +52,8 @@ export const products: Product[] = [
     stockQuantity: 32,
     rating: 4.7,
     reviewCount: 891,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['moisturizing', 'healing', 'sensitive-skin'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Snail Secretion Filtrate 92%', 'Hyaluronic Acid', 'Ceramide']
@@ -79,8 +79,8 @@ export const products: Product[] = [
     stockQuantity: 67,
     rating: 4.6,
     reviewCount: 634,
-    isNew: false,
-    isBestseller: false,
+    isNewArrival: false,
+    isBestSeller: false,
     tags: ['acne', 'exfoliating', 'pore-care'],
     skinTypes: [SkinType.OILY, SkinType.COMBINATION, SkinType.ACNE_PRONE],
     ingredients: ['Salicylic Acid', 'Tea Tree Leaf Oil', 'White Willow Bark Water']
@@ -106,8 +106,8 @@ export const products: Product[] = [
     stockQuantity: 28,
     rating: 4.9,
     reviewCount: 756,
-    isNew: true,
-    isBestseller: true,
+    isNewArrival: true,
+    isBestSeller: true,
     tags: ['hydrating', 'healing', 'glowing'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Snail Secretion Filtrate 96%', 'Betaine', 'Panthenol']
@@ -135,8 +135,8 @@ export const products: Product[] = [
     stockQuantity: 89,
     rating: 4.5,
     reviewCount: 1089,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['brightening', 'pigmentation', 'dark-spots'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Alpha Arbutin 2%', 'Hyaluronic Acid', 'Aqua']
@@ -162,10 +162,10 @@ export const products: Product[] = [
     stockQuantity: 156,
     rating: 4.4,
     reviewCount: 2134,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['hydrating', 'plumping', 'dry-skin'],
-    skinTypes: [SkinType.DRY, SkinType.DEHYDRATED, SkinType.ALL],
+    skinTypes: [SkinType.DRY, SkinType.ALL],
     ingredients: ['Hyaluronic Acid', 'Vitamin B5', 'Sodium Hyaluronate']
   },
   {
@@ -189,10 +189,10 @@ export const products: Product[] = [
     stockQuantity: 43,
     rating: 4.3,
     reviewCount: 567,
-    isNew: false,
-    isBestseller: false,
+    isNewArrival: false,
+    isBestSeller: false,
     tags: ['anti-aging', 'texture', 'fine-lines'],
-    skinTypes: [SkinType.NORMAL, SkinType.COMBINATION, SkinType.OILY],
+    skinTypes: [SkinType.ALL, SkinType.COMBINATION, SkinType.OILY],
     ingredients: ['Retinol 0.2%', 'Squalane', 'Caprylic/Capric Triglyceride']
   },
 
@@ -218,8 +218,8 @@ export const products: Product[] = [
     stockQuantity: 72,
     rating: 4.7,
     reviewCount: 445,
-    isNew: true,
-    isBestseller: false,
+    isNewArrival: true,
+    isBestSeller: false,
     tags: ['soothing', 'sensitive-skin', 'hydrating'],
     skinTypes: [SkinType.SENSITIVE, SkinType.ALL],
     ingredients: ['Heartleaf Extract 77%', 'Panthenol', 'Betaine']
@@ -245,8 +245,8 @@ export const products: Product[] = [
     stockQuantity: 34,
     rating: 4.6,
     reviewCount: 289,
-    isNew: false,
-    isBestseller: false,
+    isNewArrival: false,
+    isBestSeller: false,
     tags: ['exfoliating', 'pore-care', 'acne'],
     skinTypes: [SkinType.OILY, SkinType.COMBINATION, SkinType.ACNE_PRONE],
     ingredients: ['Salicylic Acid 2%', 'Heartleaf Extract', 'White Willow Bark']
@@ -274,8 +274,8 @@ export const products: Product[] = [
     stockQuantity: 98,
     rating: 4.8,
     reviewCount: 723,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['sun-protection', 'tone-up', 'centella'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Zinc Oxide', 'Centella Asiatica Extract', 'Niacinamide']
@@ -301,8 +301,8 @@ export const products: Product[] = [
     stockQuantity: 54,
     rating: 4.6,
     reviewCount: 412,
-    isNew: true,
-    isBestseller: false,
+    isNewArrival: true,
+    isBestSeller: false,
     tags: ['cleansing-oil', 'makeup-removal', 'centella'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Centella Asiatica Extract', 'Ethylhexyl Palmitate', 'Sorbeth-30']
@@ -331,10 +331,10 @@ export const products: Product[] = [
     stockQuantity: 23,
     rating: 4.7,
     reviewCount: 356,
-    isNew: false,
-    isBestseller: false,
+    isNewArrival: false,
+    isBestSeller: false,
     tags: ['ceramide', 'barrier-repair', 'hydrating'],
-    skinTypes: [SkinType.DRY, SkinType.SENSITIVE, SkinType.DEHYDRATED],
+    skinTypes: [SkinType.DRY, SkinType.SENSITIVE, SkinType.DRY],
     ingredients: ['Ceramide Complex', 'Panthenol', 'Shea Butter']
   },
 
@@ -360,8 +360,8 @@ export const products: Product[] = [
     stockQuantity: 78,
     rating: 4.5,
     reviewCount: 267,
-    isNew: true,
-    isBestseller: false,
+    isNewArrival: true,
+    isBestSeller: false,
     tags: ['sun-protection', 'hydrating', 'lightweight'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Hyaluronic Acid', 'Zinc Oxide', 'Titanium Dioxide']
@@ -389,8 +389,8 @@ export const products: Product[] = [
     stockQuantity: 67,
     rating: 4.4,
     reviewCount: 198,
-    isNew: false,
-    isBestseller: false,
+    isNewArrival: false,
+    isBestSeller: false,
     tags: ['ph-balanced', 'sensitive-skin', 'soothing'],
     skinTypes: [SkinType.SENSITIVE, SkinType.ALL],
     ingredients: ['Panthenol', 'Madecassoside', 'Green Tea Extract']
@@ -418,8 +418,8 @@ export const products: Product[] = [
     stockQuantity: 41,
     rating: 4.6,
     reviewCount: 334,
-    isNew: false,
-    isBestseller: false,
+    isNewArrival: false,
+    isBestSeller: false,
     tags: ['centella', 'peptides', 'anti-aging'],
     skinTypes: [SkinType.SENSITIVE, SkinType.ALL],
     ingredients: ['Centella Asiatica Extract', 'Peptides', 'Niacinamide']
@@ -447,8 +447,8 @@ export const products: Product[] = [
     stockQuantity: 234,
     rating: 4.8,
     reviewCount: 1567,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['acne-patch', 'spot-treatment', 'hydrocolloid'],
     skinTypes: [SkinType.ACNE_PRONE, SkinType.ALL],
     ingredients: ['Hydrocolloid', 'Cellulose Gum']
@@ -474,8 +474,8 @@ export const products: Product[] = [
     stockQuantity: 52,
     rating: 4.7,
     reviewCount: 423,
-    isNew: true,
-    isBestseller: false,
+    isNewArrival: true,
+    isBestSeller: false,
     tags: ['propolis', 'honey', 'calming'],
     skinTypes: [SkinType.DRY, SkinType.SENSITIVE, SkinType.ALL],
     ingredients: ['Propolis Extract', 'Honey Extract', 'Panthenol']
@@ -501,8 +501,8 @@ export const products: Product[] = [
     stockQuantity: 123,
     rating: 4.3,
     reviewCount: 789,
-    isNew: false,
-    isBestseller: true,
+    isNewArrival: false,
+    isBestSeller: true,
     tags: ['moisturizing', 'barrier-repair', 'budget-friendly'],
     skinTypes: [SkinType.ALL],
     ingredients: ['Amino Acids', 'Hyaluronic Acid', 'Fatty Acids']
@@ -523,11 +523,11 @@ export const getProductsBySubcategory = (subcategory: string): Product[] => {
 }
 
 export const getBestsellerProducts = (): Product[] => {
-  return products.filter(product => product.isBestseller)
+  return products.filter(product => product.isBestSeller)
 }
 
 export const getNewProducts = (): Product[] => {
-  return products.filter(product => product.isNew)
+  return products.filter(product => product.isNewArrival)
 }
 
 export const getOnSaleProducts = (): Product[] => {
@@ -536,7 +536,7 @@ export const getOnSaleProducts = (): Product[] => {
 
 export const getFeaturedProducts = (limit: number = 8): Product[] => {
   return products
-    .filter(product => product.isBestseller || product.isNew)
+    .filter(product => product.isBestSeller || product.isNewArrival)
     .slice(0, limit)
 }
 

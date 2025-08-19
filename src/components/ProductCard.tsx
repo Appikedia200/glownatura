@@ -16,6 +16,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
   const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageError, setImageError] = useState(false)
 
   const handleQuantityChange = (delta: number) => {
     const newQuantity = Math.max(1, Math.min(quantity + delta, product.stockQuantity))
@@ -63,21 +64,45 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
     <div className={`bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}>
       {/* Product Image */}
       <div className="relative aspect-square overflow-hidden group">
-        <Image
-          src={product.images[0].url}
-          alt={product.images[0].alt}
-          fill
-          className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setImageLoaded(true)}
-        />
+        {!imageError ? (
+          <Image
+            src={product.images[0].url}
+            alt={product.images[0].alt}
+            fill
+            className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            onError={() => {
+              setImageError(true)
+              setImageLoaded(false)
+            }}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7+Ka9pn0LubJw4kqsnL3Xu7zxKrJ5bSgqTJkPrqd/OQR6dqjPXmZaVFz5PlVXnlGE6cYwQRyXdOKU+NqZGV3fYDz9J5+5fqxh6n/xAAUEQEAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8AUn//xAAUEQEAAAAAAAAAAAAAAAAAAAD/2gAIAQMBAT8AUn//2Q=="
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+            <div className="text-center p-4">
+              <div className="w-16 h-16 mx-auto mb-2 bg-gray-300 rounded-lg flex items-center justify-center">
+                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p className="text-xs text-gray-500 font-medium">{product.name}</p>
+            </div>
+          </div>
+        )}
         
-        {/* Fallback placeholder */}
-        {!imageLoaded && (
+        {/* Loading placeholder */}
+        {!imageLoaded && !imageError && (
           <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-            <div className="text-gray-400 text-sm text-center p-4">
-              {product.name}
+            <div className="animate-pulse flex flex-col items-center space-y-2">
+              <div className="w-12 h-12 bg-gray-300 rounded-lg"></div>
+              <div className="text-gray-400 text-xs text-center px-4 max-w-full truncate">
+                Loading...
+              </div>
             </div>
           </div>
         )}
@@ -109,9 +134,9 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
         )}
 
         {/* New/Featured Badge */}
-        {(product.isNew || product.isFeatured || product.isBackInStock) && (
+        {(product.isNewArrival || product.isFeatured || product.isBackInStock) && (
           <div className="absolute bottom-3 left-3">
-            {product.isNew && (
+            {product.isNewArrival && (
               <span className="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded">
                 NEW
               </span>
@@ -138,10 +163,10 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
         {/* Rating */}
         <div className="flex items-center mb-2">
           <div className="flex items-center space-x-1">
-            {renderStars(product.rating)}
+            {renderStars(product.rating || 0)}
           </div>
           <span className="ml-2 text-sm text-gray-600">
-            ({product.reviewCount} reviews)
+            ({product.reviewCount || 0} reviews)
           </span>
         </div>
 

@@ -273,8 +273,7 @@ export const heroBanner: HeroBanner = {
   title: 'Start Your Skin Journey',
   ctaText: 'Discover More',
   ctaLink: '/products',
-  backgroundImage: '/images/collections/Start-your-journey.png', // Now uses actual image!
-  productImage: '/images/products/hero-product.jpg'
+  backgroundImage: '/images/collections/Start-your-journey.png' // Now uses actual image!
 }
 
 // Navigation Data

@@ -145,7 +145,7 @@ export default function AboutPage() {
                 className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-4xl mx-auto sm:mx-0"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
-                To emerge as Africa's foremost digital hub for skincare learning, consultations, and product solutions—celebrated for our commitment to quality, innovation, and customer delight.
+                To emerge as Africa&apos;s foremost digital hub for skincare learning, consultations, and product solutions—celebrated for our commitment to quality, innovation, and customer delight.
               </p>
             </div>
 
@@ -168,7 +168,7 @@ export default function AboutPage() {
                   className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-4xl mx-auto sm:mx-0"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
-                  Through this three-fold method, we ensure that you don't just purchase skincare items—you gain knowledge, appreciation, and confidence in caring for your skin.
+                  Through this three-fold method, we ensure that you don&apos;t just purchase skincare items—you gain knowledge, appreciation, and confidence in caring for your skin.
                 </p>
               </div>
             </div>

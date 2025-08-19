@@ -24,6 +24,26 @@
   img {
     max-width: 100%;
     height: auto;
+    /* Improve image loading performance */
+    loading: lazy;
+    decode: async;
+  }
+  
+  /* Priority images should load immediately */
+  img[loading="eager"] {
+    loading: eager;
+  }
+  
+  /* Skeleton loading for images */
+  img[data-loaded="false"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
 
   /* Better touch targets for mobile */
@@ -98,6 +118,18 @@
 
   .text-gradient {
     @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  /* Image loading optimizations */
+  .image-container {
+    @apply relative overflow-hidden;
+    contain: layout;
+    will-change: transform;
+  }
+
+  .image-container img {
+    @apply transition-opacity duration-300;
+    content-visibility: auto;
   }
 
   .input-beauty {

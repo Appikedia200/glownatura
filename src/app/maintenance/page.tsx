@@ -40,7 +40,7 @@ export default function MaintenancePage() {
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-4 sm:mb-6 leading-tight px-2"
                 style={{ fontFamily: 'Libre Baskerville, Georgia, serif' }}
               >
-                We're Here to Serve You Better
+                We&apos;re Here to Serve You Better
               </h1>
 
               {/* Subtext */}

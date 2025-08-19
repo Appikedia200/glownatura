@@ -126,6 +126,6 @@ export const getReviewCount = (productId: string): number => {
 export const getFeaturedReviews = (limit: number = 3): Review[] => {
   return reviews
     .filter(review => review.rating >= 4 && review.isRecommended)
-    .sort((a, b) => b.helpfulCount - a.helpfulCount)
+    .sort((a, b) => (b.helpfulCount || 0) - (a.helpfulCount || 0))
     .slice(0, limit)
 } 
