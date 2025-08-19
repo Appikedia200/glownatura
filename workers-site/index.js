@@ -18,16 +18,21 @@ async function handleEvent(event) {
       return new Response('', { status: 404 })
     }
     
-    // Handle Next.js routing
-    if (url.pathname === '/') {
-      url.pathname = '/index.html'
-    } else if (!url.pathname.includes('.') && !url.pathname.endsWith('/')) {
-      url.pathname = url.pathname + '/index.html'
-    } else if (url.pathname.endsWith('/')) {
-      url.pathname = url.pathname + 'index.html'
+    // Handle Next.js routing - create a new URL for the modified path
+    let targetPath = url.pathname
+    if (targetPath === '/') {
+      targetPath = '/index.html'
+    } else if (!targetPath.includes('.') && !targetPath.endsWith('/')) {
+      targetPath = targetPath + '/index.html'
+    } else if (targetPath.endsWith('/')) {
+      targetPath = targetPath + 'index.html'
     }
     
-    const modifiedRequest = new Request(url.toString(), {
+    // Create modified request with the target path
+    const modifiedUrl = new URL(event.request.url)
+    modifiedUrl.pathname = targetPath
+    
+    const modifiedRequest = new Request(modifiedUrl.toString(), {
       method: event.request.method,
       headers: event.request.headers,
       body: event.request.body,
@@ -35,11 +40,6 @@ async function handleEvent(event) {
     
     return await getAssetFromKV(event, {
       request: modifiedRequest,
-      mapRequestToAsset: req => {
-        const url = new URL(req.url)
-        // Ensure we're requesting the correct path
-        return new Request(`${url.origin}${url.pathname}`, req)
-      }
     })
   } catch (e) {
     console.error('Worker error:', e)
