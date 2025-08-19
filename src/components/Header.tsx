@@ -56,9 +56,9 @@ export default function Header() {
               <Image
                 src="/images/logo/jbeauty-logo.png"
                 alt="JBEAUTY Logo"
-                width={110}
-                height={36}
-                className="md:w-[120px] md:h-[38px] lg:w-[130px] lg:h-[42px] object-contain hover:opacity-90 transition-opacity duration-300"
+                width={130}
+                height={42}
+                className="w-[120px] h-[38px] md:w-[130px] md:h-[42px] lg:w-[140px] lg:h-[45px] object-contain hover:opacity-90 transition-opacity duration-300"
                 priority
               />
             </a>

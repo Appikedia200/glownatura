@@ -109,6 +109,12 @@ img[data-loaded="false"] {
     text-rendering: optimizeLegibility;
   }
 
+  /* Ensure fixed elements stay fixed */
+  .fixed {
+    position: fixed !important;
+    z-index: 9999;
+  }
+
   /* Mobile-first responsive images */
   img {
     max-width: 100%;
