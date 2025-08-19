@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.4.0",
     "@heroicons/react": "^2.2.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.294.0",
