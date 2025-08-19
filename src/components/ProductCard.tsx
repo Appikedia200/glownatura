@@ -10,9 +10,10 @@ import { formatPrice } from '@/lib/data'
 interface ProductCardProps {
   product: Product
   className?: string
+  priority?: boolean // Add priority prop for featured items
 }
 
-export default function ProductCard({ product, className = '' }: ProductCardProps) {
+export default function ProductCard({ product, className = '', priority = false }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -77,7 +78,8 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
               setImageError(true)
               setImageLoaded(false)
             }}
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"} // Use eager loading for priority images
+            priority={priority} // Add priority for featured images
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7+Ka9pn0LubJw4kqsnL3Xu7zxKrJ5bSgqTJkPrqd/OQR6dqjPXmZaVFz5PlVXnlGE6cYwQRyXdOKU+NqZGV3fYDz9J5+5fqxh6n/xAAUEQEAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8AUn//xAAUEQEAAAAAAAAAAAAAAAAAAAD/2gAIAQMBAT8AUn//2Q=="
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

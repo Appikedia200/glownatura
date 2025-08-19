@@ -65,6 +65,7 @@ export default function Home() {
         <SectionCarousel
           title="Featured Items"
           products={featuredProducts}
+          priority={true}
         />
 
         {/* 8. Back in Stock Section */}

@@ -10,6 +10,7 @@ interface SectionCarouselProps {
   showViewAll?: boolean
   viewAllLink?: string
   className?: string
+  priority?: boolean // Add priority prop for featured sections
 }
 
 export default function SectionCarousel({ 
@@ -17,7 +18,8 @@ export default function SectionCarousel({
   products, 
   showViewAll = false,
   viewAllLink = '#',
-  className = '' 
+  className = '',
+  priority = false // Default to false for non-featured sections
 }: SectionCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const productsPerPage = 4
@@ -67,12 +69,12 @@ export default function SectionCarousel({
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {currentProducts.map((product) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {currentProducts.map((product, index) => (
             <ProductCard 
               key={product.id} 
-              product={product}
-              className="h-full"
+              product={product} 
+              priority={priority && index < 4} // Only prioritize first 4 items in featured sections
             />
           ))}
         </div>
