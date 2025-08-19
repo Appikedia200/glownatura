@@ -94,9 +94,6 @@ img[data-loaded="false"] {
     /* Mobile viewport optimization */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    /* Force hardware acceleration */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
   }
 
   body {
@@ -109,36 +106,6 @@ img[data-loaded="false"] {
     text-rendering: optimizeLegibility;
   }
 
-  /* Ensure fixed elements stay fixed - Force with inline styles */
-  .fixed {
-    position: fixed !important;
-    z-index: 9999 !important;
-  }
-
-  /* Specific header fixed positioning */
-  header {
-    position: relative !important;
-  }
-
-  /* Force promo bar to stay at top */
-  .promo-bar-fixed {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 10000 !important;
-  }
-
-  /* Force header container to stay fixed */
-  .header-container-fixed {
-    position: fixed !important;
-    top: 40px !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 9998 !important;
-    width: 100% !important;
-  }
-
   /* Mobile-first responsive images */
   img {
     max-width: 100%;
@@ -146,9 +113,6 @@ img[data-loaded="false"] {
     /* Improve image loading performance */
     loading: lazy; 
     decode: async;
-    /* Enable hardware acceleration */
-    transform: translateZ(0);
-    will-change: transform;
   }
 
   /* Priority images should load immediately */
@@ -175,16 +139,6 @@ img[data-loaded="false"] {
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
-  }
-
-  /* Image container optimizations */
-  .image-container {
-    position: relative;
-    overflow: hidden;
-    contain: layout style paint;
-    will-change: transform;
-    transition: opacity 0.2s ease-in-out;
-    content-visibility: auto;
   }
 
   /* Touch targets for mobile */

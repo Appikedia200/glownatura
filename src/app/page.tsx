@@ -27,18 +27,17 @@ export default function Home() {
 
   return (
     <>
-      {/* 1. Scrolling Promo Bar - Fixed at very top */}
+      {/* 1. Scrolling Promo Bar */}
       <ScrollingPromoBar />
       
-      {/* 2. Header Section - Absolutely Fixed with specific class */}
-      <div className="header-container-fixed bg-[#FFF8F3] shadow-sm">
+      {/* 2. Header Section - Sticky positioning like localhost */}
+      <div className="sticky top-[40px] z-50 bg-[#FFF8F3]">
         <Header />
         <NavMenu />
       </div>
 
-      {/* 3. Main Content - with proper spacing for fixed header */}
-      <div className="pt-[180px]">
-        <main className="min-h-screen">
+      {/* 3. Main Content */}
+      <main className="min-h-screen">
 
         {/* 4. Hero Section - Now uses actual image */}
         <HeroBanner />
@@ -96,8 +95,7 @@ export default function Home() {
 
         {/* 13. Footer - Immediately after Best Sellers */}
         <Footer />
-        </main>
-      </div>
+      </main>
     </>
   )
 } 
