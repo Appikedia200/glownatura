@@ -49,7 +49,7 @@ const libreBaskerville = Libre_Baskerville({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://championssupermarket.vercel.app' : 'http://localhost:3000'),
+  metadataBase: new URL('https://jbeauty.com'),
   title: {
     default: 'JBEAUTY - Premium Skincare & Professional Beauty Solutions',
     template: '%s | JBEAUTY'
@@ -73,7 +73,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://localhost:3000',
     title: 'JBEAUTY - Premium Skincare & Professional Beauty Solutions',
     description: 'Transform your skin with JBEAUTY&apos;s premium skincare collection. Professional-grade formulations for radiant, healthy skin.',
     siteName: 'JBEAUTY',
@@ -94,9 +93,6 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
-  alternates: {
-    canonical: 'http://localhost:3000',
-  },
 }
 
 export const viewport: Viewport = {
@@ -104,10 +100,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F8F6F0' },
-    { media: '(prefers-color-scheme: dark)', color: '#2D2A26' }
-  ],
 }
 
 export default function RootLayout({
@@ -120,12 +112,6 @@ export default function RootLayout({
       lang="en" 
       className={`${inter.variable} ${playfair.variable} ${montserrat.variable} ${outfit.variable} ${crimsonText.variable} ${gupter.variable} ${libreBaskerville.variable} scroll-smooth`}
     >
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-      </head>
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream`}>
         <div id="portal-root" />
         {children}
