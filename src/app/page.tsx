@@ -30,16 +30,17 @@ export default function Home() {
       {/* 1. Scrolling Promo Bar - Always stays at top */}
       <ScrollingPromoBar />
       
-      <div className="pt-[40px]">
-        {/* Combined Header Section - Sticky as one unit */}
-        <div className="sticky top-[40px] z-[9998] bg-[#FFF8F3] border-t border-gray-200 shadow-sm">
-          {/* 2. Main Header */}
-          <Header />
+      {/* Combined Header Section - Fixed positioning for better sticky behavior */}
+      <div className="fixed top-[40px] left-0 right-0 z-[9999] bg-[#FFF8F3] border-t border-gray-200 shadow-sm">
+        {/* 2. Main Header */}
+        <Header />
 
-          {/* 3. Navigation Menu */}
-          <NavMenu />
-        </div>
+        {/* 3. Navigation Menu */}
+        <NavMenu />
+      </div>
 
+      {/* Main content with proper top margin to account for fixed header */}
+      <div className="pt-[200px]">
         <main className="min-h-screen">
 
         {/* 4. Hero Section - Now uses actual image */}
