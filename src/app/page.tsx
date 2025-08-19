@@ -30,14 +30,14 @@ export default function Home() {
       {/* 1. Scrolling Promo Bar - Fixed at very top */}
       <ScrollingPromoBar />
       
-      {/* 2. Header Section - Fixed just below promo bar */}
-      <div className="fixed top-[40px] left-0 right-0 z-[9998] bg-[#FFF8F3]">
+      {/* 2. Header Section - Absolutely Fixed with specific class */}
+      <div className="header-container-fixed bg-[#FFF8F3] shadow-sm">
         <Header />
         <NavMenu />
       </div>
 
-      {/* 3. Main Content - with proper margin to account for fixed header */}
-      <div className="pt-[160px]">
+      {/* 3. Main Content - with proper spacing for fixed header */}
+      <div className="pt-[180px]">
         <main className="min-h-screen">
 
         {/* 4. Hero Section - Now uses actual image */}

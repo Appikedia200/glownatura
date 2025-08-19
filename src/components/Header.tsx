@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <header className="bg-[#FFF8F3] border-b border-gray-100/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+        <div className="flex items-center justify-between h-20 md:h-24 lg:h-28">
           
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -50,15 +50,15 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Logo - Center */}
+          {/* Logo - Center - Make it bigger like localhost */}
           <div className="flex-1 flex justify-center md:flex-none md:absolute md:left-1/2 md:transform md:-translate-x-1/2">           
            <a href="/" className="flex items-center">
               <Image
                 src="/images/logo/jbeauty-logo.png"
                 alt="JBEAUTY Logo"
-                width={130}
-                height={42}
-                className="w-[120px] h-[38px] md:w-[130px] md:h-[42px] lg:w-[140px] lg:h-[45px] object-contain hover:opacity-90 transition-opacity duration-300"
+                width={140}
+                height={45}
+                className="w-[130px] h-[42px] md:w-[140px] md:h-[45px] lg:w-[150px] lg:h-[48px] object-contain hover:opacity-90 transition-opacity duration-300"
                 priority
               />
             </a>

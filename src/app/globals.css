@@ -109,10 +109,34 @@ img[data-loaded="false"] {
     text-rendering: optimizeLegibility;
   }
 
-  /* Ensure fixed elements stay fixed */
+  /* Ensure fixed elements stay fixed - Force with inline styles */
   .fixed {
     position: fixed !important;
-    z-index: 9999;
+    z-index: 9999 !important;
+  }
+
+  /* Specific header fixed positioning */
+  header {
+    position: relative !important;
+  }
+
+  /* Force promo bar to stay at top */
+  .promo-bar-fixed {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10000 !important;
+  }
+
+  /* Force header container to stay fixed */
+  .header-container-fixed {
+    position: fixed !important;
+    top: 40px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9998 !important;
+    width: 100% !important;
   }
 
   /* Mobile-first responsive images */
