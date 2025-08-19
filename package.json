@@ -20,6 +20,7 @@
     "tailwind-merge": "^2.1.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250819.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.10.0",

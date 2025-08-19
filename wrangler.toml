@@ -1,6 +1,9 @@
 name = "jbeauty"
 compatibility_date = "2025-08-19"
-main = "worker.js"
+main = "workers-site/index.js"
 
 [site]
-bucket = "./out" 
+bucket = "./out"
+
+[build]
+command = "npm run build" 
