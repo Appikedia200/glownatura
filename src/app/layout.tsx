@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display, Montserrat, Outfit, Crimson_Text, Gupter, Libre_Baskerville } from 'next/font/google'
 import './globals.css'
+import ScrollingPromoBar from '@/components/ScrollingPromoBar'
+import Header from '@/components/Header'
+import NavMenu from '@/components/NavMenu'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -114,6 +117,14 @@ export default function RootLayout({
     >
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream`}>
         <div id="portal-root" />
+        
+        {/* Global Header - Fixed at top for all pages */}
+        <ScrollingPromoBar />
+        <div className="sticky top-[40px] z-50 bg-[#FFF8F3]">
+          <Header />
+          <NavMenu />
+        </div>
+        
         {children}
       </body>
     </html>

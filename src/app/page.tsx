@@ -1,6 +1,3 @@
-import ScrollingPromoBar from '@/components/ScrollingPromoBar'
-import Header from '@/components/Header'
-import NavMenu from '@/components/NavMenu'
 import HeroBanner from '@/components/HeroBanner'
 import WholesaleCTA from '@/components/WholesaleCTA'
 import SliderBanner from '@/components/SliderBanner'
@@ -26,76 +23,64 @@ export default function Home() {
   const bestSellers = getBestSellers()
 
   return (
-    <>
-      {/* 1. Scrolling Promo Bar */}
-      <ScrollingPromoBar />
-      
-      {/* 2. Header Section - Sticky positioning like localhost */}
-      <div className="sticky top-[40px] z-50 bg-[#FFF8F3]">
-        <Header />
-        <NavMenu />
-      </div>
+    <main className="min-h-screen">
 
-      {/* 3. Main Content */}
-      <main className="min-h-screen">
+      {/* 1. Hero Section - Now uses actual image */}
+      <HeroBanner />
 
-        {/* 4. Hero Section - Now uses actual image */}
-        <HeroBanner />
+      {/* 2. Wholesale Join CTA */}
+      <WholesaleCTA />
 
-        {/* 5. Wholesale Join CTA */}
-        <WholesaleCTA />
+      {/* 3. Collections Section - Right after WholesaleCTA */}
+      <CollectionGrid />
 
-        {/* 6. Collections Section - Right after WholesaleCTA */}
-        <CollectionGrid />
+      {/* COMMENTED OUT - Authorized Resellers Section */}
+      {/* 
+      <SliderBanner
+        title="Authorized Resellers"
+        ctaText="View More"
+        ctaLink="/resellers"
+        banners={authorizedResellerBanners}
+      />
+      */}
 
-        {/* COMMENTED OUT - Authorized Resellers Section */}
-        {/* 
-        <SliderBanner
-          title="Authorized Resellers"
-          ctaText="View More"
-          ctaLink="/resellers"
-          banners={authorizedResellerBanners}
-        />
-        */}
+      {/* 4. Featured Items Section */}
+      <SectionCarousel
+        title="Featured Items"
+        products={featuredProducts}
+        priority={true}
+      />
 
-        {/* 7. Featured Items Section */}
-        <SectionCarousel
-          title="Featured Items"
-          products={featuredProducts}
-          priority={true}
-        />
+      {/* 5. Back in Stock Section */}
+      <SectionCarousel
+        title="Back in Stock"
+        products={backInStockProducts}
+        showViewAll={true}
+        viewAllLink="/back-in-stock"
+        className="bg-white"
+      />
 
-        {/* 8. Back in Stock Section */}
-        <SectionCarousel
-          title="Back in Stock"
-          products={backInStockProducts}
-          showViewAll={true}
-          viewAllLink="/back-in-stock"
-          className="bg-white"
-        />
+      {/* 6. Wholesale Banner - Replaces Flyer Section */}
+      <WholesaleBanner />
 
-        {/* 9. Wholesale Banner - Replaces Flyer Section */}
-        <WholesaleBanner />
+      {/* 7. New Arrivals Section */}
+      <SectionCarousel
+        title="New Arrivals"
+        products={newArrivals}
+      />
 
-        {/* 10. New Arrivals Section */}
-        <SectionCarousel
-          title="New Arrivals"
-          products={newArrivals}
-        />
+      {/* 8. Consultation CTA (Video Background) */}
+      <VideoCTA />
 
-        {/* 11. Consultation CTA (Video Background) */}
-        <VideoCTA />
+      {/* 9. Best Sellers Section - Immediately after Video */}
+      <SectionCarousel
+        title="Best Sellers"
+        products={bestSellers}
+        className="bg-white"
+      />
 
-        {/* 12. Best Sellers Section - Immediately after Video */}
-        <SectionCarousel
-          title="Best Sellers"
-          products={bestSellers}
-          className="bg-white"
-        />
-
-        {/* 13. Footer - Immediately after Best Sellers */}
-        <Footer />
-      </main>
-    </>
+      {/* 10. Footer - Immediately after Best Sellers */}
+      <Footer />
+    </main>
   )
 } 
