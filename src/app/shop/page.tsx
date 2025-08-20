@@ -1,8 +1,5 @@
 'use client'
 
-import ScrollingPromoBar from '@/components/ScrollingPromoBar'
-import Header from '@/components/Header'
-import NavMenu from '@/components/NavMenu'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,57 +56,48 @@ export default function Shop() {
 
   return (
     <>
-      {/* 1. Scrolling Promo Bar - Always stays at top */}
-      <ScrollingPromoBar />
-      
-      <div className="pt-[40px]">
-        {/* Combined Header Section - Sticky as one unit */}
-        <div className="sticky top-[40px] z-[9998] bg-[#FFF8F3] border-t border-gray-200 shadow-sm">
-          {/* 2. Main Header */}
-          <Header />
-
-          {/* 3. Navigation Menu */}
-          <NavMenu />
-        </div>
-
-        <main className="min-h-screen">
-          {/* 4. Shop Banner Section */}
-          <section className="relative w-full h-[200px] md:h-[250px] lg:h-[300px] overflow-hidden">
+      <main className="min-h-screen">
+        {/* Shop Banner Section */}
+        <section className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+          
+          {/* Background Image */}
+          <div className="absolute inset-0">
             <Image
               src="/images/banners/shop.png"
               alt="Shop Banner"
               fill
-              className="object-cover"
-              sizes="100vw"
+              className="object-cover object-center"
               priority
             />
-            
-            {/* Banner Content - Shop title and breadcrumb */}
-            <div className="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-12">
-              {/* Shop Title - Large, using Libre font */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-libre font-light text-black mb-4">
-                Shop
-              </h1>
-              
-              {/* Breadcrumb Navigation - Using Gulzar font style */}
-              <nav className="flex items-center space-x-2 text-black">
-                <Link 
-                  href="/" 
-                  className="text-base md:text-lg hover:underline"
-                  style={{ fontFamily: 'serif' }}
+            {/* Overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+          
+          {/* Content Overlay */}
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <div className="text-center">
+                {/* Breadcrumb */}
+                <nav 
+                  className="mb-4 text-sm text-gray-300"
+                  style={{ fontFamily: 'Gulzar, serif' }}
                 >
-                  Home
-                </Link>
-                <span className="text-base md:text-lg" style={{ fontFamily: 'serif' }}>›</span>
-                <span 
-                  className="text-base md:text-lg"
-                  style={{ fontFamily: 'serif' }}
+                  <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                  <span className="mx-2">›</span>
+                  <span className="text-white">Shop</span>
+                </nav>
+                
+                {/* Main Title */}
+                <h1 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+                  style={{ fontFamily: 'Libre Baskerville, Georgia, serif' }}
                 >
                   Shop
-                </span>
-              </nav>
+                </h1>
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
 
           {/* 5. Shop Content Area */}
           <section className="py-8 bg-white">
@@ -117,6 +105,7 @@ export default function Shop() {
               <div className="flex gap-8">
                 
                 {/* Left Sidebar - Filters */}
+                {/* Removed Left Sidebar as per edit hint */}
                 <aside className="w-64 flex-shrink-0 hidden lg:block">
                   
                   {/* Filter by Price */}
@@ -402,7 +391,6 @@ export default function Shop() {
           {/* 6. Footer */}
           <Footer />
         </main>
-      </div>
     </>
   )
 } 
