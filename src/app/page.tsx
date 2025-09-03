@@ -23,9 +23,9 @@ export default function Home() {
   const bestSellers = getBestSellers()
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen m-0 p-0">
 
-      {/* 1. Hero Section - Now uses actual image */}
+      {/* 1. Hero Section - Starts immediately after header */}
       <HeroBanner />
 
       {/* 2. Wholesale Join CTA */}

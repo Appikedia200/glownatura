@@ -24,9 +24,6 @@ body {
 
 /* Aggressive image optimization */
 img {
-  /* Prioritize decode for faster rendering */
-  loading: lazy; 
-  decode: async;
   /* Prevent layout shift */
   height: auto;
   max-width: 100%;
@@ -35,17 +32,7 @@ img {
   will-change: transform;
 }
 
-/* Priority images load immediately */
-img[loading="eager"] { 
-  loading: eager;
-}
-
-/* Preload featured images for instant loading */
-img[data-priority="true"] {
-  loading: eager;
-  decode: sync;
-  fetchpriority: high;
-}
+/* Priority images handled via HTML attributes in components */
 
 /* Loading animation for images */
 img[data-loaded="false"] {
@@ -94,6 +81,9 @@ img[data-loaded="false"] {
     /* Mobile viewport optimization */
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
   body {
@@ -106,27 +96,47 @@ img[data-loaded="false"] {
     text-rendering: optimizeLegibility;
   }
 
-  /* Mobile-first responsive images */
+  /* Reset for main content areas */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Reset any default spacing */
+  main > * {
+    margin-top: 0 !important;
+  }
+
+  /* Mobile responsiveness fixes to prevent banner overlapping */
+  @media (max-width: 768px) {
+    /* Ensure no content overlaps on mobile */
+    .hero-section,
+    [class*="hero"],
+    [class*="banner"] {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Fix spacing between sections on mobile */
+    section,
+    div[class*="section"] {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Prevent header content from overlapping */
+    header + * {
+      margin-top: 0 !important;
+    }
+  }
+
+  /* Aggressive image optimization */
   img {
+    /* Prevent layout shift */
     max-width: 100%;
     height: auto;
-    /* Improve image loading performance */
-    loading: lazy; 
-    decode: async;
-  }
-
-  /* Priority images should load immediately */
-  img[loading="eager"] { 
-    loading: eager;
-    decode: sync;
-    fetchpriority: high;
-  }
-
-  /* Preload featured images for instant loading */
-  img[data-priority="true"] {
-    loading: eager;
-    decode: sync;
-    fetchpriority: high;
   }
 
   /* Loading animation for images */
@@ -261,6 +271,7 @@ img[data-loaded="false"] {
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

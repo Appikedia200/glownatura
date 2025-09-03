@@ -10,7 +10,7 @@ export default function NavMenu() {
     <nav className="bg-[#FFF8F3] pt-1 pb-0">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-center pb-2">
-          <div className="hidden lg:flex items-center space-x-0">
+          <div className="hidden md:flex items-center space-x-0">
             {navigationItems.map((item) => (
               <div
                 key={item.name}

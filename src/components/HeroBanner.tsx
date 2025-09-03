@@ -12,13 +12,15 @@ export default function HeroBanner() {
   }
 
   return (
-    <div className="w-full bg-[#dbe0d0] border-b border-black relative h-[450px] lg:h-[500px] overflow-hidden">
+    <div 
+      className="w-full bg-[#dbe0d0] border-b border-black relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto h-full relative">
-        <div className="flex items-end h-full pl-6 md:pl-8 pr-6 md:pr-12 pb-16">
+        <div className="flex items-end h-full pl-4 sm:pl-6 md:pl-8 pr-4 sm:pr-6 md:pr-12 pb-12 sm:pb-16">
           
           {/* Left Column - Text Content - Extreme Left Edge */}
           <div className="z-10 relative w-full max-w-[650px]">
-            <h1 className="text-[50px] md:text-[60px] lg:text-[75px] leading-[0.8] text-black mb-6 whitespace-pre-line select-none" 
+            <h1 className="text-[36px] sm:text-[50px] md:text-[60px] lg:text-[75px] leading-[0.8] text-black mb-6 whitespace-pre-line select-none" 
                 style={{ 
                   fontFamily: 'Gupter, Georgia, serif',
                   fontWeight: 700,
@@ -27,7 +29,7 @@ export default function HeroBanner() {
               {"Start Your\nSkin Journey"}
             </h1>
             <button 
-              className="px-8 py-3 border border-black bg-transparent text-black hover:border-gray-600 hover:text-gray-700 transition-all duration-300 font-medium tracking-wider text-sm uppercase cursor-pointer"
+              className="px-6 sm:px-8 py-3 border border-black bg-transparent text-black hover:border-gray-600 hover:text-gray-700 transition-all duration-300 font-medium tracking-wider text-xs sm:text-sm uppercase cursor-pointer"
               style={{ fontFamily: 'Gupter, Georgia, serif' }}
               onClick={handleDiscoverClick}
             >

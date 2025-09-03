@@ -115,17 +115,34 @@ export default function RootLayout({
       lang="en" 
       className={`${inter.variable} ${playfair.variable} ${montserrat.variable} ${outfit.variable} ${crimsonText.variable} ${gupter.variable} ${libreBaskerville.variable} scroll-smooth`}
     >
-      <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream`}>
+      <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* Global Header - Fixed at top for all pages */}
-        <ScrollingPromoBar />
-        <div className="sticky top-[40px] z-50 bg-[#FFF8F3]">
-          <Header />
-          <NavMenu />
+        {/* GLOBAL FIXED HEADER - ALWAYS VISIBLE ON ALL PAGES */}
+        <div 
+          style={{
+            position: 'sticky',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 9999,
+            width: '100%'
+          }}
+          className="shadow-lg"
+        >
+          <ScrollingPromoBar />
+          <div className="bg-[#FFF8F3]">
+            <Header />
+            <div className="hidden md:block">
+              <NavMenu />
+            </div>
+          </div>
         </div>
         
-        {children}
+        {/* MAIN CONTENT - RESPONSIVE SPACING TO PREVENT OVERLAP */}
+        <main className="relative">
+          {children}
+        </main>
       </body>
     </html>
   )

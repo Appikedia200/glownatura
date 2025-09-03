@@ -68,8 +68,8 @@ export default function SectionCarousel({
           <div className="w-80 h-[2px] bg-black mx-auto"></div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Products Grid - Clean mobile layout like Teeka4 */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {currentProducts.map((product, index) => (
             <ProductCard 
               key={product.id} 

@@ -4,7 +4,7 @@ import { promoMessages } from '@/lib/data'
 
 export default function ScrollingPromoBar() {
   return (
-    <div className="bg-[#FBE7A1] text-black py-3 overflow-hidden fixed top-0 left-0 right-0 w-full z-[9999] border-t border-b border-gray-200">
+    <div className="bg-[#FBE7A1] text-black py-3 overflow-hidden sticky top-0 left-0 right-0 w-full z-[9999] border-t border-b border-gray-200">
       <div className="marquee whitespace-nowrap inline-block text-[13px] uppercase font-semibold tracking-wider">
         {/* Duplicate the messages for seamless loop */}
         {[...promoMessages, ...promoMessages].map((message, index) => (
