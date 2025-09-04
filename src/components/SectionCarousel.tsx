@@ -22,7 +22,26 @@ export default function SectionCarousel({
   priority = false // Default to false for non-featured sections
 }: SectionCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const productsPerPage = 4
+  const [productsPerPage, setProductsPerPage] = useState(4)
+
+  // Update products per page based on screen size
+  useEffect(() => {
+    const updateProductsPerPage = () => {
+      if (window.innerWidth < 475) {
+        setProductsPerPage(2) // xs screens
+      } else if (window.innerWidth < 640) {
+        setProductsPerPage(2) // small phones
+      } else if (window.innerWidth < 768) {
+        setProductsPerPage(3) // large phones
+      } else {
+        setProductsPerPage(4) // tablets and up
+      }
+    }
+
+    updateProductsPerPage()
+    window.addEventListener('resize', updateProductsPerPage)
+    return () => window.removeEventListener('resize', updateProductsPerPage)
+  }, [])
 
   // Auto-rotate every 10 seconds
   useEffect(() => {
@@ -68,8 +87,8 @@ export default function SectionCarousel({
           <div className="w-80 h-[2px] bg-black mx-auto"></div>
         </div>
 
-        {/* Products Grid - Clean mobile layout like Teeka4 */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {/* Products Grid - Fully responsive layout */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-6">
           {currentProducts.map((product, index) => (
             <ProductCard 
               key={product.id} 

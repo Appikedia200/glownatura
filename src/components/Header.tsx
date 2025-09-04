@@ -21,19 +21,19 @@ export default function Header() {
   return (
     <>
       <header className="bg-[#FFF8F3] border-b border-gray-100/30">
-        {/* MOBILE HEADER - ALWAYS VISIBLE ON SMALL SCREENS */}
+        {/* MOBILE & TABLET HEADER - RESPONSIVE FOR ALL NON-DESKTOP DEVICES */}
         <div className="block md:hidden">
-          <div className="flex items-center justify-between px-4 py-3">
+          <div className="flex items-center justify-between px-3 xs:px-4 sm:px-6 py-2 xs:py-3">
             {/* Left: Hamburger Menu */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="p-1 xs:p-2 text-gray-600 hover:text-gray-900 transition-colors"
               aria-label="Open menu"
             >
-              <Bars3Icon className="h-6 w-6" />
+              <Bars3Icon className="h-5 w-5 xs:h-6 xs:w-6" />
             </button>
 
-            {/* Center: Logo */}
+            {/* Center: Logo - Responsive sizing */}
             <div className="flex-1 flex justify-center">
               <a href="/" className="flex items-center">
                 <Image
@@ -41,36 +41,36 @@ export default function Header() {
                   alt="JBEAUTY Logo"
                   width={180}
                   height={58}
-                  className="h-12 w-auto object-contain"
+                  className="h-10 xs:h-12 sm:h-14 w-auto object-contain"
                   priority
                 />
               </a>
             </div>
 
-            {/* Right: Icons */}
-            <div className="flex items-center space-x-2">
-              <a href="/maintenance" className="p-2 text-gray-900 hover:text-gray-700 transition-colors">
-                <UserIcon className="h-6 w-6" />
+            {/* Right: Icons - Responsive spacing */}
+            <div className="flex items-center space-x-1 xs:space-x-2">
+              <a href="/maintenance" className="p-1 xs:p-2 text-gray-900 hover:text-gray-700 transition-colors">
+                <UserIcon className="h-5 w-5 xs:h-6 xs:w-6" />
               </a>
-              <a href="/maintenance" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors">
-                <ShoppingCartIcon className="h-6 w-6" />
-                <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-medium">
+              <a href="/maintenance" className="relative p-1 xs:p-2 text-gray-900 hover:text-gray-700 transition-colors">
+                <ShoppingCartIcon className="h-5 w-5 xs:h-6 xs:w-6" />
+                <span className="absolute -top-0.5 xs:-top-1 -right-0.5 xs:-right-1 bg-black text-white text-xs rounded-full w-3 h-3 xs:w-4 xs:h-4 flex items-center justify-center text-[8px] xs:text-[10px] font-medium">
                   0
                 </span>
               </a>
             </div>
           </div>
 
-          {/* Mobile Search Bar */}
-          <div className="px-4 pb-3 border-b border-gray-200">
+          {/* Mobile Search Bar - Responsive padding */}
+          <div className="px-3 xs:px-4 sm:px-6 pb-2 xs:pb-3 border-b border-gray-200">
             <div className="relative">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-2 xs:left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 xs:h-4 xs:w-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black text-sm"
+                className="w-full pl-8 xs:pl-10 pr-3 xs:pr-4 py-1.5 xs:py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black text-xs xs:text-sm"
               />
             </div>
           </div>

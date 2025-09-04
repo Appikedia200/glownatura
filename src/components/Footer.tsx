@@ -7,20 +7,20 @@ export default function Footer() {
       {/* Main Footer Content - Mobile-Optimized */}
       <div className="max-w-7xl mx-auto bg-[#B8C5B8] rounded-3xl p-6 md:p-8 lg:p-12">
         
-        {/* Mobile: Compact Brand Section */}
-        <div className="block md:hidden text-center mb-8">
-          <h3 className="text-xl font-bold text-black mb-4">JBEAUTY</h3>
-          <p className="text-gray-700 mb-6 text-sm">Subscribe to our mailing list to get the new updates!</p>
+        {/* Mobile & Tablet: Responsive Brand Section */}
+        <div className="block md:hidden text-center mb-6 xs:mb-8">
+          <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-black mb-3 xs:mb-4">JBEAUTY</h3>
+          <p className="text-gray-700 mb-4 xs:mb-6 text-xs xs:text-sm sm:text-base px-2 xs:px-4">Subscribe to our mailing list to get the new updates!</p>
           
-          {/* Compact Social Icons for Mobile */}
-          <div className="flex justify-center space-x-3">
-            <a href="#" className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          {/* Responsive Social Icons */}
+          <div className="flex justify-center space-x-2 xs:space-x-3 sm:space-x-4">
+            <a href="#" className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors">
+              <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01z"/>
               </svg>
             </a>
-            <a href="#" className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <a href="#" className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors">
+              <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
               </svg>
             </a>
@@ -37,22 +37,22 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Mobile: Condensed Links Grid - 2x2 instead of 4x1 */}
-        <div className="grid grid-cols-2 gap-6 md:hidden mb-8">
+        {/* Mobile & Tablet: Responsive Links Grid */}
+        <div className="grid grid-cols-2 gap-4 xs:gap-6 sm:gap-8 md:hidden mb-6 xs:mb-8">
           <div>
-            <h4 className="font-semibold text-black mb-3 text-sm uppercase">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><a href="/about" className="text-gray-700 hover:text-gray-900 text-xs">About Us</a></li>
-              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-xs">Contact</a></li>
-              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-xs">Book Consultation</a></li>
+            <h4 className="font-semibold text-black mb-2 xs:mb-3 text-xs xs:text-sm sm:text-base uppercase">Quick Links</h4>
+            <ul className="space-y-1 xs:space-y-2">
+              <li><a href="/about" className="text-gray-700 hover:text-gray-900 text-[10px] xs:text-xs sm:text-sm">About Us</a></li>
+              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-[10px] xs:text-xs sm:text-sm">Contact</a></li>
+              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-[10px] xs:text-xs sm:text-sm">Book Consultation</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-black mb-3 text-sm uppercase">Services</h4>
-            <ul className="space-y-2">
-              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-xs">Shipping</a></li>
-              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-xs">Returns</a></li>
-              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-xs">My Account</a></li>
+            <h4 className="font-semibold text-black mb-2 xs:mb-3 text-xs xs:text-sm sm:text-base uppercase">Services</h4>
+            <ul className="space-y-1 xs:space-y-2">
+              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-[10px] xs:text-xs sm:text-sm">Shipping</a></li>
+              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-[10px] xs:text-xs sm:text-sm">Returns</a></li>
+              <li><a href="/maintenance" className="text-gray-700 hover:text-gray-900 text-[10px] xs:text-xs sm:text-sm">My Account</a></li>
             </ul>
           </div>
         </div>

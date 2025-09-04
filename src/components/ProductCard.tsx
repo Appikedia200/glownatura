@@ -63,7 +63,7 @@ export default function ProductCard({ product, className = '', priority = false 
 
   return (
     <div className={`bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}>
-      {/* Product Image */}
+      {/* Product Image - Responsive container */}
       <div className="relative aspect-square overflow-hidden group">
         {!imageError ? (
           <Image
@@ -109,26 +109,26 @@ export default function ProductCard({ product, className = '', priority = false 
           </div>
         )}
 
-        {/* Wishlist Button */}
+        {/* Wishlist Button - Responsive */}
         <button
           onClick={() => setIsWishlisted(!isWishlisted)}
-          className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors duration-200"
+          className="absolute top-1 xs:top-2 sm:top-3 right-1 xs:right-2 sm:right-3 p-1 xs:p-1.5 sm:p-2 bg-white/80 rounded-full hover:bg-white transition-colors duration-200"
         >
           {isWishlisted ? (
-            <HeartIconSolid className="h-5 w-5 text-red-500" />
+            <HeartIconSolid className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-red-500" />
           ) : (
-            <HeartIcon className="h-5 w-5 text-gray-600" />
+            <HeartIcon className="h-3 w-3 xs:h-4 xs:w-4 sm:h-5 sm:w-5 text-gray-600" />
           )}
         </button>
 
-        {/* Discount Tags */}
+        {/* Discount Tags - Responsive */}
         {product.discount && (
-          <div className="absolute top-3 left-3 space-y-1">
-            <span className="inline-block bg-green-600 text-white text-xs px-2 py-1 rounded">
+          <div className="absolute top-1 xs:top-2 sm:top-3 left-1 xs:left-2 sm:left-3 space-y-0.5 xs:space-y-1">
+            <span className="inline-block bg-green-600 text-white text-[8px] xs:text-[10px] sm:text-xs px-1 xs:px-1.5 sm:px-2 py-0.5 xs:py-0.5 sm:py-1 rounded">
               {product.discount.includes('Buy 6') ? 'Buy 6, Get 3% OFF' : product.discount}
             </span>
             {product.discount.includes('Buy 3') && (
-              <span className="block bg-blue-600 text-white text-xs px-2 py-1 rounded">
+              <span className="block bg-blue-600 text-white text-[8px] xs:text-[10px] sm:text-xs px-1 xs:px-1.5 sm:px-2 py-0.5 xs:py-0.5 sm:py-1 rounded">
                 Buy 3, Get 1% OFF
               </span>
             )}

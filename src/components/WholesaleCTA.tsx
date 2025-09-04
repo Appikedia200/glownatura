@@ -4,14 +4,22 @@ export default function WholesaleCTA() {
   return (
     <>
       <section className="w-full bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-6 md:py-8">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-6 md:py-8">
           <div className="text-center">
           
-            {/* Main Text */}
-            <h2 className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-black tracking-wide uppercase font-montserrat mb-4 md:mb-0 md:inline-block md:mr-8" 
-                style={{ fontWeight: 600 }}>
-              JOIN JBEAUTY PLUS & BECOME A WHOLESALER
+            {/* Main Text - Responsive for all device sizes */}
+            <h2 className="text-[12px] xs:text-[13px] sm:text-[16px] md:text-[20px] lg:text-[22px] text-black tracking-wide uppercase font-montserrat mb-4 md:mb-0 md:inline-block md:mr-8 px-1 sm:px-2 md:px-0 overflow-hidden" 
+                style={{ 
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  maxWidth: '100%'
+                }}>
+              <span className="inline-block">JOIN JBEAUTY PLUS & BECOME A WHOLESALER</span>
             </h2>
+
+            {/* Line break for mobile only */}
+            <br className="md:hidden" />
 
             {/* Join Now CTA */}
             <a
