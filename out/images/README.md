@@ -1,4 +1,4 @@
-# JBEAUTY Images Organization
+# Glow Natura Images Organization
 
 ## How to Add Your Product Images
 

@@ -52,16 +52,16 @@ const libreBaskerville = Libre_Baskerville({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://jbeauty.com'),
+  metadataBase: new URL('https://glownatura.com'),
   title: {
-    default: 'JBEAUTY - Premium Skincare & Professional Beauty Solutions',
-    template: '%s | JBEAUTY'
+    default: 'Glow Natura - Premium Skincare & Professional Beauty Solutions',
+    template: '%s | Glow Natura'
   },
-  description: 'Transform your skin with JBEAUTY&apos;s premium skincare collection. Professional-grade formulations, dermatologist-tested products, and expert skincare solutions for radiant, healthy skin.',
+  description: 'Transform your skin with Glow Natura&apos;s premium skincare collection. Professional-grade formulations, dermatologist-tested products, and expert skincare solutions for radiant, healthy skin.',
   keywords: ['skincare', 'premium skincare', 'dermatologist tested', 'professional skincare', 'beauty solutions', 'skin treatment', 'anti-aging', 'skincare routine'],
-  authors: [{ name: 'JBEAUTY' }],
-  creator: 'JBEAUTY',
-  publisher: 'JBEAUTY',
+  authors: [{ name: 'Glow Natura' }],
+  creator: 'Glow Natura',
+  publisher: 'Glow Natura',
   robots: {
     index: true,
     follow: true,
@@ -76,22 +76,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'JBEAUTY - Premium Skincare & Professional Beauty Solutions',
-    description: 'Transform your skin with JBEAUTY&apos;s premium skincare collection. Professional-grade formulations for radiant, healthy skin.',
-    siteName: 'JBEAUTY',
+    title: 'Glow Natura - Premium Skincare & Professional Beauty Solutions',
+    description: 'Transform your skin with Glow Natura&apos;s premium skincare collection. Professional-grade formulations for radiant, healthy skin.',
+    siteName: 'Glow Natura',
     images: [{
-      url: '/images/logo/jbeauty-logo.png',
+      url: '/images/logo/glownatura-logo.png',
       width: 1200,
       height: 630,
-      alt: 'JBEAUTY - Premium Skincare & Professional Beauty Solutions',
+      alt: 'Glow Natura - Premium Skincare & Professional Beauty Solutions',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'JBEAUTY - Premium Skincare & Professional Beauty Solutions',
-    description: 'Transform your skin with JBEAUTY&apos;s premium skincare collection. Professional-grade formulations for radiant, healthy skin.',
-    images: ['/images/logo/jbeauty-logo.png'],
-    creator: '@jbeauty',
+    title: 'Glow Natura - Premium Skincare & Professional Beauty Solutions',
+    description: 'Transform your skin with Glow Natura&apos;s premium skincare collection. Professional-grade formulations for radiant, healthy skin.',
+    images: ['/images/logo/glownatura-logo.png'],
+    creator: '@glownatura',
   },
   verification: {
     google: 'your-google-verification-code',

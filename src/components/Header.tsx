@@ -37,8 +37,8 @@ export default function Header() {
             <div className="flex-1 flex justify-center">
               <a href="/" className="flex items-center">
                 <Image
-                  src="/images/logo/jbeauty-logo.png"
-                  alt="JBEAUTY Logo"
+                  src="/images/logo/glownatura-logo.png"
+                  alt="Glow Natura Logo"
                   width={180}
                   height={58}
                   className="h-10 xs:h-12 sm:h-14 w-auto object-contain"
@@ -99,8 +99,8 @@ export default function Header() {
               <div className="absolute left-1/2 transform -translate-x-1/2">           
            <a href="/" className="flex items-center">
               <Image
-                src="/images/logo/jbeauty-logo.png"
-                alt="JBEAUTY Logo"
+                src="/images/logo/glownatura-logo.png"
+                alt="Glow Natura Logo"
                     width={220}
                     height={72}
                     className="h-16 lg:h-20 xl:h-24 w-auto object-contain hover:opacity-90 transition-opacity duration-300"
@@ -149,14 +149,14 @@ export default function Header() {
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#FFF8F3]">
               {/* Logo - Centered */}
               <div className="flex-1 flex justify-center">
-                <Image
-                  src="/images/logo/jbeauty-logo.png"
-                  alt="JBEAUTY Logo"
-                  width={180}
-                  height={58}
-                  className="h-12 w-auto object-contain"
-                  priority
-                />
+                        <Image
+                            src="/images/logo/glownatura-logo.png"
+                            alt="Glow Natura Logo"
+                            width={180}
+                            height={58}
+                            className="h-12 w-auto object-contain"
+                            priority
+                          />
               </div>
               
               {/* Close Button - Top Right Corner */}

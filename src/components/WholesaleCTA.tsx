@@ -15,7 +15,7 @@ export default function WholesaleCTA() {
                   textOverflow: 'ellipsis',
                   maxWidth: '100%'
                 }}>
-              <span className="inline-block">JOIN JBEAUTY PLUS & BECOME A WHOLESALER</span>
+              <span className="inline-block">JOIN GLOW NATURA PLUS & BECOME A WHOLESALER</span>
             </h2>
 
             {/* Line break for mobile only */}

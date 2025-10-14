@@ -1,4 +1,4 @@
-# 🌟 JBEAUTY - Premium Skincare eCommerce Platform
+# 🌟 Glow Natura - Premium Skincare eCommerce Platform
 
 A professional, scalable Next.js 14 eCommerce platform built for the beauty and skincare industry, targeting the Nigerian market with global appeal.
 
