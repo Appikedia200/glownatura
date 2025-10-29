@@ -315,7 +315,7 @@ export const navigationItems: NavItem[] = [
 
 // Promo Messages
 export const promoMessages: PromoMessage[] = [
-  { text: 'JOIN JBEAUTY PLUS FOR EXCLUSIVE DEALS', link: '/maintenance' },
+  { text: 'JOIN GLOW NATURA PLUS FOR EXCLUSIVE DEALS', link: '/maintenance' },
   { text: 'BUY MORE SAVE MORE - CLICK HERE', link: '/maintenance' },
   { text: 'GET REWARDED FOR SHOPPING - CLICK HERE', link: '/maintenance' },
   { text: 'FREE SHIPPING ON ORDERS OVER ₦25,000', link: '/maintenance' }

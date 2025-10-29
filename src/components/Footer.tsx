@@ -9,7 +9,7 @@ export default function Footer() {
         
         {/* Mobile & Tablet: Responsive Brand Section */}
         <div className="block md:hidden text-center mb-6 xs:mb-8">
-          <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-black mb-3 xs:mb-4">JBEAUTY</h3>
+          <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-black mb-3 xs:mb-4">GLOW NATURA</h3>
           <p className="text-gray-700 mb-4 xs:mb-6 text-xs xs:text-sm sm:text-base px-2 xs:px-4">Subscribe to our mailing list to get the new updates!</p>
           
           {/* Responsive Social Icons */}
@@ -62,7 +62,7 @@ export default function Footer() {
           
           {/* Column 1: Brand & Subscribe */}
           <div>
-            <h3 className="text-2xl font-bold text-black mb-6">JBEAUTY</h3>
+            <h3 className="text-2xl font-bold text-black mb-6">GLOW NATURA</h3>
             <p className="text-gray-700 mb-8 text-sm leading-relaxed">
               Subscribe to our mailing list to<br />
               get the new updates!
@@ -136,7 +136,7 @@ export default function Footer() {
       {/* Bottom Footer - Outside the rounded container */}
       <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-gray-600/30">
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-700 mb-4 md:mb-0 text-sm">© JBEAUTY 2025</p>
+          <p className="text-gray-700 mb-4 md:mb-0 text-sm">© GLOW NATURA 2025</p>
           <div className="flex space-x-8">
             <a href="/maintenance" className="text-gray-700 hover:text-gray-900 transition-colors text-sm">Privacy</a>
             <a href="/maintenance" className="text-gray-700 hover:text-gray-900 transition-colors text-sm">Terms</a>

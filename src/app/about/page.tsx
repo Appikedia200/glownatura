@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/AboutUS/aboutus-bg.png"
-            alt="About JBeauty - Skincare Products"
+            alt="About Glow Natura - Skincare Products"
             fill
             className="object-cover object-center"
             priority
@@ -44,7 +44,7 @@ export default function AboutPage() {
                       className="text-sm sm:text-base"
                       style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
-                      Welcome to Jbeauty, your all-in-one digital destination for skincare and self-care.
+                      Welcome to Glow Natura, your all-in-one digital destination for skincare and self-care.
                     </p>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ export default function AboutPage() {
                       className="text-base md:text-lg"
                       style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
-                      Welcome to Jbeauty, your all-in-one digital destination for skincare and self-care.
+                      Welcome to Glow Natura, your all-in-one digital destination for skincare and self-care.
                     </p>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
-# JBEAUTY Image Setup Guide
+# GLOW NATURA Image Setup Guide
 
-This guide explains how to set up images for your professional JBEAUTY skincare eCommerce website.
+This guide explains how to set up images for your professional GLOW NATURA skincare eCommerce website.
 
 ## 📂 Image Folder Structure
 
@@ -130,4 +130,4 @@ The website already includes beautiful placeholder designs:
 - All images auto-optimized by Next.js
 - Fallbacks ensure site looks professional before images are added
 
-Your JBEAUTY website will look absolutely stunning once these images are in place! The reflection effects and thick backgrounds will match perfectly with your sample images. 🌟 
+Your GLOW NATURA website will look absolutely stunning once these images are in place! The reflection effects and thick backgrounds will match perfectly with your sample images. 🌟 

@@ -69,7 +69,7 @@ public/
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd jbeauty-website
+cd glow-natura-website
 
 # Install dependencies
 npm install
@@ -112,7 +112,7 @@ See `SETUP_IMAGES.md` for detailed image requirements and naming conventions.
 2. **Header** - Logo, search, user account, cart
 3. **Navigation** - Dropdown menus for brands and categories
 4. **Hero Banner** - "Start Your Skin Journey" with CTA
-5. **Wholesale CTA** - Join JBEAUTY Plus program
+5. **Wholesale CTA** - Join GLOW NATURA Plus program
 6. **Slider Banner** - Authorized resellers showcase
 7. **Collections Grid** - Category navigation
 8. **Featured Items** - Curated product selection

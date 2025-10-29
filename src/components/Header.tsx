@@ -33,15 +33,15 @@ export default function Header() {
               <Bars3Icon className="h-5 w-5 xs:h-6 xs:w-6" />
             </button>
 
-            {/* Center: Logo - Responsive sizing */}
+            {/* Center: Logo - MUCH BIGGER for mobile */}
             <div className="flex-1 flex justify-center">
               <a href="/" className="flex items-center">
                 <Image
                   src="/images/logo/glownatura-logo.png"
                   alt="Glow Natura Logo"
-                  width={180}
-                  height={58}
-                  className="h-10 xs:h-12 sm:h-14 w-auto object-contain"
+                  width={320}
+                  height={105}
+                  className="h-20 xs:h-24 sm:h-28 w-auto object-contain"
                   priority
                 />
               </a>
@@ -95,15 +95,15 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Logo - Center - Much Bigger logo */}
+              {/* Logo - Center - MUCH BIGGER and BOLDER */}
               <div className="absolute left-1/2 transform -translate-x-1/2">           
            <a href="/" className="flex items-center">
               <Image
                 src="/images/logo/glownatura-logo.png"
                 alt="Glow Natura Logo"
-                    width={220}
-                    height={72}
-                    className="h-16 lg:h-20 xl:h-24 w-auto object-contain hover:opacity-90 transition-opacity duration-300"
+                    width={380}
+                    height={124}
+                    className="h-24 lg:h-32 xl:h-36 w-auto object-contain hover:opacity-90 transition-opacity duration-300"
                 priority
               />
             </a>
@@ -147,14 +147,14 @@ export default function Header() {
           <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-[60] transform transition-transform duration-300 ease-in-out md:hidden shadow-2xl">
             {/* Drawer Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#FFF8F3]">
-              {/* Logo - Centered */}
+              {/* Logo - Centered - BIGGER in mobile drawer */}
               <div className="flex-1 flex justify-center">
                         <Image
                             src="/images/logo/glownatura-logo.png"
                             alt="Glow Natura Logo"
-                            width={180}
-                            height={58}
-                            className="h-12 w-auto object-contain"
+                            width={280}
+                            height={92}
+                            className="h-16 w-auto object-contain"
                             priority
                           />
               </div>
