@@ -182,13 +182,13 @@ export default function Header() {
             </div>
 
             {/* Navigation Menu - Scrollable content area */}
-            <div className="flex-1 overflow-y-auto">
-              <nav className="p-4">
+            <div className="flex-1 overflow-y-auto bg-white">
+              <nav className="py-2">
                 {navigationItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="block py-4 px-4 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-black transition-colors duration-200 border-b border-gray-100 last:border-b-0"
+                    className="block py-4 px-6 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-black transition-colors duration-200 border-b border-gray-100 last:border-b-0"
                     onClick={() => setMobileMenuOpen(false)}
                     style={{
                       fontFamily: 'Montserrat, sans-serif',
