@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { 
   MagnifyingGlassIcon, 
@@ -17,6 +17,18 @@ export default function Header() {
   const [cartItemCount] = useState(0)
   const [wishlistCount] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
 
   return (
     <>
@@ -137,46 +149,46 @@ export default function Header() {
       {/* Teeka4-Style Mobile Side Drawer Menu */}
         {mobileMenuOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop - Full screen overlay */}
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-[50] md:hidden"
+            className="fixed inset-0 bg-black bg-opacity-50 z-[9998] md:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
           
-          {/* Side Drawer - Full Height from Right */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-[60] transform transition-transform duration-300 ease-in-out md:hidden shadow-2xl">
-            {/* Drawer Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#FFF8F3]">
-              {/* Logo - Centered - BIGGER in mobile drawer */}
-              <div className="flex-1 flex justify-center">
+          {/* Side Drawer - Full Height from Right with Fixed positioning */}
+          <div className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white z-[9999] md:hidden shadow-2xl flex flex-col overflow-hidden">
+            {/* Drawer Header - Fixed at top */}
+            <div className="flex items-center justify-between px-4 py-5 border-b border-gray-200 bg-[#FFF8F3] flex-shrink-0">
+              {/* Logo - Much Bigger and Centered */}
+              <div className="flex-1 flex justify-center pr-8">
                         <Image
                             src="/images/logo/glownatura-logo.png"
                             alt="Glow Natura Logo"
-                            width={280}
-                            height={92}
-                            className="h-16 w-auto object-contain"
+                            width={200}
+                            height={65}
+                            className="h-12 w-auto object-contain"
                             priority
                           />
               </div>
               
-              {/* Close Button - Top Right Corner */}
+              {/* Close Button - Absolute positioning */}
               <button 
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-black hover:text-gray-700 transition-colors"
+                className="absolute right-4 top-4 p-2 text-black hover:text-gray-700 transition-colors"
                 aria-label="Close menu"
               >
                 <XMarkIcon className="w-6 h-6 stroke-2" />
               </button>
             </div>
 
-            {/* Navigation Menu - Teeka4 Style */}
-            <div className="p-6">
-              <nav className="space-y-1">
+            {/* Navigation Menu - Scrollable content area */}
+            <div className="flex-1 overflow-y-auto">
+              <nav className="p-4">
                 {navigationItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="block py-4 px-4 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-black rounded-lg transition-colors duration-200 border-b border-gray-100 last:border-b-0"
+                    className="block py-4 px-4 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-black transition-colors duration-200 border-b border-gray-100 last:border-b-0"
                     onClick={() => setMobileMenuOpen(false)}
                     style={{
                       fontFamily: 'Montserrat, sans-serif',
