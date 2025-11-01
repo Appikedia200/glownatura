@@ -118,28 +118,37 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* GLOBAL FIXED HEADER - STAYS AT TOP, NEVER SCROLLS */}
+        {/* FIXED HEADER - PROFESSIONAL IMPLEMENTATION */}
+        {/* Position: fixed ensures header stays at top during scroll */}
+        {/* High z-index ensures it stays above all content */}
         <div 
-          className="fixed top-0 left-0 right-0 w-full shadow-sm"
+          className="fixed top-0 left-0 right-0 w-full bg-white shadow-sm"
           style={{
             position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
             zIndex: 9999,
-            width: '100%'
+            width: '100%',
+            willChange: 'transform'
           }}
         >
+          {/* Promo Bar: ~40px height */}
           <ScrollingPromoBar />
+          
+          {/* Header: Mobile ~85px, Desktop ~112px */}
           <Header />
+          
+          {/* Desktop Nav: ~40px (hidden on mobile/tablet < 1024px) */}
           <div className="hidden lg:block bg-[#FFF8F3]">
             <NavMenu />
           </div>
         </div>
         
-        {/* MAIN CONTENT - Starts immediately after fixed header */}
-        {/* Promo (40px) + Mobile Header (95px) = 135px | Desktop: Promo (40px) + Header (90px) + Nav (48px) = 178px */}
-        <main className="relative pt-[135px] lg:pt-[178px]">
+        {/* MAIN CONTENT with proper padding-top to prevent overlap */}
+        {/* Mobile/Tablet (< 1024px): Promo (40px) + Header (85px) = 125px */}
+        {/* Desktop (≥ 1024px): Promo (40px) + Header (112px) + Nav (40px) = 192px */}
+        <main className="relative pt-[125px] lg:pt-[192px]">
           {children}
         </main>
       </body>
