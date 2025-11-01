@@ -27,14 +27,12 @@ export default function SectionCarousel({
   // Update products per page based on screen size
   useEffect(() => {
     const updateProductsPerPage = () => {
-      if (window.innerWidth < 475) {
-        setProductsPerPage(2) // xs screens
-      } else if (window.innerWidth < 640) {
-        setProductsPerPage(2) // small phones
-      } else if (window.innerWidth < 768) {
-        setProductsPerPage(3) // large phones
+      if (window.innerWidth < 768) {
+        setProductsPerPage(2) // mobile (portrait & landscape) - always 2 columns
+      } else if (window.innerWidth < 1024) {
+        setProductsPerPage(3) // tablets - 3 columns
       } else {
-        setProductsPerPage(4) // tablets and up
+        setProductsPerPage(4) // desktop - 4 columns
       }
     }
 
@@ -88,7 +86,8 @@ export default function SectionCarousel({
         </div>
 
         {/* Products Grid - Fully responsive layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-6">
+        {/* Mobile (all orientations): 2 cols, Tablet: 3 cols, Desktop: 4 cols */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {currentProducts.map((product, index) => (
             <ProductCard 
               key={product.id} 
