@@ -118,22 +118,21 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* GLOBAL FIXED PROMO BAR AND HEADER */}
-        <div className="fixed top-0 left-0 right-0 z-[101] w-full">
+        {/* GLOBAL FIXED PROMO BAR AND HEADER - Professional like Teeka4 */}
+        <div className="fixed top-0 left-0 right-0 z-[101] w-full shadow-sm">
           <ScrollingPromoBar />
-        </div>
-        
-        {/* Fixed Header - positioned below promo bar */}
-        <div className="fixed top-[40px] left-0 right-0 z-[100] w-full">
           <Header />
           <div className="hidden lg:block bg-[#FFF8F3]">
             <NavMenu />
           </div>
         </div>
         
-        {/* MAIN CONTENT - Add padding to prevent overlap with fixed header */}
-        {/* Mobile: promo(40px) + header(~110px) = 150px, Desktop: promo(40px) + header(~140px) + nav(~50px) = 230px */}
-        <main className="relative pt-[150px] lg:pt-[230px]">
+        {/* MAIN CONTENT - Proper spacing to prevent overlap */}
+        {/* Promo bar: py-3 (24px) + border (1px) = 25px */}
+        {/* Mobile header: py-2 (16px) + logo h-8 (32px) + search area (44px) = ~92px */}
+        {/* Total Mobile: 25px + 92px = 117px, use 120px for safety */}
+        {/* Desktop: 25px + header 112px + nav 48px = 185px, use 190px for safety */}
+        <main className="relative pt-[120px] lg:pt-[190px]">
           {children}
         </main>
       </body>

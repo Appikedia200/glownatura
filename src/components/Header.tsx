@@ -41,41 +41,41 @@ export default function Header() {
       {/* HEADER - Professional Layout like Teeka4 (Fixed positioning handled by layout) */}
       <header className="bg-[#FFF8F3] border-b border-gray-100/30 shadow-sm w-full">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
-        <div className="block lg:hidden">
-          {/* Main Header Row */}
-          <div className="flex items-center justify-between px-4 py-3 min-h-[60px]">
+        <div className="block lg:hidden bg-[#FFF8F3]">
+          {/* Main Header Row - Compact for landscape, normal for portrait */}
+          <div className="flex items-center justify-between px-3 py-2 min-h-[56px]">
             {/* Left: Hamburger Menu - ALWAYS VISIBLE BELOW 992px */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0"
+              className="p-1.5 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0"
               aria-label="Open menu"
             >
               <Bars3Icon className="h-6 w-6" />
             </button>
 
-            {/* Center: Logo - Perfectly Centered */}
+            {/* Center: Logo - Perfectly Centered, responsive size */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <a href="/" className="flex items-center">
                 <Image
                   src="/images/logo/glownatura-logo.png"
                   alt="Glow Natura Logo"
-                  width={140}
-                  height={46}
-                  className="h-10 w-auto object-contain"
+                  width={120}
+                  height={39}
+                  className="h-8 w-auto object-contain"
                   priority
                 />
               </a>
             </div>
 
-            {/* Right: Icons - Fixed Right Alignment */}
-            <div className="flex items-center space-x-2 flex-shrink-0">
-              <a href="/maintenance" className="p-2 text-gray-900 hover:text-gray-700 transition-colors">
+            {/* Right: Icons - Fixed Right Alignment, compact */}
+            <div className="flex items-center space-x-1 flex-shrink-0">
+              <a href="/maintenance" className="p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
                 <UserIcon className="h-5 w-5" />
               </a>
-              <a href="/maintenance" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors">
+              <a href="/maintenance" className="relative p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
                 <ShoppingCartIcon className="h-5 w-5" />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-medium">
+                  <span className="absolute -top-0.5 -right-0.5 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-medium">
                     {cartItemCount}
                   </span>
                 )}
@@ -83,16 +83,16 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mobile Search Bar */}
-          <div className="px-4 pb-3 border-t border-gray-200">
-            <div className="relative mt-2">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          {/* Mobile Search Bar - Compact */}
+          <div className="px-3 pb-2 border-t border-gray-200">
+            <div className="relative mt-1.5">
+              <MagnifyingGlassIcon className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
               <input
                 type="text"
                 placeholder="type to search.."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 text-sm bg-white"
+                className="w-full pl-9 pr-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 text-sm bg-white"
               />
             </div>
           </div>
