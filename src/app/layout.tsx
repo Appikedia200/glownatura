@@ -118,14 +118,14 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* STICKY HEADER - Stays at top while scrolling */}
-        <header className="sticky top-0 z-50 bg-white shadow-sm">
+        {/* STICKY WRAPPER - Stays at top while scrolling */}
+        <div className="sticky top-0 z-50">
           <ScrollingPromoBar />
           <Header />
           <div className="hidden lg:block">
             <NavMenu />
           </div>
-        </header>
+        </div>
         
         {/* MAIN CONTENT - No padding needed with sticky */}
         <main>
