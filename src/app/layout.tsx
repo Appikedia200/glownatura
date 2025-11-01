@@ -137,12 +137,9 @@ export default function RootLayout({
           </div>
         </div>
         
-        {/* MAIN CONTENT - Proper spacing to prevent overlap */}
-        {/* Promo bar: py-3 (24px) + border (1px) = 25px */}
-        {/* Mobile header: py-2 (16px) + logo h-8 (32px) + search area (44px) = ~92px */}
-        {/* Total Mobile: 25px + 92px = 117px, use 120px for safety */}
-        {/* Desktop: 25px + header 112px + nav 48px = 185px, use 190px for safety */}
-        <main className="relative pt-[120px] lg:pt-[190px]">
+        {/* MAIN CONTENT - Starts immediately after fixed header */}
+        {/* Promo (40px) + Mobile Header (95px) = 135px | Desktop: Promo (40px) + Header (90px) + Nav (48px) = 178px */}
+        <main className="relative pt-[135px] lg:pt-[178px]">
           {children}
         </main>
       </body>
