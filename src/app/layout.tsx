@@ -118,37 +118,38 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* FIXED HEADER - PROFESSIONAL IMPLEMENTATION */}
-        {/* Position: fixed ensures header stays at top during scroll */}
-        {/* High z-index ensures it stays above all content */}
-        <div 
-          className="fixed top-0 left-0 right-0 w-full bg-white shadow-sm"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 9999,
-            width: '100%',
-            willChange: 'transform'
-          }}
-        >
-          {/* Promo Bar: ~40px height */}
+        {/* Global styles for fixed header */}
+        <style dangerouslySetInnerHTML={{__html: `
+          body > header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 9999 !important;
+            background-color: white !important;
+          }
+          body > main {
+            padding-top: 140px !important;
+          }
+          @media (min-width: 1024px) {
+            body > main {
+              padding-top: 200px !important;
+            }
+          }
+        `}} />
+        
+        {/* FIXED HEADER CONTAINER - STAYS AT TOP ALWAYS */}
+        <header className="shadow-sm">
           <ScrollingPromoBar />
-          
-          {/* Header: Mobile ~85px, Desktop ~112px */}
           <Header />
-          
-          {/* Desktop Nav: ~40px (hidden on mobile/tablet < 1024px) */}
-          <div className="hidden lg:block bg-[#FFF8F3]">
+          <div className="hidden lg:block">
             <NavMenu />
           </div>
-        </div>
+        </header>
         
-        {/* MAIN CONTENT with proper padding-top to prevent overlap */}
-        {/* Mobile/Tablet (< 1024px): Promo (40px) + Header (85px) = 125px */}
-        {/* Desktop (≥ 1024px): Promo (40px) + Header (112px) + Nav (40px) = 192px */}
-        <main className="relative pt-[125px] lg:pt-[192px]">
+        {/* MAIN CONTENT - padding-top = header height */}
+        <main>
           {children}
         </main>
       </body>
