@@ -38,8 +38,8 @@ export default function Header() {
 
   return (
     <>
-      {/* HEADER - Professional Layout like Teeka4 */}
-      <header className="bg-[#FFF8F3] border-b border-gray-100/30 w-full">
+      {/* HEADER - Professional Layout like Teeka4 - STICKY AT TOP */}
+      <header className="sticky top-0 z-50 bg-[#FFF8F3] border-b border-gray-100/30 w-full">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
         <div className="block lg:hidden bg-[#FFF8F3]">
           {/* Main Header Row - Compact for landscape, normal for portrait */}
@@ -53,15 +53,15 @@ export default function Header() {
               <Bars3Icon className="h-6 w-6" />
             </button>
 
-            {/* Center: Logo - Bigger and more visible on mobile */}
+            {/* Center: Logo - MUCH BIGGER for mobile visibility */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <a href="/" className="flex items-center">
                 <Image
                   src="/images/logo/glownatura-logo.png"
                   alt="Glow Natura Logo"
-                  width={160}
-                  height={52}
-                  className="h-10 sm:h-12 w-auto object-contain"
+                  width={200}
+                  height={65}
+                  className="h-20 md:h-24 w-auto object-contain"
                   priority
                 />
               </a>
