@@ -118,8 +118,18 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* GLOBAL FIXED PROMO BAR AND HEADER - Professional like Teeka4 */}
-        <div className="fixed top-0 left-0 right-0 z-[101] w-full shadow-sm">
+        {/* GLOBAL FIXED HEADER - STAYS AT TOP, NEVER SCROLLS */}
+        <div 
+          className="fixed top-0 left-0 right-0 w-full shadow-sm"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 9999,
+            width: '100%'
+          }}
+        >
           <ScrollingPromoBar />
           <Header />
           <div className="hidden lg:block bg-[#FFF8F3]">
