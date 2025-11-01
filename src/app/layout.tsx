@@ -118,29 +118,8 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* Global styles for fixed header */}
-        <style dangerouslySetInnerHTML={{__html: `
-          body > header {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            z-index: 9999 !important;
-            background-color: white !important;
-          }
-          body > main {
-            padding-top: 140px !important;
-          }
-          @media (min-width: 1024px) {
-            body > main {
-              padding-top: 200px !important;
-            }
-          }
-        `}} />
-        
-        {/* FIXED HEADER CONTAINER - STAYS AT TOP ALWAYS */}
-        <header className="shadow-sm">
+        {/* STICKY HEADER - Stays at top while scrolling */}
+        <header className="sticky top-0 z-50 bg-white shadow-sm">
           <ScrollingPromoBar />
           <Header />
           <div className="hidden lg:block">
@@ -148,7 +127,7 @@ export default function RootLayout({
           </div>
         </header>
         
-        {/* MAIN CONTENT - padding-top = header height */}
+        {/* MAIN CONTENT - No padding needed with sticky */}
         <main>
           {children}
         </main>
