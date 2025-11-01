@@ -118,29 +118,22 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* GLOBAL FIXED HEADER - ALWAYS VISIBLE ON ALL PAGES */}
-        <div 
-          style={{
-            position: 'sticky',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 9999,
-            width: '100%'
-          }}
-          className="shadow-lg"
-        >
+        {/* GLOBAL FIXED PROMO BAR AND HEADER */}
+        <div className="fixed top-0 left-0 right-0 z-[101] w-full">
           <ScrollingPromoBar />
-          <div className="bg-[#FFF8F3]">
-            <Header />
-            <div className="hidden md:block">
-              <NavMenu />
-            </div>
+        </div>
+        
+        {/* Fixed Header - positioned below promo bar */}
+        <div className="fixed top-[40px] left-0 right-0 z-[100] w-full">
+          <Header />
+          <div className="hidden lg:block bg-[#FFF8F3]">
+            <NavMenu />
           </div>
         </div>
         
-        {/* MAIN CONTENT - RESPONSIVE SPACING TO PREVENT OVERLAP */}
-        <main className="relative">
+        {/* MAIN CONTENT - Add padding to prevent overlap with fixed header */}
+        {/* Mobile: promo(40px) + header(~110px) = 150px, Desktop: promo(40px) + header(~140px) + nav(~50px) = 230px */}
+        <main className="relative pt-[150px] lg:pt-[230px]">
           {children}
         </main>
       </body>
