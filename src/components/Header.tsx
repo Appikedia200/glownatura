@@ -38,8 +38,8 @@ export default function Header() {
 
   return (
     <>
-      {/* HEADER - Professional Layout like Teeka4 - STICKY AT TOP */}
-      <header className="sticky top-0 z-50 bg-[#FFF8F3] border-b border-gray-100/30 w-full">
+      {/* HEADER - Smart positioning: scrolls on portrait, fixed on landscape/tablet/desktop */}
+      <header className="relative landscape:fixed landscape:top-0 landscape:left-0 landscape:right-0 md:fixed md:top-0 md:left-0 md:right-0 lg:fixed lg:top-0 lg:left-0 lg:right-0 z-50 bg-[#FFF8F3] border-b border-gray-100/30 w-full shadow-sm">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
         <div className="block lg:hidden bg-[#FFF8F3]">
           {/* Main Header Row - Compact for landscape, normal for portrait */}
@@ -53,7 +53,7 @@ export default function Header() {
               <Bars3Icon className="h-6 w-6" />
             </button>
 
-            {/* Center: Logo - MUCH BIGGER for mobile visibility */}
+            {/* Center: Logo - Consistent 200x65 dimensions */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <a href="/" className="flex items-center">
                 <Image
@@ -61,7 +61,7 @@ export default function Header() {
                   alt="Glow Natura Logo"
                   width={200}
                   height={65}
-                  className="h-20 md:h-24 w-auto object-contain"
+                  className="h-12 sm:h-14 md:h-16 w-auto object-contain"
                   priority
                 />
               </a>
@@ -117,15 +117,15 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Logo - Center - MUCH BIGGER and BOLDER */}
+              {/* Logo - Center - Consistent 200x65 dimensions */}
               <div className="absolute left-1/2 transform -translate-x-1/2">           
                 <a href="/" className="flex items-center">
                   <Image
                     src="/images/logo/glownatura-logo.png"
                     alt="Glow Natura Logo"
-                    width={380}
-                    height={124}
-                    className="h-24 lg:h-32 xl:h-36 w-auto object-contain hover:opacity-90 transition-opacity duration-300"
+                    width={200}
+                    height={65}
+                    className="h-20 lg:h-24 xl:h-28 w-auto object-contain hover:opacity-90 transition-opacity duration-300"
                     priority
                   />
                 </a>
@@ -174,9 +174,9 @@ export default function Header() {
                 <Image
                   src="/images/logo/glownatura-logo.png"
                   alt="Glow Natura Logo"
-                  width={180}
-                  height={59}
-                  className="h-12 w-auto object-contain"
+                  width={200}
+                  height={65}
+                  className="h-14 w-auto object-contain"
                   priority
                 />
               </div>
