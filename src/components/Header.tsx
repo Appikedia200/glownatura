@@ -53,7 +53,7 @@ export default function Header() {
               <Bars3Icon className="h-6 w-6" />
             </button>
 
-            {/* Center: Logo - Consistent 200x65 dimensions */}
+            {/* Center: Logo - BIGGER for mobile visibility */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <a href="/" className="flex items-center">
                 <Image
@@ -61,7 +61,7 @@ export default function Header() {
                   alt="Glow Natura Logo"
                   width={200}
                   height={65}
-                  className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+                  className="h-16 sm:h-20 md:h-24 w-auto object-contain"
                   priority
                 />
               </a>
