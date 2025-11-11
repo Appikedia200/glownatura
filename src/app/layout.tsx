@@ -118,17 +118,17 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* Header components - positioning handled by Header.tsx */}
-        <>
+        {/* Fixed Header Container - All header components grouped */}
+        <div className="relative lg:sticky lg:top-0 lg:z-50">
           <ScrollingPromoBar />
           <Header />
           <div className="hidden lg:block">
             <NavMenu />
           </div>
-        </>
+        </div>
         
-        {/* MAIN CONTENT - Responsive padding for fixed header */}
-        <main className="landscape:pt-[140px] md:pt-[160px] lg:pt-[180px]">
+        {/* MAIN CONTENT - Responsive padding for fixed header + NavMenu on desktop */}
+        <main className="landscape:pt-[140px] md:pt-[160px] lg:pt-[220px]">
           {children}
         </main>
       </body>

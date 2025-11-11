@@ -38,8 +38,8 @@ export default function Header() {
 
   return (
     <>
-      {/* HEADER - Smart positioning: scrolls on portrait, fixed on landscape/tablet/desktop */}
-      <header className="relative landscape:fixed landscape:top-0 landscape:left-0 landscape:right-0 md:fixed md:top-0 md:left-0 md:right-0 lg:fixed lg:top-0 lg:left-0 lg:right-0 z-50 bg-[#FFF8F3] border-b border-gray-100/30 w-full shadow-sm">
+      {/* HEADER - Positioning controlled by parent wrapper in layout.tsx */}
+      <header className="relative bg-[#FFF8F3] border-b border-gray-100/30 w-full shadow-sm">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
         <div className="block lg:hidden bg-[#FFF8F3]">
           {/* Main Header Row - Compact for landscape, normal for portrait */}
