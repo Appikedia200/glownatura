@@ -10,16 +10,14 @@ import VideoCTA from '@/components/VideoCTA'
 import Footer from '@/components/Footer'
 
 export default function Home() {
-  // Fetch products from backend - use exact backend filters
-  const { products: featuredProducts } = useProducts({ limit: 8, sort: '-featuredOrder' })
-  const { products: newArrivals } = useProducts({ limit: 8, sort: '-createdAt' })
+  // Get ALL products from backend (48 products available)
+  const { products: allProducts, loading } = useProducts({ limit: 48, sort: '-createdAt' })
   
-  // Get products marked as best sellers by backend
-  const { products: allProducts } = useProducts({ limit: 50 })
-  const bestSellers = allProducts.filter(p => p.isBestSeller).slice(0, 8)
-  
-  // Back in stock - products marked by backend
-  const backInStock = allProducts.filter(p => p.isBackInStock).slice(0, 8)
+  // Divide products into sections (8 per section)
+  const featuredProducts = allProducts.slice(0, 8)
+  const newArrivals = allProducts.slice(8, 16)
+  const backInStock = allProducts.slice(16, 24)
+  const bestSellers = allProducts.slice(24, 32)
 
   return (
     <main className="min-h-screen m-0 p-0">

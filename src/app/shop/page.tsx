@@ -68,30 +68,29 @@ function ShopContent() {
   return (
     <>
       <main className="min-h-screen bg-white">
-        {/* Banner - Teeka4 Professional Height */}
-        <section className="relative h-[280px] md:h-[350px] lg:h-[400px] overflow-hidden">
-          <div className="absolute inset-0">
+        {/* Banner - Teeka4 Exact Match */}
+        <section className="relative h-[350px] md:h-[400px] overflow-hidden bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500">
+          <div className="absolute inset-0 opacity-20">
             <Image
               src="/images/banners/shop.png"
               alt="Shop All Products"
               fill
-              className="object-cover object-center"
+              className="object-cover object-center mix-blend-multiply"
               priority
             />
-            <div className="absolute inset-0 bg-black/30"></div>
           </div>
           
           <div className="relative z-10 h-full flex items-center">
             <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
               {/* Breadcrumb - Left Aligned like Teeka4 */}
-              <nav className="mb-4 text-sm text-white">
-                <Link href="/" className="hover:text-gray-200 transition-colors">Home</Link>
+              <nav className="mb-4 text-sm text-gray-800">
+                <Link href="/" className="hover:text-black transition-colors">Home</Link>
                 <span className="mx-2">›</span>
-                <span className="font-medium">Shop</span>
+                <span className="text-black font-medium">Shop</span>
               </nav>
               
-              {/* Title - Left Aligned */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-libre">
+              {/* Title - Left Aligned like Teeka4 */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black">
                 Shop
               </h1>
             </div>
