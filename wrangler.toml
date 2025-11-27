@@ -6,4 +6,9 @@ main = "workers-site/index.js"
 bucket = "./out"
 
 [build]
-command = "npm run build" 
+command = "npm run build"
+
+[vars]
+NEXT_PUBLIC_API_URL = "https://backendglownaturas.onrender.com"
+NEXT_PUBLIC_SITE_NAME = "Glow Natura"
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME = "glownaturas" 

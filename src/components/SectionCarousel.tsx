@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import ProductCard from './ProductCard'
-import { Product } from '@/types'
+import type { Product } from '@/types/api'
 
 interface SectionCarouselProps {
   title: string
@@ -10,7 +10,7 @@ interface SectionCarouselProps {
   showViewAll?: boolean
   viewAllLink?: string
   className?: string
-  priority?: boolean // Add priority prop for featured sections
+  priority?: boolean
 }
 
 export default function SectionCarousel({ 
@@ -19,20 +19,19 @@ export default function SectionCarousel({
   showViewAll = false,
   viewAllLink = '#',
   className = '',
-  priority = false // Default to false for non-featured sections
+  priority = false
 }: SectionCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [productsPerPage, setProductsPerPage] = useState(4)
 
-  // Update products per page based on screen size
   useEffect(() => {
     const updateProductsPerPage = () => {
       if (window.innerWidth < 768) {
-        setProductsPerPage(2) // mobile (portrait & landscape) - always 2 columns
+        setProductsPerPage(2)
       } else if (window.innerWidth < 1024) {
-        setProductsPerPage(3) // tablets - 3 columns
+        setProductsPerPage(3)
       } else {
-        setProductsPerPage(4) // desktop - 4 columns
+        setProductsPerPage(4)
       }
     }
 
@@ -41,7 +40,6 @@ export default function SectionCarousel({
     return () => window.removeEventListener('resize', updateProductsPerPage)
   }, [])
 
-  // Auto-rotate every 10 seconds
   useEffect(() => {
     if (products.length > productsPerPage) {
       const interval = setInterval(() => {
@@ -49,11 +47,11 @@ export default function SectionCarousel({
           const maxIndex = Math.ceil(products.length / productsPerPage) - 1
           return prev >= maxIndex ? 0 : prev + 1
         })
-      }, 10000) // 10 seconds
+      }, 10000)
 
       return () => clearInterval(interval)
     }
-  }, [products.length])
+  }, [products.length, productsPerPage])
 
   const maxPages = Math.ceil(products.length / productsPerPage)
   const currentProducts = products.slice(
@@ -76,8 +74,6 @@ export default function SectionCarousel({
   return (
     <section className={`py-16 bg-white ${className}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        
-        {/* Section Header - Teeka4 Style */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-semibold text-black mb-4 font-libre">
             {title}
@@ -85,50 +81,34 @@ export default function SectionCarousel({
           <div className="w-80 h-[2px] bg-black mx-auto"></div>
         </div>
 
-        {/* Products Grid - Fully responsive layout */}
-        {/* Mobile (all orientations): 2 cols, Tablet: 3 cols, Desktop: 4 cols */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {currentProducts.map((product, index) => (
             <ProductCard 
-              key={product.id} 
+              key={product._id} 
               product={product} 
-              priority={priority && index < 4} // Only prioritize first 4 items in featured sections
+              priority={priority && index < 4}
             />
           ))}
         </div>
 
-        {/* Navigation Arrows - Teeka4 Style */}
         {maxPages > 1 && (
           <div className="flex justify-center items-center mt-8 space-x-4">
             <button
               onClick={handlePrevious}
               className="p-2 border border-gray-400 hover:border-black transition-colors duration-200"
             >
-              <svg 
-                className="w-5 h-5 text-gray-600 hover:text-black" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M15 19l-7-7 7-7" 
-                />
+              <svg className="w-5 h-5 text-gray-600 hover:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             
-            {/* Page Indicators */}
             <div className="flex space-x-2">
               {Array.from({ length: maxPages }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex 
-                      ? 'bg-black' 
-                      : 'bg-gray-300 hover:bg-gray-400'
+                    index === currentIndex ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                 />
               ))}
@@ -138,24 +118,13 @@ export default function SectionCarousel({
               onClick={handleNext}
               className="p-2 border border-gray-400 hover:border-black transition-colors duration-200"
             >
-              <svg 
-                className="w-5 h-5 text-gray-600 hover:text-black" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M9 5l7 7-7 7" 
-                />
+              <svg className="w-5 h-5 text-gray-600 hover:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
         )}
 
-        {/* View All Button */}
         {showViewAll && (
           <div className="text-center mt-12">
             <a
@@ -169,4 +138,4 @@ export default function SectionCarousel({
       </div>
     </section>
   )
-} 
+}

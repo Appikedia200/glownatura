@@ -1,31 +1,32 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 const collections = [
   {
     id: 'bath-body',
     name: 'BATH & BODY',
     image: '/images/collections/bath-and-body.png',
-    href: '/collections/bath-body'
+    href: '/shop?category=bath-body'
   },
   {
     id: 'asian-brands',
     name: 'ASIAN BRANDS',
     image: '/images/collections/asian.png',
-    href: '/collections/asian-brands'
+    href: '/shop?category=asian'
   },
   {
     id: 'sunscreens',
     name: 'SUNSCREENS',
     image: '/images/collections/sunscreen.png',
-    href: '/collections/sunscreens'
+    href: '/shop?category=sunscreen'
   },
   {
     id: 'skincare',
     name: 'SKINCARE',
     image: '/images/collections/skincare.png',
-    href: '/collections/skincare'
+    href: '/shop?category=skincare'
   }
 ]
 
@@ -45,7 +46,7 @@ export default function CollectionGrid() {
         {/* Collections Grid - Fully responsive */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 lg:gap-6">
           {collections.map((collection) => (
-            <a
+            <Link
               key={collection.id}
               href={collection.href}
               className="group block"
@@ -58,6 +59,7 @@ export default function CollectionGrid() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 475px) 50vw, (max-width: 768px) 50vw, 25vw"
+                  loading="lazy"
                 />
               </div>
 
@@ -69,10 +71,10 @@ export default function CollectionGrid() {
                   </h3>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
     </section>
   )
-} 
+}

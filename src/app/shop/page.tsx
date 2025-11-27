@@ -1,66 +1,83 @@
 'use client'
 
-import Footer from '@/components/Footer'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getAllProducts } from '@/lib/data'
-import { useState, useMemo } from 'react'
+import { useProducts, useCategories, useBrands } from '@/lib/hooks'
+import ProductCard from '@/components/ProductCard'
+import Footer from '@/components/Footer'
+import { formatPrice } from '@/lib/data'
 
-export default function Shop() {
-  const allProducts = getAllProducts()
-  
-  // State for filters
+function ShopContent() {
+  const searchParams = useSearchParams()
+  const categoryFromUrl = searchParams.get('category')
+
   const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(65500)
-  const [showCount, setShowCount] = useState(16)
-  const [sortBy, setSortBy] = useState('latest')
-  const [expandedCategories, setExpandedCategories] = useState(false)
+  const [maxPrice, setMaxPrice] = useState(500000)
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([])
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(16)
+  const [sortBy, setSortBy] = useState('-createdAt')
+  const [expandedSections, setExpandedSections] = useState({
+    categories: false,
+    brands: false,
+    concerns: false,
+  })
 
-  // Filter products based on price range
-  const filteredProducts = useMemo(() => {
-    let filtered = allProducts.filter(product => 
-      product.price >= minPrice && product.price <= maxPrice
+  const { categories } = useCategories(false)
+  const { brands } = useBrands({ limit: 100 })
+
+  // Handle category from URL parameter
+  useEffect(() => {
+    if (categoryFromUrl && categories.length > 0) {
+      const matchedCategory = categories.find(cat => 
+        cat.slug === categoryFromUrl || cat.slug.includes(categoryFromUrl)
+      )
+      if (matchedCategory && !selectedCategories.includes(matchedCategory._id)) {
+        setSelectedCategories([matchedCategory._id])
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryFromUrl, categories])
+  
+  const { products, pagination, loading } = useProducts({
+    page,
+    limit,
+    minPrice,
+    maxPrice,
+    category: selectedCategories.length > 0 ? selectedCategories.join(',') : categoryFromUrl || undefined,
+    brand: selectedBrands.length > 0 ? selectedBrands.join(',') : undefined,
+    sort: sortBy,
+  })
+
+  const toggleCategory = (categoryId: string) => {
+    setSelectedCategories(prev =>
+      prev.includes(categoryId)
+        ? prev.filter(id => id !== categoryId)
+        : [...prev, categoryId]
     )
-
-    // Apply sorting
-    switch (sortBy) {
-      case 'price-low':
-        filtered.sort((a, b) => a.price - b.price)
-        break
-      case 'price-high':
-        filtered.sort((a, b) => b.price - a.price)
-        break
-      case 'name':
-        filtered.sort((a, b) => a.name.localeCompare(b.name))
-        break
-      default: // latest
-        break
-    }
-
-    return filtered.slice(0, showCount)
-  }, [allProducts, minPrice, maxPrice, showCount, sortBy])
-
-  const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value)
-    if (value <= maxPrice) {
-      setMinPrice(value)
-    }
+    setPage(1)
   }
 
-  const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value)
-    if (value >= minPrice) {
-      setMaxPrice(value)
-    }
+  const toggleBrand = (brandName: string) => {
+    setSelectedBrands(prev =>
+      prev.includes(brandName)
+        ? prev.filter(b => b !== brandName)
+        : [...prev, brandName]
+    )
+    setPage(1)
+  }
+
+  const toggleSection = (section: keyof typeof expandedSections) => {
+    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }))
   }
 
   return (
     <>
       <main className="min-h-screen">
-        {/* Shop Banner Section */}
         <section className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
-          
-          {/* Background Image */}
           <div className="absolute inset-0">
             <Image
               src="/images/banners/shop.png"
@@ -69,29 +86,19 @@ export default function Shop() {
               className="object-cover object-center"
               priority
             />
-            {/* Overlay for better text readability */}
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
           
-          {/* Content Overlay */}
           <div className="relative z-10 h-full flex items-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="text-center">
-                {/* Breadcrumb */}
-                <nav 
-                  className="mb-4 text-sm text-gray-300"
-                  style={{ fontFamily: 'Gulzar, serif' }}
-                >
+                <nav className="mb-4 text-sm text-gray-300 font-libre">
                   <Link href="/" className="hover:text-white transition-colors">Home</Link>
                   <span className="mx-2">›</span>
                   <span className="text-white">Shop</span>
                 </nav>
                 
-                {/* Main Title */}
-                <h1 
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-                  style={{ fontFamily: 'Libre Baskerville, Georgia, serif' }}
-                >
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-libre">
                   Shop
                 </h1>
               </div>
@@ -99,298 +106,233 @@ export default function Shop() {
           </div>
         </section>
 
-          {/* 5. Shop Content Area */}
-          <section className="py-8 bg-white">
-            <div className="max-w-7xl mx-auto px-6 md:px-12">
-              <div className="flex gap-8">
-                
-                {/* Left Sidebar - Filters */}
-                {/* Removed Left Sidebar as per edit hint */}
-                <aside className="w-64 flex-shrink-0 hidden lg:block">
-                  
-                  {/* Filter by Price */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-black mb-4 flex items-center justify-between font-libre">
-                      Filter by price
-                      <span className="text-xl">−</span>
-                    </h3>
-                    <div className="space-y-4">
-                      {/* Dual Range Slider */}
-                      <div className="relative py-4">
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="65500" 
-                          step="100"
-                          value={minPrice}
-                          onChange={handleMinPriceChange}
-                          className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
-                          style={{
-                            background: 'transparent',
-                            pointerEvents: 'all'
-                          }}
-                        />
-                        <input 
-                          type="range" 
-                          min="0" 
-                          max="65500" 
-                          step="100"
-                          value={maxPrice}
-                          onChange={handleMaxPriceChange}
-                          className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
-                          style={{
-                            background: 'transparent',
-                            pointerEvents: 'all'
-                          }}
-                        />
-                        <div className="relative h-2 bg-gray-200 rounded-lg">
-                          <div 
-                            className="absolute h-2 bg-black rounded-lg"
-                            style={{
-                              left: `${(minPrice / 65500) * 100}%`,
-                              right: `${100 - (maxPrice / 65500) * 100}%`
-                            }}
-                          ></div>
-                        </div>
-                        {/* Slider thumbs */}
+        <section className="py-8 bg-white">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="flex gap-8">
+              
+              <aside className="w-64 flex-shrink-0 hidden lg:block">
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold text-black mb-4 flex items-center justify-between font-libre">
+                    Filter by price
+                    <span className="text-xl">−</span>
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="relative py-4">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="500000" 
+                        step="1000"
+                        value={minPrice}
+                        onChange={(e) => {
+                          const val = parseInt(e.target.value)
+                          if (val <= maxPrice) setMinPrice(val)
+                        }}
+                        className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
+                      />
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="500000" 
+                        step="1000"
+                        value={maxPrice}
+                        onChange={(e) => {
+                          const val = parseInt(e.target.value)
+                          if (val >= minPrice) setMaxPrice(val)
+                        }}
+                        className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
+                      />
+                      <div className="relative h-2 bg-gray-200 rounded-lg">
                         <div 
-                          className="absolute w-4 h-4 bg-black rounded-full border-2 border-white shadow-md cursor-pointer"
+                          className="absolute h-2 bg-black rounded-lg"
                           style={{
-                            left: `${(minPrice / 65500) * 100}%`,
-                            top: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: 30
-                          }}
-                        ></div>
-                        <div 
-                          className="absolute w-4 h-4 bg-black rounded-full border-2 border-white shadow-md cursor-pointer"
-                          style={{
-                            left: `${(maxPrice / 65500) * 100}%`,
-                            top: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            zIndex: 30
+                            left: `${(minPrice / 500000) * 100}%`,
+                            right: `${100 - (maxPrice / 500000) * 100}%`
                           }}
                         ></div>
                       </div>
-                      <button 
-                        onClick={() => {/* Filter is applied automatically */}}
-                        className="bg-gray-100 text-black px-4 py-2 text-sm border hover:bg-gray-200 transition-colors font-gupter uppercase tracking-wide"
-                      >
-                        FILTER
-                      </button>
-                      <p className="text-sm text-gray-600 font-libre">
-                        Price: ₦{minPrice.toLocaleString()} — ₦{maxPrice.toLocaleString()}
-                      </p>
                     </div>
-                  </div>
-
-                  {/* Product Categories */}
-                  <div className="mb-8">
-                    <h3 
-                      className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre"
-                      onClick={() => setExpandedCategories(!expandedCategories)}
+                    <button 
+                      onClick={() => setPage(1)}
+                      className="bg-gray-100 text-black px-4 py-2 text-sm border hover:bg-gray-200 transition-colors font-gupter uppercase tracking-wide"
                     >
-                      Product Categories
-                      <span className="text-xl">{expandedCategories ? '−' : '+'}</span>
-                    </h3>
-                    {expandedCategories && (
-                      <div className="space-y-2 font-libre">
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>All</span>
-                          <span>466</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>Back in Stock</span>
-                          <span>3</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>BULK</span>
-                          <span>2</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>Baby Skincare</span>
-                          <span>7</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>Body Serum</span>
-                          <span>12</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>Face wash</span>
-                          <span>1</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>Gift Card</span>
-                          <span>52</span>
-                        </div>
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>Asian Brands</span>
-                          <span>1</span>
-                        </div>
-                      </div>
-                    )}
+                      FILTER
+                    </button>
+                    <p className="text-sm text-gray-600 font-libre">
+                      Price: {formatPrice(minPrice)} — {formatPrice(maxPrice)}
+                    </p>
                   </div>
+                </div>
 
-                  {/* Specific Concerns */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre">
-                      Specific Concerns
-                      <span className="text-xl">+</span>
-                    </h3>
-                  </div>
-
-                  {/* Shop By Ingredients */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre">
-                      Shop By Ingredients
-                      <span className="text-xl">+</span>
-                    </h3>
-                  </div>
-
-                  {/* Filter By Brand */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre">
-                      Filter By Brand
-                      <span className="text-xl">+</span>
-                    </h3>
-                  </div>
-
-                </aside>
-
-                {/* Main Content Area */}
-                <div className="flex-1">
-                  
-                  {/* Top Controls */}
-                  <div className="flex justify-between items-center mb-6">
-                    <div className="flex items-center space-x-4">
-                      <span className="text-sm text-gray-600 font-libre">SHOW</span>
-                      <div className="flex space-x-2">
-                        <button 
-                          onClick={() => setShowCount(16)}
-                          className={`text-sm font-libre ${showCount === 16 ? 'text-black font-semibold' : 'text-gray-400'}`}
-                        >
-                          16
-                        </button>
-                        <button 
-                          onClick={() => setShowCount(32)}
-                          className={`text-sm font-libre ${showCount === 32 ? 'text-black font-semibold' : 'text-gray-400'}`}
-                        >
-                          32
-                        </button>
-                        <button 
-                          onClick={() => setShowCount(64)}
-                          className={`text-sm font-libre ${showCount === 64 ? 'text-black font-semibold' : 'text-gray-400'}`}
-                        >
-                          64
-                        </button>
-                      </div>
+                <div className="mb-8">
+                  <h3 
+                    className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre"
+                    onClick={() => toggleSection('categories')}
+                  >
+                    Product Categories
+                    <span className="text-xl">{expandedSections.categories ? '−' : '+'}</span>
+                  </h3>
+                  {expandedSections.categories && (
+                    <div className="space-y-2 font-libre">
+                      {categories.map(cat => (
+                        <label key={cat._id} className="flex items-center justify-between text-sm text-gray-600 cursor-pointer hover:text-black">
+                          <div className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={selectedCategories.includes(cat._id)}
+                              onChange={() => toggleCategory(cat._id)}
+                              className="mr-2"
+                            />
+                            <span>{cat.name}</span>
+                          </div>
+                          <span>{cat.productCount || 0}</span>
+                        </label>
+                      ))}
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-sm text-gray-600 font-libre">Sort By Latest</span>
-                      <select 
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        className="text-sm border-0 bg-transparent cursor-pointer font-libre"
-                      >
-                        <option value="latest">Latest</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="name">Name: A to Z</option>
-                      </select>
+                  )}
+                </div>
+
+                <div className="mb-8">
+                  <h3 
+                    className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre"
+                    onClick={() => toggleSection('brands')}
+                  >
+                    Filter By Brand
+                    <span className="text-xl">{expandedSections.brands ? '−' : '+'}</span>
+                  </h3>
+                  {expandedSections.brands && (
+                    <div className="space-y-2 font-libre max-h-64 overflow-y-auto">
+                      {brands.map(brand => (
+                        <label key={brand._id} className="flex items-center justify-between text-sm text-gray-600 cursor-pointer hover:text-black">
+                          <div className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={selectedBrands.includes(brand.name)}
+                              onChange={() => toggleBrand(brand.name)}
+                              className="mr-2"
+                            />
+                            <span>{brand.name}</span>
+                          </div>
+                          <span>{brand.productCount || 0}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </aside>
+
+              <div className="flex-1">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-sm text-gray-600 font-libre">SHOW</span>
+                    <div className="flex space-x-2">
+                      {[16, 32, 64].map(val => (
+                        <button 
+                          key={val}
+                          onClick={() => { setLimit(val); setPage(1) }}
+                          className={`text-sm font-libre ${limit === val ? 'text-black font-semibold' : 'text-gray-400'}`}
+                        >
+                          {val}
+                        </button>
+                      ))}
                     </div>
                   </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm text-gray-600 font-libre">Sort By</span>
+                    <select 
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="text-sm border-0 bg-transparent cursor-pointer font-libre"
+                    >
+                      <option value="-createdAt">Latest</option>
+                      <option value="price">Price: Low to High</option>
+                      <option value="-price">Price: High to Low</option>
+                      <option value="-averageRating">Best Rating</option>
+                      <option value="-featured.featuredOrder">Featured</option>
+                    </select>
+                  </div>
+                </div>
 
-                  {/* Products Grid */}
+                {loading ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-                    {filteredProducts.map((product: any) => (
-                      <div key={product.id} className="group relative bg-white shadow-sm hover:shadow-md transition-shadow">
-                        
-                        {/* Product Image */}
-                        <div className="relative aspect-square bg-gray-50">
-                          <Image
-                            src={product.images[0]?.url || '/images/featured/simple.png'}
-                            alt={product.name}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          
-                          {/* Wishlist Heart */}
-                          <button className="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                          </button>
-
-                          {/* Promotion Badges - At bottom of image like Teeka4 */}
-                          {product.promotions && product.promotions.length > 0 && (
-                            <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
-                              {product.promotions.map((promo: any, index: number) => (
-                                <span key={index} className="inline-block bg-gray-600 text-white text-xs px-2 py-1 rounded font-libre">
-                                  {promo.description}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Product Info */}
-                        <div className="p-4">
-                          <h3 className="text-sm font-medium text-black mb-2 font-libre">
-                            {product.name}
-                          </h3>
-                          
-                          {/* Price */}
-                          <div className="flex items-center space-x-2 mb-4">
-                            <span className="text-lg font-semibold text-black font-libre">
-                              ₦{product.price.toLocaleString()}
-                            </span>
-                            {product.originalPrice && (
-                              <span className="text-sm text-gray-400 line-through font-libre">
-                                ₦{product.originalPrice.toLocaleString()}
-                              </span>
-                            )}
-                          </div>
-
-                          {/* Add to Cart Section */}
-                          <div className="flex items-center gap-2">
-                            <div className="flex items-center border rounded overflow-hidden">
-                              <button className="px-3 py-2 text-sm font-libre hover:bg-gray-50">-</button>
-                              <span className="px-4 py-2 text-sm bg-gray-50 font-libre">1</span>
-                              <button className="px-3 py-2 text-sm font-libre hover:bg-gray-50">+</button>
-                            </div>
-                            <button className="flex-1 border border-gray-300 text-black text-sm py-2 px-4 hover:bg-gray-50 transition-colors font-libre uppercase tracking-wide">
-                              ADD TO CART
-                            </button>
-                          </div>
-                        </div>
+                    {Array.from({ length: limit }).map((_, i) => (
+                      <div key={i} className="animate-pulse">
+                        <div className="aspect-square bg-gray-300 mb-4"></div>
+                        <div className="h-4 bg-gray-300 mb-2"></div>
+                        <div className="h-4 bg-gray-300 w-3/4"></div>
                       </div>
                     ))}
                   </div>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                      {products.map((product) => (
+                        <ProductCard key={product._id} product={product} />
+                      ))}
+                    </div>
 
-                  {/* Show filtered count */}
-                  <div className="text-center text-gray-600 mb-4 font-libre">
-                    Showing {filteredProducts.length} of {allProducts.length} products
-                  </div>
+                    {products.length === 0 && (
+                      <div className="text-center py-16">
+                        <p className="text-gray-600 font-libre">No products found</p>
+                      </div>
+                    )}
 
-                  {/* Pagination */}
-                  <div className="flex justify-center items-center space-x-2">
-                    <button className="w-8 h-8 flex items-center justify-center border rounded text-black bg-black text-white font-libre">1</button>
-                    <button className="w-8 h-8 flex items-center justify-center border rounded text-gray-600 hover:bg-gray-100 font-libre">2</button>
-                    <button className="w-8 h-8 flex items-center justify-center border rounded text-gray-600 hover:bg-gray-100 font-libre">3</button>
-                    <button className="w-8 h-8 flex items-center justify-center border rounded text-gray-600 hover:bg-gray-100 font-libre">4</button>
-                    <span className="text-gray-400 font-libre">...</span>
-                    <button className="w-8 h-8 flex items-center justify-center border rounded text-gray-600 hover:bg-gray-100 font-libre">27</button>
-                    <button className="px-3 py-1 text-gray-600 hover:text-black font-libre">→</button>
-                  </div>
+                    {pagination && pagination.total > 0 && (
+                      <>
+                        <div className="text-center text-gray-600 mb-4 font-libre">
+                          Showing {products.length} of {pagination.total} products
+                        </div>
 
-                </div>
+                        {pagination.totalPages > 1 && (
+                          <div className="flex justify-center items-center space-x-2">
+                            {Array.from({ length: Math.min(pagination.totalPages, 10) }).map((_, i) => (
+                              <button 
+                                key={i}
+                                onClick={() => setPage(i + 1)}
+                                className={`w-8 h-8 flex items-center justify-center border rounded font-libre ${
+                                  page === i + 1 
+                                    ? 'bg-black text-white' 
+                                    : 'text-gray-600 hover:bg-gray-100'
+                                }`}
+                              >
+                                {i + 1}
+                              </button>
+                            ))}
+                            {pagination.hasNextPage && (
+                              <button 
+                                onClick={() => setPage(page + 1)}
+                                className="px-3 py-1 text-gray-600 hover:text-black font-libre"
+                              >
+                                →
+                              </button>
+                            )}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* 6. Footer */}
-          <Footer />
-        </main>
+        <Footer />
+      </main>
     </>
   )
-} 
+}
+
+export default function Shop() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen">
+        <div className="flex items-center justify-center py-20">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+        </div>
+      </main>
+    }>
+      <ShopContent />
+    </Suspense>
+  )
+}
