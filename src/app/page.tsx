@@ -1,6 +1,6 @@
 'use client'
 
-import { useHomepage } from '@/lib/hooks'
+import { useProducts } from '@/lib/hooks'
 import HeroBanner from '@/components/HeroBanner'
 import WholesaleCTA from '@/components/WholesaleCTA'
 import CollectionGrid from '@/components/CollectionGrid'
@@ -10,23 +10,16 @@ import VideoCTA from '@/components/VideoCTA'
 import Footer from '@/components/Footer'
 
 export default function Home() {
-  const { sections, loading, error } = useHomepage()
-
-  if (error) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 mb-4">Failed to load homepage content</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="px-6 py-2 bg-black text-white hover:bg-gray-800"
-          >
-            Retry
-          </button>
-        </div>
-      </main>
-    )
-  }
+  // Fetch products from backend - use exact backend filters
+  const { products: featuredProducts } = useProducts({ limit: 8, sort: '-featuredOrder' })
+  const { products: newArrivals } = useProducts({ limit: 8, sort: '-createdAt' })
+  
+  // Get products marked as best sellers by backend
+  const { products: allProducts } = useProducts({ limit: 50 })
+  const bestSellers = allProducts.filter(p => p.isBestSeller).slice(0, 8)
+  
+  // Back in stock - products marked by backend
+  const backInStock = allProducts.filter(p => p.isBackInStock).slice(0, 8)
 
   return (
     <main className="min-h-screen m-0 p-0">
@@ -34,26 +27,41 @@ export default function Home() {
       <WholesaleCTA />
       <CollectionGrid />
 
-      {loading ? (
-        <div className="py-16 text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-        </div>
-      ) : (
-        <>
-          {sections.map((section) => (
-            <SectionCarousel
-              key={section._id}
-              title={section.title}
-              products={section.products}
-              priority={section.sectionType === 'featured'}
-              className={section.sectionType === 'back_in_stock' ? 'bg-white' : ''}
-            />
-          ))}
-        </>
+      {featuredProducts.length > 0 && (
+        <SectionCarousel
+          title="Featured Items"
+          products={featuredProducts}
+          priority={true}
+        />
+      )}
+
+      {backInStock.length > 0 && (
+        <SectionCarousel
+          title="Back in Stock"
+          products={backInStock}
+          className="bg-white"
+        />
       )}
 
       <WholesaleBanner />
+
+      {newArrivals.length > 0 && (
+        <SectionCarousel
+          title="New Arrivals"
+          products={newArrivals}
+        />
+      )}
+
       <VideoCTA />
+
+      {bestSellers.length > 0 && (
+        <SectionCarousel
+          title="Best Sellers"
+          products={bestSellers}
+          className="bg-white"
+        />
+      )}
+
       <Footer />
     </main>
   )

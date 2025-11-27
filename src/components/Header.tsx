@@ -69,10 +69,10 @@ export default function Header() {
 
             {/* Right: Icons - Fixed Right Alignment, compact */}
             <div className="flex items-center space-x-1 flex-shrink-0">
-              <a href="/maintenance" className="p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
+              <a href="/account" className="p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
                 <UserIcon className="h-5 w-5" />
               </a>
-              <a href="/maintenance" className="relative p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
+              <a href="/cart" className="relative p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
                 <ShoppingCartIcon className="h-5 w-5" />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-medium">
@@ -133,10 +133,10 @@ export default function Header() {
 
               {/* Icons - Right */}
               <div className="flex items-center space-x-4 lg:space-x-6 flex-1 justify-end">
-                <a href="/maintenance" className="p-2 text-gray-900 hover:text-gray-700 transition-colors">
+                <a href="/account" className="p-2 text-gray-900 hover:text-gray-700 transition-colors">
                   <UserIcon className="h-6 w-6 lg:h-7 lg:w-7 stroke-2" />
                 </a>
-                <a href="/maintenance" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors">
+                <a href="/wishlist" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors">
                   <HeartIcon className="h-6 w-6 lg:h-7 lg:w-7 stroke-2" />
                   {wishlistCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[10px] font-medium">
@@ -144,7 +144,7 @@ export default function Header() {
                     </span>
                   )}
                 </a>
-                <a href="/maintenance" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors group">
+                <a href="/cart" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors group">
                   <ShoppingCartIcon className="h-6 w-6 lg:h-7 lg:w-7 stroke-2" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[10px] font-medium group-hover:bg-gray-800 transition-colors">
                     {cartItemCount}

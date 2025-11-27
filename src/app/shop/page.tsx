@@ -20,11 +20,6 @@ function ShopContent() {
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(16)
   const [sortBy, setSortBy] = useState('-createdAt')
-  const [expandedSections, setExpandedSections] = useState({
-    categories: false,
-    brands: false,
-    concerns: false,
-  })
 
   const { categories } = useCategories(false)
   const { brands } = useBrands({ limit: 100 })
@@ -70,179 +65,177 @@ function ShopContent() {
     setPage(1)
   }
 
-  const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }))
-  }
-
   return (
     <>
-      <main className="min-h-screen">
-        <section className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+      <main className="min-h-screen bg-white">
+        {/* Banner - Teeka4 Professional Height */}
+        <section className="relative h-[280px] md:h-[350px] lg:h-[400px] overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/images/banners/shop.png"
-              alt="Shop Banner"
+              alt="Shop All Products"
               fill
               className="object-cover object-center"
               priority
             />
-            <div className="absolute inset-0 bg-black/40"></div>
+            <div className="absolute inset-0 bg-black/30"></div>
           </div>
           
           <div className="relative z-10 h-full flex items-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="text-center">
-                <nav className="mb-4 text-sm text-gray-300 font-libre">
-                  <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                  <span className="mx-2">›</span>
-                  <span className="text-white">Shop</span>
-                </nav>
-                
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-libre">
-                  Shop
-                </h1>
-              </div>
+            <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+              {/* Breadcrumb - Left Aligned like Teeka4 */}
+              <nav className="mb-4 text-sm text-white">
+                <Link href="/" className="hover:text-gray-200 transition-colors">Home</Link>
+                <span className="mx-2">›</span>
+                <span className="font-medium">Shop</span>
+              </nav>
+              
+              {/* Title - Left Aligned */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-libre">
+                Shop
+              </h1>
             </div>
           </div>
         </section>
 
+        {/* Main Content - Teeka4 Layout */}
         <section className="py-8 bg-white">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="flex gap-8">
               
-              <aside className="w-64 flex-shrink-0 hidden lg:block">
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-black mb-4 flex items-center justify-between font-libre">
-                    Filter by price
-                    <span className="text-xl">−</span>
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="relative py-4">
-                      <input 
-                        type="range" 
-                        min="0" 
-                        max="500000" 
-                        step="1000"
-                        value={minPrice}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value)
-                          if (val <= maxPrice) setMinPrice(val)
-                        }}
-                        className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
-                      />
-                      <input 
-                        type="range" 
-                        min="0" 
-                        max="500000" 
-                        step="1000"
-                        value={maxPrice}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value)
-                          if (val >= minPrice) setMaxPrice(val)
-                        }}
-                        className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
-                      />
-                      <div className="relative h-2 bg-gray-200 rounded-lg">
-                        <div 
-                          className="absolute h-2 bg-black rounded-lg"
-                          style={{
-                            left: `${(minPrice / 500000) * 100}%`,
-                            right: `${100 - (maxPrice / 500000) * 100}%`
+              {/* Filter Sidebar - STICKY like Teeka4 */}
+              <aside className="w-72 flex-shrink-0 hidden lg:block">
+                <div className="sticky top-4">
+                  
+                  {/* Price Filter */}
+                  <div className="mb-8 border-b border-gray-200 pb-6">
+                    <h3 className="text-base font-semibold text-black mb-4 flex items-center justify-between cursor-pointer">
+                      Filter by price
+                      <span className="text-lg">−</span>
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="relative py-4">
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="500000" 
+                          step="1000"
+                          value={minPrice}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value)
+                            if (val <= maxPrice) setMinPrice(val)
                           }}
-                        ></div>
+                          className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
+                        />
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="500000" 
+                          step="1000"
+                          value={maxPrice}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value)
+                            if (val >= minPrice) setMaxPrice(val)
+                          }}
+                          className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer z-20 slider-thumb" 
+                        />
+                        <div className="relative h-2 bg-gray-200 rounded-lg">
+                          <div 
+                            className="absolute h-2 bg-black rounded-lg"
+                            style={{
+                              left: `${(minPrice / 500000) * 100}%`,
+                              right: `${100 - (maxPrice / 500000) * 100}%`
+                            }}
+                          ></div>
+                        </div>
                       </div>
+                      <button 
+                        onClick={() => setPage(1)}
+                        className="w-full bg-gray-100 text-black px-4 py-2 text-sm border hover:bg-gray-200 transition-colors uppercase tracking-wide"
+                      >
+                        FILTER
+                      </button>
+                      <p className="text-sm text-gray-600">
+                        Price: {formatPrice(minPrice)} — {formatPrice(maxPrice)}
+                      </p>
                     </div>
-                    <button 
-                      onClick={() => setPage(1)}
-                      className="bg-gray-100 text-black px-4 py-2 text-sm border hover:bg-gray-200 transition-colors font-gupter uppercase tracking-wide"
-                    >
-                      FILTER
-                    </button>
-                    <p className="text-sm text-gray-600 font-libre">
-                      Price: {formatPrice(minPrice)} — {formatPrice(maxPrice)}
-                    </p>
                   </div>
-                </div>
 
-                <div className="mb-8">
-                  <h3 
-                    className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre"
-                    onClick={() => toggleSection('categories')}
-                  >
-                    Product Categories
-                    <span className="text-xl">{expandedSections.categories ? '−' : '+'}</span>
-                  </h3>
-                  {expandedSections.categories && (
-                    <div className="space-y-2 font-libre">
+                  {/* Product Categories */}
+                  <div className="mb-8 border-b border-gray-200 pb-6">
+                    <h3 className="text-base font-semibold text-black mb-4">
+                      Product Categories
+                    </h3>
+                    <div className="space-y-2 max-h-64 overflow-y-auto">
                       {categories.map(cat => (
-                        <label key={cat._id} className="flex items-center justify-between text-sm text-gray-600 cursor-pointer hover:text-black">
+                        <label key={cat._id} className="flex items-center justify-between text-sm text-gray-700 cursor-pointer hover:text-black py-1">
                           <div className="flex items-center">
                             <input
                               type="checkbox"
                               checked={selectedCategories.includes(cat._id)}
                               onChange={() => toggleCategory(cat._id)}
-                              className="mr-2"
+                              className="mr-2 w-4 h-4"
                             />
                             <span>{cat.name}</span>
                           </div>
-                          <span>{cat.productCount || 0}</span>
+                          <span className="text-gray-400 text-xs">({cat.productCount || 0})</span>
                         </label>
                       ))}
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                <div className="mb-8">
-                  <h3 
-                    className="text-lg font-semibold text-black mb-4 flex items-center justify-between cursor-pointer hover:text-gray-700 font-libre"
-                    onClick={() => toggleSection('brands')}
-                  >
-                    Filter By Brand
-                    <span className="text-xl">{expandedSections.brands ? '−' : '+'}</span>
-                  </h3>
-                  {expandedSections.brands && (
-                    <div className="space-y-2 font-libre max-h-64 overflow-y-auto">
-                      {brands.map(brand => (
-                        <label key={brand._id} className="flex items-center justify-between text-sm text-gray-600 cursor-pointer hover:text-black">
-                          <div className="flex items-center">
-                            <input
-                              type="checkbox"
-                              checked={selectedBrands.includes(brand.name)}
-                              onChange={() => toggleBrand(brand.name)}
-                              className="mr-2"
-                            />
-                            <span>{brand.name}</span>
-                          </div>
-                          <span>{brand.productCount || 0}</span>
-                        </label>
-                      ))}
+                  {/* Brands Filter */}
+                  {brands.length > 0 && (
+                    <div className="mb-8">
+                      <h3 className="text-base font-semibold text-black mb-4">
+                        Filter By Brand
+                      </h3>
+                      <div className="space-y-2 max-h-64 overflow-y-auto">
+                        {brands.map(brand => (
+                          <label key={brand._id} className="flex items-center justify-between text-sm text-gray-700 cursor-pointer hover:text-black py-1">
+                            <div className="flex items-center">
+                              <input
+                                type="checkbox"
+                                checked={selectedBrands.includes(brand.name)}
+                                onChange={() => toggleBrand(brand.name)}
+                                className="mr-2 w-4 h-4"
+                              />
+                              <span>{brand.name}</span>
+                            </div>
+                            <span className="text-gray-400 text-xs">({brand.productCount || 0})</span>
+                          </label>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
               </aside>
 
+              {/* Products Grid - Teeka4 Style */}
               <div className="flex-1">
-                <div className="flex justify-between items-center mb-6">
+                
+                {/* Top Bar - Show & Sort */}
+                <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
                   <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-600 font-libre">SHOW</span>
-                    <div className="flex space-x-2">
+                    <span className="text-sm text-gray-600 uppercase tracking-wide">Show</span>
+                    <div className="flex space-x-3">
                       {[16, 32, 64].map(val => (
                         <button 
                           key={val}
                           onClick={() => { setLimit(val); setPage(1) }}
-                          className={`text-sm font-libre ${limit === val ? 'text-black font-semibold' : 'text-gray-400'}`}
+                          className={`text-sm ${limit === val ? 'text-black font-semibold underline' : 'text-gray-500 hover:text-black'}`}
                         >
                           {val}
                         </button>
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600 font-libre">Sort By</span>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-sm text-gray-600 uppercase tracking-wide">Sort by</span>
                     <select 
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="text-sm border-0 bg-transparent cursor-pointer font-libre"
+                      className="text-sm border border-gray-300 px-3 py-1 rounded cursor-pointer bg-white hover:border-gray-400 focus:outline-none focus:ring-1 focus:ring-black"
                     >
                       <option value="-createdAt">Latest</option>
                       <option value="price">Price: Low to High</option>
@@ -253,64 +246,103 @@ function ShopContent() {
                   </div>
                 </div>
 
+                {/* Products Grid - Professional 4 Columns */}
                 {loading ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
                     {Array.from({ length: limit }).map((_, i) => (
                       <div key={i} className="animate-pulse">
-                        <div className="aspect-square bg-gray-300 mb-4"></div>
-                        <div className="h-4 bg-gray-300 mb-2"></div>
-                        <div className="h-4 bg-gray-300 w-3/4"></div>
+                        <div className="aspect-[3/4] bg-gray-200 rounded-lg mb-3"></div>
+                        <div className="h-3 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-3 bg-gray-200 rounded w-3/4 mb-2"></div>
+                        <div className="h-4 bg-gray-200 rounded w-1/2"></div>
                       </div>
                     ))}
                   </div>
-                ) : (
+                ) : products.length > 0 ? (
                   <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
                       {products.map((product) => (
                         <ProductCard key={product._id} product={product} />
                       ))}
                     </div>
 
-                    {products.length === 0 && (
-                      <div className="text-center py-16">
-                        <p className="text-gray-600 font-libre">No products found</p>
+                    {/* Pagination - Teeka4 Style */}
+                    {pagination && pagination.totalPages > 1 && (
+                      <div className="flex justify-center items-center space-x-2 py-8 border-t border-gray-200">
+                        {/* Previous Button */}
+                        {page > 1 && (
+                          <button 
+                            onClick={() => setPage(page - 1)}
+                            className="px-3 py-2 text-gray-600 hover:text-black transition-colors"
+                          >
+                            ←
+                          </button>
+                        )}
+
+                        {/* Page Numbers */}
+                        {Array.from({ length: Math.min(pagination.totalPages, 5) }).map((_, i) => {
+                          let pageNum = i + 1
+                          
+                          // Smart pagination: show pages around current page
+                          if (pagination.totalPages > 5) {
+                            if (page > 3) {
+                              pageNum = page - 2 + i
+                            }
+                            if (pageNum > pagination.totalPages) {
+                              return null
+                            }
+                          }
+
+                          return (
+                            <button 
+                              key={pageNum}
+                              onClick={() => setPage(pageNum)}
+                              className={`w-10 h-10 flex items-center justify-center border transition-colors ${
+                                page === pageNum 
+                                  ? 'bg-black text-white border-black' 
+                                  : 'bg-white text-gray-700 border-gray-300 hover:border-black hover:text-black'
+                              }`}
+                            >
+                              {pageNum}
+                            </button>
+                          )
+                        })}
+
+                        {/* Ellipsis if more pages */}
+                        {pagination.totalPages > 5 && page < pagination.totalPages - 2 && (
+                          <span className="px-2 text-gray-400">...</span>
+                        )}
+
+                        {/* Last Page */}
+                        {pagination.totalPages > 5 && page < pagination.totalPages - 2 && (
+                          <button 
+                            onClick={() => setPage(pagination.totalPages)}
+                            className="w-10 h-10 flex items-center justify-center border bg-white text-gray-700 border-gray-300 hover:border-black hover:text-black transition-colors"
+                          >
+                            {pagination.totalPages}
+                          </button>
+                        )}
+
+                        {/* Next Button */}
+                        {page < pagination.totalPages && (
+                          <button 
+                            onClick={() => setPage(page + 1)}
+                            className="px-3 py-2 text-gray-600 hover:text-black transition-colors"
+                          >
+                            →
+                          </button>
+                        )}
                       </div>
                     )}
-
-                    {pagination && pagination.total > 0 && (
-                      <>
-                        <div className="text-center text-gray-600 mb-4 font-libre">
-                          Showing {products.length} of {pagination.total} products
-                        </div>
-
-                        {pagination.totalPages > 1 && (
-                          <div className="flex justify-center items-center space-x-2">
-                            {Array.from({ length: Math.min(pagination.totalPages, 10) }).map((_, i) => (
-                              <button 
-                                key={i}
-                                onClick={() => setPage(i + 1)}
-                                className={`w-8 h-8 flex items-center justify-center border rounded font-libre ${
-                                  page === i + 1 
-                                    ? 'bg-black text-white' 
-                                    : 'text-gray-600 hover:bg-gray-100'
-                                }`}
-                              >
-                                {i + 1}
-                              </button>
-                            ))}
-                            {pagination.hasNextPage && (
-                              <button 
-                                onClick={() => setPage(page + 1)}
-                                className="px-3 py-1 text-gray-600 hover:text-black font-libre"
-                              >
-                                →
-                              </button>
-                            )}
-                          </div>
-                        )}
-                      </>
-                    )}
                   </>
+                ) : (
+                  <div className="text-center py-20">
+                    <p className="text-gray-600 text-lg mb-4">No products found</p>
+                    <p className="text-gray-500 text-sm mb-6">Try adjusting your filters</p>
+                    <Link href="/shop" className="inline-block bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors">
+                      Clear Filters
+                    </Link>
+                  </div>
                 )}
               </div>
             </div>
@@ -326,10 +358,8 @@ function ShopContent() {
 export default function Shop() {
   return (
     <Suspense fallback={
-      <main className="min-h-screen">
-        <div className="flex items-center justify-center py-20">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-        </div>
+      <main className="min-h-screen flex items-center justify-center">
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </main>
     }>
       <ShopContent />

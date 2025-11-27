@@ -1,12 +1,16 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/maintenance/page": "app/maintenance/page.js",
-  "/about/page": "app/about/page.js",
+  "/brands/[slug]/page": "app/brands/[slug]/page.js",
   "/cart/page": "app/cart/page.js",
-  "/checkout/page": "app/checkout/page.js",
-  "/page": "app/page.js",
-  "/consultation/page": "app/consultation/page.js",
   "/checkout/success/page": "app/checkout/success/page.js",
+  "/brands/page": "app/brands/page.js",
+  "/checkout/page": "app/checkout/page.js",
+  "/face/[subcategory]/page": "app/face/[subcategory]/page.js",
+  "/about/page": "app/about/page.js",
+  "/consultation/page": "app/consultation/page.js",
+  "/face/page": "app/face/page.js",
+  "/maintenance/page": "app/maintenance/page.js",
+  "/products/[id]/page": "app/products/[id]/page.js",
   "/shop/page": "app/shop/page.js",
-  "/products/[id]/page": "app/products/[id]/page.js"
+  "/page": "app/page.js"
 }
