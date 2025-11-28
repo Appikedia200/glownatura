@@ -8,3 +8,4 @@ node_modules
 .env.production.local
 .DS_Store
 Thumbs.db
+CURSOR_PROMPTS_PROFESSIONAL_REDESIGN.md
