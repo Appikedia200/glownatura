@@ -85,7 +85,15 @@ export default function Header() {
 
           {/* Mobile Search Bar - Compact */}
           <div className="px-3 pb-2 border-t border-gray-200">
-            <div className="relative mt-1.5">
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (searchQuery.trim()) {
+                  window.location.href = `/shop?search=${encodeURIComponent(searchQuery.trim())}`
+                }
+              }}
+              className="relative mt-1.5"
+            >
               <MagnifyingGlassIcon className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
               <input
                 type="text"
@@ -94,7 +102,7 @@ export default function Header() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-9 pr-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900 text-sm bg-white"
               />
-            </div>
+            </form>
           </div>
         </div>
 
@@ -105,7 +113,15 @@ export default function Header() {
               
               {/* Search Bar - Desktop Left */}
               <div className="flex flex-1 max-w-[280px] lg:max-w-[320px] items-center">
-                <div className="relative w-full">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    if (searchQuery.trim()) {
+                      window.location.href = `/shop?search=${encodeURIComponent(searchQuery.trim())}`
+                    }
+                  }}
+                  className="relative w-full"
+                >
                   <MagnifyingGlassIcon className="absolute left-2 top-1/2 transform -translate-y-1/2 h-5 w-5 lg:h-6 lg:w-6 text-gray-900 stroke-2" />
                   <input
                     type="text"
@@ -114,7 +130,7 @@ export default function Header() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-8 lg:pl-10 pr-3 py-2 lg:py-2.5 border-0 border-b border-gray-600 bg-transparent focus:outline-none focus:border-black focus:ring-0 text-sm placeholder-gray-400 font-light"
                   />
-                </div>
+                </form>
               </div>
 
               {/* Logo - Center - Consistent 200x65 dimensions */}

@@ -24,7 +24,7 @@ export default function BrandsPage() {
     <>
       <main className="min-h-screen bg-white">
         {/* Banner - Teeka4 Style */}
-        <section className="relative h-[280px] md:h-[350px] overflow-hidden">
+        <section className="relative h-[200px] md:h-[240px] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-300"></div>
           
           <div className="relative z-10 h-full flex items-center">

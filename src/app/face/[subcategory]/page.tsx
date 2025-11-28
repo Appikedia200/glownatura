@@ -40,7 +40,7 @@ function FaceSubcategoryContent() {
     <>
       <main className="min-h-screen bg-white">
         {/* Banner - Teeka4 Professional Style */}
-        <section className="relative h-[250px] md:h-[350px] overflow-hidden">
+<section className="relative h-[200px] md:h-[240px] overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/images/banners/shop.png"
@@ -248,4 +248,6 @@ export default function FaceSubcategoryPage() {
     </Suspense>
   )
 }
+
+
 

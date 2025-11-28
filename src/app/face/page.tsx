@@ -20,7 +20,7 @@ export default function FacePage() {
     <>
       <main className="min-h-screen bg-white">
         {/* Banner - Teeka4 Exact Style */}
-        <section className="relative h-[350px] md:h-[400px] overflow-hidden bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500">
+        <section className="relative h-[200px] md:h-[240px] overflow-hidden bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500">
           <div className="absolute inset-0 opacity-20">
             <Image
               src="/images/banners/shop.png"

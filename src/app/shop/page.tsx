@@ -12,6 +12,7 @@ import { formatPrice } from '@/lib/data'
 function ShopContent() {
   const searchParams = useSearchParams()
   const categoryFromUrl = searchParams.get('category')
+  const searchFromUrl = searchParams.get('search')
 
   const [minPrice, setMinPrice] = useState(0)
   const [maxPrice, setMaxPrice] = useState(500000)
@@ -44,6 +45,7 @@ function ShopContent() {
     maxPrice,
     category: selectedCategories.length > 0 ? selectedCategories.join(',') : categoryFromUrl || undefined,
     brand: selectedBrands.length > 0 ? selectedBrands.join(',') : undefined,
+    search: searchFromUrl || undefined,
     sort: sortBy,
   })
 
@@ -69,7 +71,7 @@ function ShopContent() {
     <>
       <main className="min-h-screen bg-white">
         {/* Banner - Teeka4 Exact Match */}
-        <section className="relative h-[350px] md:h-[400px] overflow-hidden bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500">
+        <section className="relative h-[200px] md:h-[240px] overflow-hidden bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500">
           <div className="absolute inset-0 opacity-20">
             <Image
               src="/images/banners/shop.png"
@@ -91,7 +93,7 @@ function ShopContent() {
               
               {/* Title - Left Aligned like Teeka4 */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black">
-                Shop
+                {searchFromUrl ? `Search: "${searchFromUrl}"` : 'Shop'}
               </h1>
             </div>
           </div>

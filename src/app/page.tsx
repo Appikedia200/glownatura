@@ -10,14 +10,31 @@ import VideoCTA from '@/components/VideoCTA'
 import Footer from '@/components/Footer'
 
 export default function Home() {
-  // Get ALL products from backend (48 products available)
-  const { products: allProducts, loading } = useProducts({ limit: 48, sort: '-createdAt' })
+  // PROFESSIONAL: Use backend flags for each section
+  // Admin controls which products appear in each section
+  const { products: featuredProducts } = useProducts({ 
+    featured: true, 
+    limit: 8,
+    sort: '-featured.featuredOrder' 
+  })
   
-  // Divide products into sections (8 per section)
-  const featuredProducts = allProducts.slice(0, 8)
-  const newArrivals = allProducts.slice(8, 16)
-  const backInStock = allProducts.slice(16, 24)
-  const bestSellers = allProducts.slice(24, 32)
+  const { products: newArrivals } = useProducts({ 
+    newArrival: true, 
+    limit: 8,
+    sort: '-createdAt' 
+  })
+  
+  const { products: backInStock } = useProducts({ 
+    backInStock: true, 
+    limit: 8,
+    sort: '-updatedAt' 
+  })
+  
+  const { products: bestSellers } = useProducts({ 
+    bestSeller: true, 
+    limit: 8,
+    sort: '-totalSales' 
+  })
 
   return (
     <main className="min-h-screen m-0 p-0">
