@@ -2,12 +2,23 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useProducts, useCategories, useBrands } from '@/lib/hooks'
 import ProductCard from '@/components/ProductCard'
+import Banner from '@/components/ui/Banner'
 import Footer from '@/components/Footer'
 import { formatPrice } from '@/lib/data'
+
+const SKIN_CONCERNS = [
+  'Acne', 'Aging', 'Dark Spots', 'Dryness', 'Dullness', 
+  'Fine Lines', 'Hyperpigmentation', 'Pores', 'Redness', 'Sensitivity'
+]
+
+const KEY_INGREDIENTS = [
+  'Niacinamide', 'Vitamin C', 'Hyaluronic Acid', 'Retinol',
+  'Salicylic Acid', 'Glycolic Acid', 'Alpha Arbutin', 'Kojic Acid',
+  'Benzoyl Peroxide', 'Ceramides', 'Peptides'
+]
 
 function ShopContent() {
   const searchParams = useSearchParams()
@@ -18,6 +29,8 @@ function ShopContent() {
   const [maxPrice, setMaxPrice] = useState(500000)
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [selectedBrands, setSelectedBrands] = useState<string[]>([])
+  const [selectedConcerns, setSelectedConcerns] = useState<string[]>([])
+  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([])
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(16)
   const [sortBy, setSortBy] = useState('-createdAt')
@@ -70,34 +83,14 @@ function ShopContent() {
   return (
     <>
       <main className="min-h-screen bg-white">
-        {/* Banner - Teeka4 Exact Match */}
-        <section className="relative h-[200px] md:h-[240px] overflow-hidden bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500">
-          <div className="absolute inset-0 opacity-20">
-            <Image
-              src="/images/banners/shop.png"
-              alt="Shop All Products"
-              fill
-              className="object-cover object-center mix-blend-multiply"
-              priority
-            />
-          </div>
-          
-          <div className="relative z-10 h-full flex items-center">
-            <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
-              {/* Breadcrumb - Left Aligned like Teeka4 */}
-              <nav className="mb-4 text-sm text-gray-800">
-                <Link href="/" className="hover:text-black transition-colors">Home</Link>
-                <span className="mx-2">›</span>
-                <span className="text-black font-medium">Shop</span>
-              </nav>
-              
-              {/* Title - Left Aligned like Teeka4 */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-black">
-                {searchFromUrl ? `Search: "${searchFromUrl}"` : 'Shop'}
-              </h1>
-            </div>
-          </div>
-        </section>
+        {/* Banner */}
+        <Banner
+          title={searchFromUrl ? `Search: "${searchFromUrl}"` : 'Shop All Products'}
+          breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'Shop' }
+          ]}
+        />
 
         {/* Main Content - Teeka4 Layout */}
         <section className="py-8 bg-white">
@@ -187,7 +180,7 @@ function ShopContent() {
 
                   {/* Brands Filter */}
                   {brands.length > 0 && (
-                    <div className="mb-8">
+                    <div className="mb-8 border-b border-gray-200 pb-6">
                       <h3 className="text-base font-semibold text-black mb-4">
                         Filter By Brand
                       </h3>
@@ -209,6 +202,58 @@ function ShopContent() {
                       </div>
                     </div>
                   )}
+
+                  {/* Skin Concerns Filter */}
+                  <div className="mb-8 border-b border-gray-200 pb-6">
+                    <h3 className="text-base font-semibold text-black mb-4">
+                      Skin Concerns
+                    </h3>
+                    <div className="space-y-2 max-h-48 overflow-y-auto">
+                      {SKIN_CONCERNS.map(concern => (
+                        <label key={concern} className="flex items-center text-sm text-gray-700 cursor-pointer hover:text-black py-1">
+                          <input
+                            type="checkbox"
+                            checked={selectedConcerns.includes(concern.toLowerCase())}
+                            onChange={() => {
+                              const value = concern.toLowerCase()
+                              setSelectedConcerns(prev =>
+                                prev.includes(value) ? prev.filter(c => c !== value) : [...prev, value]
+                              )
+                              setPage(1)
+                            }}
+                            className="mr-2 w-4 h-4"
+                          />
+                          <span>{concern}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Ingredients Filter */}
+                  <div className="mb-8">
+                    <h3 className="text-base font-semibold text-black mb-4">
+                      Key Ingredients
+                    </h3>
+                    <div className="space-y-2 max-h-48 overflow-y-auto">
+                      {KEY_INGREDIENTS.map(ingredient => (
+                        <label key={ingredient} className="flex items-center text-sm text-gray-700 cursor-pointer hover:text-black py-1">
+                          <input
+                            type="checkbox"
+                            checked={selectedIngredients.includes(ingredient.toLowerCase())}
+                            onChange={() => {
+                              const value = ingredient.toLowerCase()
+                              setSelectedIngredients(prev =>
+                                prev.includes(value) ? prev.filter(i => i !== value) : [...prev, value]
+                              )
+                              setPage(1)
+                            }}
+                            className="mr-2 w-4 h-4"
+                          />
+                          <span>{ingredient}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </aside>
 
