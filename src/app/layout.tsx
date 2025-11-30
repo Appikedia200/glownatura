@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display, Montserrat, Outfit, Crimson_Text, Gupter, Libre_Baskerville } from 'next/font/google'
+import { Toaster } from 'sonner'
 import './globals.css'
 import ScrollingPromoBar from '@/components/ScrollingPromoBar'
 import Header from '@/components/Header'
 import NavMenu from '@/components/NavMenu'
+import WhatsAppFloat from '@/components/WhatsAppFloat'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -131,6 +133,23 @@ export default function RootLayout({
         <main className="landscape:pt-[140px] md:pt-[160px] lg:pt-[220px]">
           {children}
         </main>
+
+        {/* WhatsApp Float Button - Admin Controlled */}
+        <WhatsAppFloat />
+
+        {/* Toast Notifications */}
+        <Toaster
+          position="top-right"
+          expand={true}
+          richColors
+          closeButton
+          duration={5000}
+          toastOptions={{
+            style: {
+              fontFamily: 'var(--font-inter)',
+            },
+          }}
+        />
       </body>
     </html>
   )

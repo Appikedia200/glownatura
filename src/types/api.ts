@@ -64,11 +64,19 @@ export interface Product {
   allowBackorders: boolean;
   sku?: string;
   status: 'draft' | 'active' | 'archived';
-  isFeatured: boolean;
-  featuredOrder?: number;
-  isNewArrival: boolean;
-  isBestSeller: boolean;
-  isBackInStock: boolean;
+  // CRITICAL: Featured/BackInStock are OBJECTS in backend!
+  featured: {
+    isFeatured: boolean;
+    featuredOrder?: number;
+  };
+  backInStock: {
+    isBackInStock: boolean;
+    backInStockDate?: string;
+  };
+  
+  // Virtual/computed fields
+  isNewArrival?: boolean;  // Computed from createdAt
+  isBestSeller?: boolean;  // Computed from orderCount
   averageRating: number;
   reviewCount: number;
   concerns?: string[];

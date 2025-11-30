@@ -7,6 +7,8 @@ import { HeartIcon, StarIcon } from '@heroicons/react/24/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
 import type { Product } from '@/types/api'
 import { formatPrice } from '@/lib/data'
+import { getProductImageUrl, isProductFeatured, isProductBackInStock } from '@/lib/helpers'
+import { useCart } from '@/lib/hooks'
 
 interface ProductCardProps {
   product: Product
@@ -15,20 +17,27 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, className = '', priority = false }: ProductCardProps) {
+  const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
 
-  const primaryImage = product.images.find(img => img.isPrimary) || product.images[0]
-  const imageUrl = primaryImage?.mediaId?.cloudinaryUrl || '/images/placeholder.png'
-  const imageAlt = primaryImage?.mediaId?.altText || product.name
+  const imageUrl = getProductImageUrl(product)
+  const imageAlt = product.name
 
   const handleQuantityChange = (delta: number) => {
     const newQuantity = Math.max(1, Math.min(quantity + delta, product.stock))
     setQuantity(newQuantity)
   }
 
-  const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${product.name} to cart`)
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    // Add the product to cart with the selected quantity
+    try {
+      await addItem(product._id, quantity)
+    } catch (error) {
+      console.error('Failed to add to cart:', error)
+    }
   }
 
   const renderStars = (rating: number) => {
@@ -88,7 +97,7 @@ export default function ProductCard({ product, className = '', priority = false 
             </span>
           </div>
         )}
-        {product.isBackInStock && (
+        {isProductBackInStock(product) && (
           <div className="absolute bottom-3 left-3">
             <span className="inline-block bg-purple-600 text-white text-xs px-2 py-1 rounded">
               Back in Stock

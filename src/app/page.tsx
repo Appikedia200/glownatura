@@ -1,6 +1,6 @@
 'use client'
 
-import { useProducts } from '@/lib/hooks'
+import { useHomepage } from '@/lib/hooks'
 import HeroBanner from '@/components/HeroBanner'
 import WholesaleCTA from '@/components/WholesaleCTA'
 import CollectionGrid from '@/components/CollectionGrid'
@@ -10,31 +10,29 @@ import VideoCTA from '@/components/VideoCTA'
 import Footer from '@/components/Footer'
 
 export default function Home() {
-  // PROFESSIONAL: Use backend flags for each section
-  // Admin controls which products appear in each section
-  const { products: featuredProducts } = useProducts({ 
-    featured: true, 
-    limit: 8,
-    sort: '-featured.featuredOrder' 
-  })
+  // PROFESSIONAL: Fetch homepage sections from backend API
+  // Admin controls which products appear in each section via Admin Panel
+  const { sections, loading, error } = useHomepage()
   
-  const { products: newArrivals } = useProducts({ 
-    newArrival: true, 
-    limit: 8,
-    sort: '-createdAt' 
-  })
+  // Create a map for easy access to sections by type
+  const sectionMap = sections.reduce((acc, section) => {
+    acc[section.sectionType] = section
+    return acc
+  }, {} as Record<string, typeof sections[0]>)
   
-  const { products: backInStock } = useProducts({ 
-    backInStock: true, 
-    limit: 8,
-    sort: '-updatedAt' 
-  })
-  
-  const { products: bestSellers } = useProducts({ 
-    bestSeller: true, 
-    limit: 8,
-    sort: '-totalSales' 
-  })
+  const featuredSection = sectionMap['featured']
+  const newArrivalsSection = sectionMap['new_arrivals']
+  const backInStockSection = sectionMap['back_in_stock']
+  const bestSellersSection = sectionMap['best_sellers']
+
+  // Show loading state
+  if (loading) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+      </main>
+    )
+  }
 
   return (
     <main className="min-h-screen m-0 p-0">
@@ -42,37 +40,41 @@ export default function Home() {
       <WholesaleCTA />
       <CollectionGrid />
 
-      {featuredProducts.length > 0 && (
+      {/* Featured Items - Admin controlled */}
+      {featuredSection?.products && featuredSection.products.length > 0 && (
         <SectionCarousel
-          title="Featured Items"
-          products={featuredProducts}
+          title={featuredSection.title || "Featured Items"}
+          products={featuredSection.products}
           priority={true}
         />
       )}
 
-      {backInStock.length > 0 && (
+      {/* Back in Stock - Admin controlled */}
+      {backInStockSection?.products && backInStockSection.products.length > 0 && (
         <SectionCarousel
-          title="Back in Stock"
-          products={backInStock}
+          title={backInStockSection.title || "Back in Stock"}
+          products={backInStockSection.products}
           className="bg-white"
         />
       )}
 
       <WholesaleBanner />
 
-      {newArrivals.length > 0 && (
+      {/* New Arrivals - Admin controlled */}
+      {newArrivalsSection?.products && newArrivalsSection.products.length > 0 && (
         <SectionCarousel
-          title="New Arrivals"
-          products={newArrivals}
+          title={newArrivalsSection.title || "New Arrivals"}
+          products={newArrivalsSection.products}
         />
       )}
 
       <VideoCTA />
 
-      {bestSellers.length > 0 && (
+      {/* Best Sellers - Admin controlled */}
+      {bestSellersSection?.products && bestSellersSection.products.length > 0 && (
         <SectionCarousel
-          title="Best Sellers"
-          products={bestSellers}
+          title={bestSellersSection.title || "Best Sellers"}
+          products={bestSellersSection.products}
           className="bg-white"
         />
       )}

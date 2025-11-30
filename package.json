@@ -12,13 +12,17 @@
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.4.0",
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.2.2",
     "axios": "^1.13.2",
     "clsx": "^2.0.0",
     "lucide-react": "^0.294.0",
     "next": "^14.2.32",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.1.0"
+    "react-hook-form": "^7.67.0",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^2.1.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250819.0",

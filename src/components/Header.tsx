@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { 
   MagnifyingGlassIcon, 
   UserIcon, 
@@ -11,12 +13,22 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { navigationItems } from '@/lib/data'
+import { useCart } from '@/lib/hooks'
 
 export default function Header() {
+  const router = useRouter()
+  const { itemCount } = useCart()
   const [searchQuery, setSearchQuery] = useState('')
-  const [cartItemCount] = useState(0)
   const [wishlistCount] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`)
+      setSearchQuery('')
+    }
+  }
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -69,17 +81,20 @@ export default function Header() {
 
             {/* Right: Icons - Fixed Right Alignment, compact */}
             <div className="flex items-center space-x-1 flex-shrink-0">
-              <a href="/account" className="p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
+              <Link href="/account" className="p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
                 <UserIcon className="h-5 w-5" />
-              </a>
-              <a href="/cart" className="relative p-1.5 text-gray-900 hover:text-gray-700 transition-colors">
+              </Link>
+              <Link 
+                href="/cart"
+                className="relative p-1.5 text-gray-900 hover:text-gray-700 transition-colors"
+              >
                 <ShoppingCartIcon className="h-5 w-5" />
-                {cartItemCount > 0 && (
+                {itemCount > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-medium">
-                    {cartItemCount}
+                    {itemCount}
                   </span>
                 )}
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -160,12 +175,17 @@ export default function Header() {
                     </span>
                   )}
                 </a>
-                <a href="/cart" className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors group">
+                <Link 
+                  href="/cart"
+                  className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors group"
+                >
                   <ShoppingCartIcon className="h-6 w-6 lg:h-7 lg:w-7 stroke-2" />
-                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[10px] font-medium group-hover:bg-gray-800 transition-colors">
-                    {cartItemCount}
-                  </span>
-                </a>
+                  {itemCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[10px] font-medium group-hover:bg-gray-800 transition-colors">
+                      {itemCount}
+                    </span>
+                  )}
+                </Link>
               </div>
             </div>
           </div>
