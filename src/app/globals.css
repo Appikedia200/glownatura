@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global optimizations for mobile and image performance */
+html {
+  /* Improve mobile viewport handling */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+body {
+  /* Optimize font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent layout shifts */
+  overflow-x: hidden;
+}
+
+/* Aggressive image optimization */
+img {
+  /* Prevent layout shift */
+  height: auto;
+  max-width: 100%;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Priority images handled via HTML attributes in components */
+
+/* Loading animation for images */
+img[data-loaded="false"] {
+  animation: shimmer 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Image container optimizations */
+.image-container {
+  position: relative;
+  overflow: hidden;
+  contain: layout style paint;
+  will-change: transform;
+  transition: opacity 0.2s ease-in-out;
+  content-visibility: auto;
+}
+
+/* Touch targets for mobile */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize touch scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Focus visible improvements */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Mobile viewport optimization */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    /* Force hardware acceleration */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  body {
+    @apply bg-beauty-cream text-beauty-charcoal font-sans antialiased;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Better font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Reset for main content areas */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Reset any default spacing */
+  main > * {
+    margin-top: 0 !important;
+  }
+
+  /* Mobile responsiveness fixes to prevent banner overlapping */
+  @media (max-width: 768px) {
+    /* Ensure no content overlaps on mobile */
+    .hero-section,
+    [class*="hero"],
+    [class*="banner"] {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Fix spacing between sections on mobile */
+    section,
+    div[class*="section"] {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Prevent header content from overlapping */
+    header + * {
+      margin-top: 0 !important;
+    }
+  }
+
+  /* Aggressive image optimization */
+  img {
+    /* Prevent layout shift */
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Loading animation for images */
+  img[data-loaded="false"] {
+    animation: shimmer 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Touch targets for mobile */
+  @media (max-width: 768px) {
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Optimize touch scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Focus visible improvements */
+  *:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  /* Better touch targets for mobile */
+  button, 
+  a, 
+  [role="button"] {
+    min-height: 44px;
+    padding: 8px 16px;
+  }
+
+  /* Smooth focus transitions */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:from-primary-600 hover:to-primary-700 hover:shadow-beauty-medium focus:outline-none focus:ring-4 focus:ring-primary-200 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-beauty-charcoal border-2 border-beauty-blush px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-beauty-blush hover:text-white hover:shadow-beauty-medium focus:outline-none focus:ring-4 focus:ring-primary-200 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply text-beauty-charcoal px-6 py-3 rounded-full font-medium transition-all duration-300 hover:bg-beauty-soft-pink hover:text-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-100 active:scale-95;
+  }
+
+  .glass-effect {
+    @apply bg-white/90 backdrop-blur-md border border-white/20;
+  }
+
+  .card-beauty {
+    @apply bg-white rounded-2xl shadow-beauty-soft hover:shadow-beauty-medium transition-all duration-300 border border-beauty-light-gray/30;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  /* Image loading optimizations */
+  .image-container {
+    @apply relative overflow-hidden;
+    contain: layout;
+    will-change: transform;
+  }
+
+  .image-container img {
+    @apply transition-opacity duration-300;
+    content-visibility: auto;
+  }
+
+  .input-beauty {
+    @apply w-full px-4 py-3 rounded-xl border border-beauty-light-gray bg-white/80 focus:outline-none focus:ring-4 focus:ring-primary-200 focus:border-primary-400 transition-all duration-300;
+  }
+
+  .shimmer-effect {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer-effect::before {
+    content: '';
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent animate-shimmer;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Loading animations */
+.loading-pulse {
+  @apply animate-pulse bg-gradient-to-r from-beauty-light-gray via-beauty-cream to-beauty-light-gray bg-[length:200%_100%];
+  animation: loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Beauty-specific animations */
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow-effect {
+  @apply shadow-glow;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(248, 187, 217, 0.4);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(248, 187, 217, 0.8);
+  }
+}
+
+/* Scrolling announcement bar animation */
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Fade in animation for product cards */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

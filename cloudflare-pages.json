@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developers.cloudflare.com/pages/configuration/build-configuration/",
+  "build": {
+    "command": "npm run build",
+    "cwd": "/",
+    "watchPaths": [
+      "src/**",
+      "public/**",
+      "next.config.js",
+      "tailwind.config.js"
+    ]
+  },
+  "deploy": {
+    "outputDirectory": "out",
+    "skipDeploy": false
+  },
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://backendglownaturas.onrender.com",
+    "NEXT_PUBLIC_SITE_NAME": "Glow Natura",
+    "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME": "glownaturas"
+  }
+}
+
