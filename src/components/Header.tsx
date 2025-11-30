@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { navigationItems } from '@/lib/data'
 import { useCart } from '@/lib/hooks'
+import CartDrawer from '@/components/cart/CartDrawer'
 
 export default function Header() {
   const router = useRouter()
@@ -21,6 +22,7 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const [wishlistCount] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false)
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -175,8 +177,8 @@ export default function Header() {
                     </span>
                   )}
                 </a>
-                <Link 
-                  href="/cart"
+                <button 
+                  onClick={() => setCartDrawerOpen(true)}
                   className="relative p-2 text-gray-900 hover:text-gray-700 transition-colors group"
                 >
                   <ShoppingCartIcon className="h-6 w-6 lg:h-7 lg:w-7 stroke-2" />
@@ -185,7 +187,7 @@ export default function Header() {
                       {itemCount}
                     </span>
                   )}
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -285,6 +287,9 @@ export default function Header() {
           padding-top: 0;
         }
       `}</style>
+
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={cartDrawerOpen} onClose={() => setCartDrawerOpen(false)} />
     </>
   )
 }
