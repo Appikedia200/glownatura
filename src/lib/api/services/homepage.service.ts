@@ -3,12 +3,12 @@ import type { HomepageSection } from '@/types/api';
 
 export const homepageService = {
   async getHomepageSections(): Promise<ApiResponse<HomepageSection[]>> {
-    const response = await apiClient.get<ApiResponse<HomepageSection[]>>('/api/homepage-sections');
-    return response.data;
+    // FIX: apiClient.get already returns ApiResponse, no need for .data
+    return await apiClient.get<HomepageSection[]>('/api/homepage-sections?isActive=true');
   },
 
   async getSectionById(id: string): Promise<ApiResponse<HomepageSection>> {
-    const response = await apiClient.get<ApiResponse<HomepageSection>>(`/api/homepage-sections/${id}`);
-    return response.data;
+    // FIX: apiClient.get already returns ApiResponse, no need for .data
+    return await apiClient.get<HomepageSection>(`/api/homepage-sections/${id}`);
   },
 };

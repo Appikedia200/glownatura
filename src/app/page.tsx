@@ -34,6 +34,23 @@ export default function Home() {
     )
   }
 
+  // Show error state with retry
+  if (error) {
+    return (
+      <main className="min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-md">
+          <p className="text-red-600 mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </main>
+    )
+  }
+
   return (
     <main className="min-h-screen m-0 p-0">
       <HeroBanner />
