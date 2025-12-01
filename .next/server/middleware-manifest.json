@@ -2,10 +2,10 @@
   "version": 3,
   "middleware": {},
   "functions": {
-    "/brands/[slug]/page": {
+    "/products/[id]/page": {
       "files": [
         "server/server-reference-manifest.js",
-        "server/app/brands/[slug]/page_client-reference-manifest.js",
+        "server/app/products/[id]/page_client-reference-manifest.js",
         "server/middleware-build-manifest.js",
         "server/middleware-react-loadable-manifest.js",
         "server/next-font-manifest.js",
@@ -13,25 +13,24 @@
         "server/edge-runtime-webpack.js",
         "server/edge-chunks/857.js",
         "server/edge-chunks/404.js",
-        "server/edge-chunks/334.js",
-        "server/app/brands/[slug]/page.js"
+        "server/app/products/[id]/page.js"
       ],
-      "name": "app/brands/[slug]/page",
-      "page": "/brands/[slug]/page",
+      "name": "app/products/[id]/page",
+      "page": "/products/[id]/page",
       "matchers": [
         {
-          "regexp": "^/brands/(?<slug>[^/]+?)$",
-          "originalSource": "/brands/[slug]"
+          "regexp": "^/products/(?<id>[^/]+?)$",
+          "originalSource": "/products/[id]"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "VKOSjsJF-mbOqgxpJ8CyA",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "nLkvv0Ji367PALInDXiQFZBICuOIlGF/98jIdZOckY0=",
-        "__NEXT_PREVIEW_MODE_ID": "08f36bb2fe900bdb61b4bc7e96babeec",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b1b2e8e6ca11ce47d110a0428938e7a5f537ef876e670feac62c9f28ee48ec34",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "f0ddb3858f52f36e3e2835dbf31dd6c5f50c2c34b8a65e8bcb39642e7c7802d5"
+        "__NEXT_BUILD_ID": "uMEI7muW2KCH6ssvpwvnD",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "+j47r6ENwDCx8fGsttYEgYzWZamEvlLNntQB8XnXp9g=",
+        "__NEXT_PREVIEW_MODE_ID": "7f0dbd31f311852583d54a2d50c5aa49",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b51c260ddeb516fa0d062e5480852e1e57fa8261f719f457472eaabed8abdf71",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "ad0908d75921a1c0050b2089f2c622b03daf4a45377ddde001a166e4b210f266"
       }
     },
     "/face/[subcategory]/page": {
@@ -59,17 +58,17 @@
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "VKOSjsJF-mbOqgxpJ8CyA",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "nLkvv0Ji367PALInDXiQFZBICuOIlGF/98jIdZOckY0=",
-        "__NEXT_PREVIEW_MODE_ID": "08f36bb2fe900bdb61b4bc7e96babeec",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b1b2e8e6ca11ce47d110a0428938e7a5f537ef876e670feac62c9f28ee48ec34",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "f0ddb3858f52f36e3e2835dbf31dd6c5f50c2c34b8a65e8bcb39642e7c7802d5"
+        "__NEXT_BUILD_ID": "uMEI7muW2KCH6ssvpwvnD",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "+j47r6ENwDCx8fGsttYEgYzWZamEvlLNntQB8XnXp9g=",
+        "__NEXT_PREVIEW_MODE_ID": "7f0dbd31f311852583d54a2d50c5aa49",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b51c260ddeb516fa0d062e5480852e1e57fa8261f719f457472eaabed8abdf71",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "ad0908d75921a1c0050b2089f2c622b03daf4a45377ddde001a166e4b210f266"
       }
     },
-    "/products/[id]/page": {
+    "/brands/[slug]/page": {
       "files": [
         "server/server-reference-manifest.js",
-        "server/app/products/[id]/page_client-reference-manifest.js",
+        "server/app/brands/[slug]/page_client-reference-manifest.js",
         "server/middleware-build-manifest.js",
         "server/middleware-react-loadable-manifest.js",
         "server/next-font-manifest.js",
@@ -77,24 +76,25 @@
         "server/edge-runtime-webpack.js",
         "server/edge-chunks/857.js",
         "server/edge-chunks/404.js",
-        "server/app/products/[id]/page.js"
+        "server/edge-chunks/334.js",
+        "server/app/brands/[slug]/page.js"
       ],
-      "name": "app/products/[id]/page",
-      "page": "/products/[id]/page",
+      "name": "app/brands/[slug]/page",
+      "page": "/brands/[slug]/page",
       "matchers": [
         {
-          "regexp": "^/products/(?<id>[^/]+?)$",
-          "originalSource": "/products/[id]"
+          "regexp": "^/brands/(?<slug>[^/]+?)$",
+          "originalSource": "/brands/[slug]"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "VKOSjsJF-mbOqgxpJ8CyA",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "nLkvv0Ji367PALInDXiQFZBICuOIlGF/98jIdZOckY0=",
-        "__NEXT_PREVIEW_MODE_ID": "08f36bb2fe900bdb61b4bc7e96babeec",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b1b2e8e6ca11ce47d110a0428938e7a5f537ef876e670feac62c9f28ee48ec34",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "f0ddb3858f52f36e3e2835dbf31dd6c5f50c2c34b8a65e8bcb39642e7c7802d5"
+        "__NEXT_BUILD_ID": "uMEI7muW2KCH6ssvpwvnD",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "+j47r6ENwDCx8fGsttYEgYzWZamEvlLNntQB8XnXp9g=",
+        "__NEXT_PREVIEW_MODE_ID": "7f0dbd31f311852583d54a2d50c5aa49",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "b51c260ddeb516fa0d062e5480852e1e57fa8261f719f457472eaabed8abdf71",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "ad0908d75921a1c0050b2089f2c622b03daf4a45377ddde001a166e4b210f266"
       }
     }
   },

@@ -120,9 +120,13 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* TEEKA4 EXACT HEADER STRUCTURE */}
+        {/* ⚡ TEEKA4 EXACT HEADER STRUCTURE - DO NOT MODIFY ⚡ */}
+        
+        {/* PROMO BAR - Sticky at top: 0 */}
         <ScrollingPromoBar />
-        <div className="sticky z-[998] bg-[#fff7ed]" style={{ top: '40px' }}>
+        
+        {/* HEADER WRAPPER - Sticky at top: 40px */}
+        <div className="header-wrapper">
           <Header />
           <NavMenu />
         </div>

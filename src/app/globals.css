@@ -337,4 +337,15 @@ img[data-loaded="false"] {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ⚡ TEEKA4 EXACT HEADER STYLES - DO NOT MODIFY ⚡ */
+.header-wrapper {
+  background: #fff7ed !important;
+  position: sticky !important;
+  top: 40px !important;
+  z-index: 90 !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 } 

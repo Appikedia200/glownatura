@@ -13,10 +13,10 @@ export default function MainHeader() {
 
   return (
     <>
-      <div className="header-wrapper">
-        {/* Row: Search - Logo - Icons */}
-        <div className="header-main">
-          {/* Search Bar */}
+      {/* Row: Search - Logo - Icons */}
+      <div className="header-main">
+        {/* Search Bar - LEFT */}
+        <div className="header-left">
           <form 
             onSubmit={(e) => {
               e.preventDefault()
@@ -34,23 +34,25 @@ export default function MainHeader() {
               className="search-input"
             />
           </form>
+        </div>
 
-          {/* Logo */}
-          <Link href="/" className="header-logo">
-            <img src="/images/logo/glownatura-logo.png" alt="GlowNatura" />
+        {/* Logo - CENTER */}
+        <div className="header-center">
+          <Link href="/">
+            <img src="/images/logo/glownatura-logo.png" alt="GlowNatura" className="logo" />
           </Link>
+        </div>
 
-          {/* Icons */}
-          <div className="header-icons">
-            <Link href="/account" className="icon">👤</Link>
-            <Link href="/wishlist" className="icon">♡</Link>
-            <button onClick={() => setCartDrawerOpen(true)} className="icon cart-icon">
-              🛒
-              {itemCount > 0 && (
-                <span className="cart-badge">{itemCount}</span>
-              )}
-            </button>
-          </div>
+        {/* Icons - RIGHT */}
+        <div className="header-right">
+          <Link href="/account" className="icon">👤</Link>
+          <Link href="/wishlist" className="icon">♡</Link>
+          <button onClick={() => setCartDrawerOpen(true)} className="icon cart-icon">
+            🛒
+            {itemCount > 0 && (
+              <span className="cart-badge">{itemCount}</span>
+            )}
+          </button>
         </div>
       </div>
 
@@ -58,22 +60,37 @@ export default function MainHeader() {
       <CartDrawer isOpen={cartDrawerOpen} onClose={() => setCartDrawerOpen(false)} />
 
       <style jsx>{`
-        .header-wrapper {
-          background: #fff7ed;
-          width: 100%;
-        }
-
         .header-main {
           display: flex;
-          align-items: center;
           justify-content: space-between;
-          padding: 22px 40px 22px 40px;
+          align-items: center;
+          padding: 18px 0;
+          margin: 0 !important;
           max-width: 1400px;
-          margin: 0 auto;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .header-left {
+          flex: 1;
+          display: flex;
+          justify-content: flex-start;
+        }
+
+        .header-center {
+          display: flex;
+          justify-content: center;
+        }
+
+        .header-right {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 22px;
         }
 
         .search-form {
-          flex: 1;
           max-width: 300px;
         }
 
@@ -91,23 +108,9 @@ export default function MainHeader() {
           color: #999;
         }
 
-        .header-logo {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .header-logo img {
+        .logo {
           height: 48px;
           width: auto;
-        }
-
-        .header-icons {
-          display: flex;
-          align-items: center;
-          gap: 22px;
-          flex: 1;
-          justify-content: flex-end;
         }
 
         .icon {
@@ -145,11 +148,11 @@ export default function MainHeader() {
             max-width: 150px;
           }
 
-          .header-logo img {
+          .logo {
             height: 40px;
           }
 
-          .header-icons {
+          .header-right {
             gap: 15px;
           }
 

@@ -57,58 +57,50 @@ export default function NavMenu() {
 
   return (
     <nav className="header-nav">
-      <div className="nav-container">
-        {/* ABOUT US */}
-        <Link href="/about">ABOUT US</Link>
+      {/* ABOUT US */}
+      <Link href="/about">ABOUT US</Link>
 
-        {/* BRANDS */}
-        <Link href="/brands">BRANDS</Link>
-        
-        {/* FACE */}
-        <Link href="/face">FACE</Link>
-        
-        {/* BATH & BODY */}
-        <Link href="/body">BATH & BODY</Link>
-        
-        {/* SALES & OFFERS */}
-        <Link href="/sales">SALES & OFFERS</Link>
-        
-        {/* BOOK A CONSULTATION */}
-        <Link href="/consultation">BOOK A CONSULTATION</Link>
-        
-        {/* GIFT CARDS */}
-        <Link href="/gift-cards">GIFT CARDS</Link>
-        
-        {/* WHOLESALE */}
-        <Link href="/wholesale">WHOLESALE</Link>
-      </div>
+      {/* BRANDS */}
+      <Link href="/brands">BRANDS</Link>
+      
+      {/* FACE */}
+      <Link href="/face">FACE</Link>
+      
+      {/* BATH & BODY */}
+      <Link href="/body">BATH & BODY</Link>
+      
+      {/* SALES & OFFERS */}
+      <Link href="/sales">SALES & OFFERS</Link>
+      
+      {/* BOOK A CONSULTATION */}
+      <Link href="/consultation">BOOK A CONSULTATION</Link>
+      
+      {/* GIFT CARDS */}
+      <Link href="/gift-cards">GIFT CARDS</Link>
+      
+      {/* WHOLESALE */}
+      <Link href="/wholesale">WHOLESALE</Link>
 
       <style jsx>{`
         .header-nav {
           display: flex;
           justify-content: center;
+          gap: 28px;
+          padding: 14px 0;
+          border-bottom: 1px solid #dfd7ca !important;
           font-size: 14px;
           font-weight: 600;
-          padding: 14px 0;
-          border-bottom: 1px solid #d6cbbf;
           text-transform: uppercase;
-          background: #fff7ed;
+          margin: 0 !important;
         }
 
-        .nav-container {
-          display: flex;
-          justify-content: center;
-          gap: 45px;
-          max-width: 1400px;
-        }
-
-        .header-nav a {
+        .header-nav :global(a) {
           color: #222;
           text-decoration: none;
           transition: color 0.2s;
         }
 
-        .header-nav a:hover {
+        .header-nav :global(a:hover) {
           color: #000;
         }
 
