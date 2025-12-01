@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useBrands } from '@/lib/hooks'
 
 const FACE_SKINCARE = [
   { name: 'Sunscreens', href: '/face/sunscreens' },
@@ -55,33 +56,22 @@ export default function NavMenu() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
   return (
-    <nav className="bg-[#FFF8F3] border-t border-gray-100/30">
+    <nav className="bg-[#FFF8F3] border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-center">
           <div className="flex items-center space-x-1">
-            {/* HOME */}
+            {/* ABOUT US */}
             <Link
-              href="/"
+              href="/about"
               className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-800 hover:text-black transition-colors relative group"
             >
               <span className="relative">
-                Home
+                About Us
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
               </span>
             </Link>
 
-            {/* SHOP */}
-            <Link
-              href="/shop"
-              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-800 hover:text-black transition-colors relative group"
-            >
-              <span className="relative">
-                Shop
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
-              </span>
-            </Link>
-
-            {/* BRANDS */}
+            {/* BRANDS + */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('brands')}
@@ -255,13 +245,46 @@ export default function NavMenu() {
               )}
             </div>
 
-            {/* SALES */}
+            {/* SALES & OFFERS */}
             <Link
               href="/sales"
               className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-800 hover:text-black transition-colors relative group"
             >
               <span className="relative">
                 Sales & Offers
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
+              </span>
+            </Link>
+
+            {/* BOOK A CONSULTATION */}
+            <Link
+              href="/consultation"
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-800 hover:text-black transition-colors relative group"
+            >
+              <span className="relative">
+                Book A Consultation
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
+              </span>
+            </Link>
+
+            {/* GIFT CARDS */}
+            <Link
+              href="/gift-cards"
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-800 hover:text-black transition-colors relative group"
+            >
+              <span className="relative">
+                Gift Cards
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
+              </span>
+            </Link>
+
+            {/* WHOLESALE */}
+            <Link
+              href="/wholesale"
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-800 hover:text-black transition-colors relative group"
+            >
+              <span className="relative">
+                Wholesale
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left"></span>
               </span>
             </Link>
