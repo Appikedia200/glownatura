@@ -64,8 +64,7 @@ export default function NavMenu() {
             {/* ABOUT US */}
             <Link
               href="/about"
-              className="py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
             >
               <span className="relative">
                 About Us
@@ -81,8 +80,7 @@ export default function NavMenu() {
             >
               <Link
                 href="/brands"
-                className="block py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="block py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
               >
                 <span className="relative">
                   Brands
@@ -128,8 +126,7 @@ export default function NavMenu() {
             >
               <Link
                 href="/face"
-                className="block py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="block py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
               >
                 <span className="relative">
                   Face
@@ -185,8 +182,7 @@ export default function NavMenu() {
             >
               <Link
                 href="/body"
-                className="block py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="block py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
               >
                 <span className="relative">
                   Bath & Body
@@ -222,8 +218,7 @@ export default function NavMenu() {
             >
               <Link
                 href="/jewelry"
-                className="block py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-                style={{ fontFamily: 'var(--font-montserrat)' }}
+                className="block py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
               >
                 <span className="relative">
                   Jewelry
@@ -254,8 +249,7 @@ export default function NavMenu() {
             {/* SALES & OFFERS */}
             <Link
               href="/sales"
-              className="py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
             >
               <span className="relative">
                 Sales & Offers
@@ -266,8 +260,7 @@ export default function NavMenu() {
             {/* BOOK A CONSULTATION */}
             <Link
               href="/consultation"
-              className="py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
             >
               <span className="relative">
                 Book A Consultation
@@ -278,8 +271,7 @@ export default function NavMenu() {
             {/* GIFT CARDS */}
             <Link
               href="/gift-cards"
-              className="py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
             >
               <span className="relative">
                 Gift Cards
@@ -290,8 +282,7 @@ export default function NavMenu() {
             {/* WHOLESALE */}
             <Link
               href="/wholesale"
-              className="py-3 px-4 text-[11px] font-semibold uppercase tracking-wider text-gray-900 hover:text-black transition-colors relative group"
-              style={{ fontFamily: 'var(--font-montserrat)' }}
+              className="py-4 px-5 text-[13px] font-medium uppercase tracking-wide text-gray-900 hover:text-black transition-colors relative group"
             >
               <span className="relative">
                 Wholesale

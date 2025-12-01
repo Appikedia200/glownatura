@@ -4,9 +4,9 @@ import { promoMessages } from '@/lib/data'
 
 export default function ScrollingPromoBar() {
   return (
-    // PROFESSIONAL: Sticky promo bar matching Teeka4 - same bg as header, premium typography
-    <div className="sticky top-0 z-[1000] bg-[#FFF8F3] border-b-0 py-2.5 overflow-hidden">
-      <div className="marquee whitespace-nowrap inline-block text-[11px] uppercase font-semibold tracking-wider">
+    // PROFESSIONAL: Sticky promo bar matching Teeka4 - gold/cream background
+    <div className="sticky top-0 z-[1000] bg-[#FBE7A1] border-b border-gray-200 py-2.5 overflow-hidden">
+      <div className="marquee whitespace-nowrap inline-block text-[13px] uppercase font-medium tracking-wide">
         {/* Duplicate messages for seamless loop */}
         {[...promoMessages, ...promoMessages].map((message, index) => (
           <span key={index} className="inline-block" style={{ fontFamily: 'var(--font-montserrat)' }}>

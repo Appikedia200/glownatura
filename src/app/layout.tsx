@@ -130,7 +130,7 @@ export default function RootLayout({
         <ScrollingPromoBar />
         
         {/* 2. UNIFIED HEADER BLOCK - Main Header + Nav (NO gaps, ONE background) */}
-        <header className="sticky top-[32px] z-[999] bg-[#FFF8F3] w-full shadow-sm">
+        <header className="sticky top-[38px] z-[999] bg-[#FFF8F3] w-full border-b border-gray-900/20">
           {/* Main Header Row (Logo + Search + Icons) */}
           <Header />
           
@@ -138,9 +138,6 @@ export default function RootLayout({
           <div className="hidden lg:block">
             <NavMenu />
           </div>
-          
-          {/* LUXURY DIVIDER - Matches Teeka4 exactly */}
-          <div className="border-b border-black/10"></div>
         </header>
         
         {/* MAIN CONTENT - Clean spacing after header */}
