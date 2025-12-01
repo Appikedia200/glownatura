@@ -120,19 +120,31 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* Promo Bar - Separate from header */}
+        {/* 
+          ⚠️ CRITICAL: FIXED HEADER SYSTEM - DO NOT MODIFY! 
+          This header structure must remain unchanged across entire website.
+          It matches Teeka4 EXACTLY - pixel perfect.
+        */}
+        
+        {/* 1. PROMO BAR - Sticky, same bg as header */}
         <ScrollingPromoBar />
         
-        {/* Unified Header + Nav - ONE PIECE like Teeka4 */}
-        <header className="sticky top-0 z-50 bg-[#FFF8F3] border-b border-gray-200 w-full">
+        {/* 2. UNIFIED HEADER BLOCK - Main Header + Nav (NO gaps, ONE background) */}
+        <header className="sticky top-[32px] z-[999] bg-[#FFF8F3] w-full shadow-sm">
+          {/* Main Header Row (Logo + Search + Icons) */}
           <Header />
+          
+          {/* Navigation Menu Row (About Us, Brands, Face, etc.) - Desktop Only */}
           <div className="hidden lg:block">
             <NavMenu />
           </div>
+          
+          {/* LUXURY DIVIDER - Matches Teeka4 exactly */}
+          <div className="border-b border-black/10"></div>
         </header>
         
-        {/* MAIN CONTENT - NO padding, header is sticky */}
-        <main className="pt-0">
+        {/* MAIN CONTENT - Clean spacing after header */}
+        <main className="min-h-screen">
           {children}
         </main>
 

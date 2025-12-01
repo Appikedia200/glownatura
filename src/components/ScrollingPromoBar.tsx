@@ -4,28 +4,26 @@ import { promoMessages } from '@/lib/data'
 
 export default function ScrollingPromoBar() {
   return (
-    <div className="relative bg-[#FBE7A1] text-black py-3 overflow-hidden w-full border-t border-b border-gray-200">
-      <div className="marquee whitespace-nowrap inline-block text-[13px] uppercase font-semibold tracking-wider">
-        {/* Duplicate the messages for seamless loop */}
+    // PROFESSIONAL: Sticky promo bar matching Teeka4 - same bg as header, premium typography
+    <div className="sticky top-0 z-[1000] bg-[#FFF8F3] border-b-0 py-2.5 overflow-hidden">
+      <div className="marquee whitespace-nowrap inline-block text-[11px] uppercase font-semibold tracking-wider">
+        {/* Duplicate messages for seamless loop */}
         {[...promoMessages, ...promoMessages].map((message, index) => (
-          <span key={index} className="inline-block">
+          <span key={index} className="inline-block" style={{ fontFamily: 'var(--font-montserrat)' }}>
             {message.link ? (
               <a 
                 href={message.link}
-                className="hover:font-bold transition-all duration-200 px-6"
+                className="hover:text-gray-600 transition-colors px-6 text-black"
               >
                 {message.text}
               </a>
             ) : (
-              <span className="px-6">{message.text}</span>
+              <span className="px-6 text-black">{message.text}</span>
             )}
             <span className="text-black mx-3 font-bold">•</span>
           </span>
         ))}
       </div>
-      
-      {/* More prominent border line under promo bar like Teeka4 */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-400/70 shadow-sm"></div>
       
       <style jsx>{`
         @keyframes marquee {
@@ -47,4 +45,4 @@ export default function ScrollingPromoBar() {
       `}</style>
     </div>
   )
-} 
+}

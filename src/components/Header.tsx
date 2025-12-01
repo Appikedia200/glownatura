@@ -52,10 +52,10 @@ export default function Header() {
 
   return (
     <>
-      {/* HEADER - Part of unified header block, NO border */}
-      <div className="bg-transparent">
+      {/* PROFESSIONAL HEADER - Part of unified system, matches Teeka4 exactly */}
+      <div className="bg-[#FFF8F3]">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
-        <div className="block lg:hidden bg-[#FFF8F3]">
+        <div className="block lg:hidden">
           {/* Main Header Row - Compact for landscape, normal for portrait */}
           <div className="flex items-center justify-between px-3 py-2 min-h-[56px]">
             {/* Left: Hamburger Menu - ALWAYS VISIBLE BELOW 992px */}
@@ -123,10 +123,10 @@ export default function Header() {
           </div>
         </div>
 
-        {/* DESKTOP HEADER (992px and above) */}
+        {/* DESKTOP HEADER (992px and above) - Matches Teeka4 spacing */}
         <div className="hidden lg:block">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex items-center justify-between h-24 lg:h-28">
+            <div className="flex items-center justify-between py-6">
               
               {/* Search Bar - Desktop Left */}
               <div className="flex flex-1 max-w-[280px] lg:max-w-[320px] items-center">
