@@ -1,81 +1,75 @@
+// components/ScrollingPromoBar.tsx - TEEKA4 EXACT CLONE
 'use client'
 
-import { promoMessages } from '@/lib/data'
+import Link from "next/link"
 
-export default function ScrollingPromoBar() {
+export const promoMessages = [
+  { text: "BUY MORE SAVE MORE - CLICK HERE", link: "/shop?featured=true" },
+  { text: "GET REWARDED FOR SHOPPING - CLICK HERE", link: "/rewards" },
+  { text: "FREE SHIPPING ON ORDERS OVER ₦25,000", link: "/shipping-info" },
+  { text: "JOIN GLOW NATURA PLUS FOR EXCLUSIVE DEALS", link: "/shop?featured=true" }
+]
+
+export default function PromoBar() {
   return (
-    <div className="promo-bar">
-      <div className="promo-slider">
-        {/* Duplicate messages for seamless loop */}
-        {[...promoMessages, ...promoMessages].map((message, index) => (
-          <span key={index}>
-            {message.link ? (
-              <a 
-                href={message.link}
-                className="promo-item"
-              >
-                {message.text}
-              </a>
-            ) : (
-              <span className="promo-item">{message.text}</span>
-            )}
-            <span className="dot">•</span>
-          </span>
-        ))}
+    <>
+      <div className="promo-bar">
+        <div className="promo-track">
+          {[...promoMessages, ...promoMessages].map((item, i) => (
+            <div key={i} className="promo-item">
+              <Link href={item.link}>{item.text}</Link>
+              <span className="dot">•</span>
+            </div>
+          ))}
+        </div>
       </div>
-      
+
       <style jsx>{`
         .promo-bar {
           height: 40px;
           background: #faeecf;
+          display: flex;
+          align-items: center;
           overflow: hidden;
+          white-space: nowrap;
           position: sticky;
           top: 0;
-          z-index: 100;
           width: 100%;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          align-items: center;
+          z-index: 999;
         }
-        
-        .promo-slider {
+
+        .promo-track {
           display: flex;
-          align-items: center;
-          height: 100%;
-          white-space: nowrap;
-          animation: marquee 30s linear infinite;
+          animation: promoScroll 22s linear infinite;
         }
-        
+
         .promo-item {
-          font-size: 12px;
-          font-weight: 500;
+          display: flex;
+          align-items: center;
+          font-size: 13px;
+          font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
-          color: #1a1a1a;
-          padding: 0 12px;
+          padding: 0 24px;
+        }
+
+        .promo-item a {
+          color: #222;
           text-decoration: none;
         }
-        
-        .promo-item:hover {
-          color: #000;
-        }
-        
+
         .dot {
-          color: #1a1a1a;
-          font-size: 8px;
-          padding: 0 4px;
+          margin-left: 24px;
+          margin-right: 24px;
+          font-size: 18px;
+          line-height: 0;
+          color: #222;
         }
-        
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+
+        @keyframes promoScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
       `}</style>
-    </div>
+    </>
   )
 }

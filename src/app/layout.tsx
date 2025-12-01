@@ -120,31 +120,19 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* 
-          ⚠️ CRITICAL: FIXED HEADER SYSTEM - DO NOT MODIFY! 
-          Matches Teeka4 EXACTLY - pixel perfect.
-        */}
-        
-        {/* PROMO BAR - Sticky marquee at top */}
+        {/* TEEKA4 EXACT HEADER STRUCTURE */}
         <ScrollingPromoBar />
-        
-        {/* HEADER WRAPPER - One continuous block, no gaps */}
-        <div className="sticky z-50 w-full" style={{ top: '40px', background: '#fff7ed', margin: 0, padding: 0 }}>
-          {/* Main Header Row (Search + Logo + Icons) */}
+        <div className="sticky z-[998] bg-[#fff7ed]" style={{ top: '40px' }}>
           <Header />
-          
-          {/* Navigation Menu Row - Desktop Only */}
-          <div className="hidden lg:block">
-            <NavMenu />
-          </div>
+          <NavMenu />
         </div>
         
-        {/* MAIN CONTENT - Clean spacing after header */}
+        {/* MAIN CONTENT */}
         <main className="min-h-screen">
           {children}
         </main>
 
-        {/* WhatsApp Float Button - Admin Controlled */}
+        {/* WhatsApp Float Button */}
         <WhatsAppFloat />
 
         {/* Toast Notifications */}
