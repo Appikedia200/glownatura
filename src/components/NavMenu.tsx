@@ -56,7 +56,7 @@ export default function NavMenu() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
   return (
-    <nav className="bg-[#FFF8F3] border-t border-gray-200">
+    <nav className="bg-transparent border-t-0 mt-0 pt-0">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-center">
           <div className="flex items-center space-x-1">

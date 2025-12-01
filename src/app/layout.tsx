@@ -120,17 +120,19 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen bg-beauty-cream overflow-x-hidden`}>
         <div id="portal-root" />
         
-        {/* Fixed Header Container - All header components grouped */}
-        <div className="relative lg:sticky lg:top-0 lg:z-50">
-          <ScrollingPromoBar />
+        {/* Promo Bar - Separate from header */}
+        <ScrollingPromoBar />
+        
+        {/* Unified Header + Nav - ONE PIECE like Teeka4 */}
+        <header className="sticky top-0 z-50 bg-[#FFF8F3] border-b border-gray-200 w-full">
           <Header />
           <div className="hidden lg:block">
             <NavMenu />
           </div>
-        </div>
+        </header>
         
-        {/* MAIN CONTENT - Responsive padding for fixed header + NavMenu on desktop */}
-        <main className="landscape:pt-[140px] md:pt-[160px] lg:pt-[220px]">
+        {/* MAIN CONTENT - NO padding, header is sticky */}
+        <main className="pt-0">
           {children}
         </main>
 

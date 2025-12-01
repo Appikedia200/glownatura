@@ -52,8 +52,8 @@ export default function Header() {
 
   return (
     <>
-      {/* HEADER - Fixed positioning like Teeka4 */}
-      <header className="sticky top-0 z-50 bg-[#FFF8F3] border-b border-gray-200 w-full shadow-sm">
+      {/* HEADER - Part of unified header block, NO border */}
+      <div className="bg-transparent">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
         <div className="block lg:hidden bg-[#FFF8F3]">
           {/* Main Header Row - Compact for landscape, normal for portrait */}
@@ -192,7 +192,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Mobile Side Drawer Menu - Teeka4 Style with Smooth Animations */}
       {mobileMenuOpen && (
