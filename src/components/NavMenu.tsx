@@ -56,11 +56,11 @@ export default function NavMenu() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
   return (
-    // PROFESSIONAL NAV - NO gaps, premium spacing, matches Teeka4
-    <nav className="bg-[#FFF8F3] border-t-0 mt-0 pt-0">
+    // NAV - Matches Teeka4 exactly, with visible divider
+    <nav className="bg-transparent border-t-0 mt-0 pt-0" style={{ margin: 0, padding: '12px 0', borderBottom: '1px solid #dfd7ca' }}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-center py-0">
-          <div className="flex items-center space-x-0">
+        <div className="flex justify-center">
+          <div className="flex items-center" style={{ gap: '24px' }}>
             {/* ABOUT US */}
             <Link
               href="/about"

@@ -52,10 +52,10 @@ export default function Header() {
 
   return (
     <>
-      {/* PROFESSIONAL HEADER - Part of unified system, matches Teeka4 exactly */}
-      <div className="bg-[#FFF8F3]">
+      {/* HEADER - Matches Teeka4 exactly */}
+      <div className="bg-transparent">
         {/* MOBILE & TABLET HEADER (below 992px - lg breakpoint) */}
-        <div className="block lg:hidden">
+        <div className="block lg:hidden bg-[#fff7ed]">
           {/* Main Header Row - Compact for landscape, normal for portrait */}
           <div className="flex items-center justify-between px-3 py-2 min-h-[56px]">
             {/* Left: Hamburger Menu - ALWAYS VISIBLE BELOW 992px */}
@@ -126,7 +126,7 @@ export default function Header() {
         {/* DESKTOP HEADER (992px and above) - Matches Teeka4 spacing */}
         <div className="hidden lg:block">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex items-center justify-between py-6">
+            <div className="flex items-center justify-between" style={{ padding: '18px 0', margin: 0 }}>
               
               {/* Search Bar - Desktop Left */}
               <div className="flex flex-1 max-w-[280px] lg:max-w-[320px] items-center">
@@ -165,7 +165,7 @@ export default function Header() {
               </div>
 
               {/* Icons - Right */}
-              <div className="flex items-center space-x-4 lg:space-x-6 flex-1 justify-end">
+              <div className="flex items-center flex-1 justify-end" style={{ gap: '20px' }}>
                 <a href="/account" className="p-2 text-gray-900 hover:text-gray-700 transition-colors">
                   <UserIcon className="h-6 w-6 lg:h-7 lg:w-7 stroke-2" />
                 </a>

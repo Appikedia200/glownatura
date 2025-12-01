@@ -122,23 +122,22 @@ export default function RootLayout({
         
         {/* 
           ⚠️ CRITICAL: FIXED HEADER SYSTEM - DO NOT MODIFY! 
-          This header structure must remain unchanged across entire website.
-          It matches Teeka4 EXACTLY - pixel perfect.
+          Matches Teeka4 EXACTLY - pixel perfect.
         */}
         
-        {/* 1. PROMO BAR - Sticky, same bg as header */}
+        {/* PROMO BAR - Sticky marquee at top */}
         <ScrollingPromoBar />
         
-        {/* 2. UNIFIED HEADER BLOCK - Main Header + Nav (NO gaps, ONE background) */}
-        <header className="sticky top-[38px] z-[999] bg-[#FFF8F3] w-full border-b border-gray-900/20">
-          {/* Main Header Row (Logo + Search + Icons) */}
+        {/* HEADER WRAPPER - One continuous block, no gaps */}
+        <div className="sticky z-50 w-full" style={{ top: '40px', background: '#fff7ed', margin: 0, padding: 0 }}>
+          {/* Main Header Row (Search + Logo + Icons) */}
           <Header />
           
-          {/* Navigation Menu Row (About Us, Brands, Face, etc.) - Desktop Only */}
+          {/* Navigation Menu Row - Desktop Only */}
           <div className="hidden lg:block">
             <NavMenu />
           </div>
-        </header>
+        </div>
         
         {/* MAIN CONTENT - Clean spacing after header */}
         <main className="min-h-screen">

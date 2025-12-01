@@ -45,8 +45,10 @@ export const navigationItems: NavItem[] = [
 
 // Promo Messages - used in ScrollingPromoBar
 export const promoMessages: PromoMessage[] = [
+  { text: 'JOIN GLOW NATURA PLUS FOR EXCLUSIVE DEALS', link: '/shop?featured=true' },
   { text: 'BUY MORE SAVE MORE - CLICK HERE', link: '/shop?featured=true' },
   { text: 'GET REWARDED FOR SHOPPING - CLICK HERE', link: '/rewards' },
+  { text: 'FREE SHIPPING ON ORDERS OVER ₦25,000', link: '/shipping-info' },
 ]
 
 // Utility function for formatting prices

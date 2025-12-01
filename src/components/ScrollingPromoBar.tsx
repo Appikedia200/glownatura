@@ -4,28 +4,69 @@ import { promoMessages } from '@/lib/data'
 
 export default function ScrollingPromoBar() {
   return (
-    // PROFESSIONAL: Sticky promo bar matching Teeka4 - gold/cream background
-    <div className="sticky top-0 z-[1000] bg-[#FBE7A1] border-b border-gray-200 py-2.5 overflow-hidden">
-      <div className="marquee whitespace-nowrap inline-block text-[13px] uppercase font-medium tracking-wide">
+    <div className="promo-bar">
+      <div className="promo-slider">
         {/* Duplicate messages for seamless loop */}
         {[...promoMessages, ...promoMessages].map((message, index) => (
-          <span key={index} className="inline-block" style={{ fontFamily: 'var(--font-montserrat)' }}>
+          <span key={index}>
             {message.link ? (
               <a 
                 href={message.link}
-                className="hover:text-gray-600 transition-colors px-6 text-black"
+                className="promo-item"
               >
                 {message.text}
               </a>
             ) : (
-              <span className="px-6 text-black">{message.text}</span>
+              <span className="promo-item">{message.text}</span>
             )}
-            <span className="text-black mx-3 font-bold">•</span>
+            <span className="dot">•</span>
           </span>
         ))}
       </div>
       
       <style jsx>{`
+        .promo-bar {
+          height: 40px;
+          background: #faeecf;
+          overflow: hidden;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          align-items: center;
+        }
+        
+        .promo-slider {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          white-space: nowrap;
+          animation: marquee 30s linear infinite;
+        }
+        
+        .promo-item {
+          font-size: 12px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: #1a1a1a;
+          padding: 0 12px;
+          text-decoration: none;
+        }
+        
+        .promo-item:hover {
+          color: #000;
+        }
+        
+        .dot {
+          color: #1a1a1a;
+          font-size: 8px;
+          padding: 0 4px;
+        }
+        
         @keyframes marquee {
           0% {
             transform: translateX(0);
@@ -33,14 +74,6 @@ export default function ScrollingPromoBar() {
           100% {
             transform: translateX(-50%);
           }
-        }
-        
-        .marquee {
-          animation: marquee 30s linear infinite;
-        }
-        
-        .marquee:hover {
-          animation-play-state: paused;
         }
       `}</style>
     </div>
